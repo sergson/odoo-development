@@ -1,0 +1,258 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_kits
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20170418\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-08 14:12+0000\n"
+"PO-Revision-Date: 2017-06-08 14:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: krzem.ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.sale_kits_wizard
+#: model:ir.ui.view,arch_db:sale_kits.sale_order_lines_to_kit_wizard
+msgid "Add"
+msgstr "Добавить"
+
+#. module: sale_kits
+#: code:addons/sale_kits/wizard/sale_kits_wizard.py:63
+#, python-format
+msgid "Add name and note to use it for kit name and note"
+msgstr "Следует добавить имя и описание (note), чтобы использовать их как имя и описание набора позиций счета"
+
+#. module: sale_kits
+#: model:ir.actions.act_window,help:sale_kits.action_sale_kits_wizard
+msgid "Add order lines from kit"
+msgstr "Добавить позиции из набора"
+
+#. module: sale_kits
+#: model:ir.actions.act_window,help:sale_kits.action_sale_order_lines_to_kit_wizard
+msgid "Add sale order lines to kit"
+msgstr "Добавить позиции счета в набор"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.sale_kits_wizard
+#: model:ir.ui.view,arch_db:sale_kits.sale_order_lines_to_kit_wizard
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_create_uid
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_create_uid
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard_create_uid
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard_create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_create_date
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_create_date
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard_create_date
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard_create_date
+msgid "Created on"
+msgstr "Создан"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_display_name
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_display_name
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard_display_name
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard_display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_order_form_inherit_kits
+msgid "From kits"
+msgstr "Из набора"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_id
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_id
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard_id
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_kit_lines_tree
+msgid "Kit"
+msgstr "Набор"
+
+#. module: sale_kits
+#: model:ir.model,name:sale_kits.model_sale_kit_lines
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_kit_lines
+#: model:ir.ui.view,arch_db:sale_kits.sale_kits_form
+#: model:ir.ui.view,arch_db:sale_kits.view_kit_lines_form
+msgid "Kit lines"
+msgstr "Позиции набора"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_name
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard_kit_id
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard_kit_name
+#: model:ir.ui.view,arch_db:sale_kits.sale_order_lines_to_kit_wizard
+#: model:ir.ui.view,arch_db:sale_kits.view_kits_filter
+#: model:ir.ui.view,arch_db:sale_kits.view_sale_kits_tree
+msgid "Kit name"
+msgstr "Наименование набора"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_kits_filter
+msgid "Kit note"
+msgstr "Описание набора"
+
+#. module: sale_kits
+#: model:ir.model,name:sale_kits.model_sale_kit
+msgid "Kit of lines for sale order"
+msgstr "Набор позиций для счета"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.sale_kits_wizard
+msgid "Kits"
+msgstr "Наборы"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.sale_kits_wizard
+msgid "Kits for sail"
+msgstr "Наборы для продажи"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.sale_kits_form
+msgid "Kits for sales"
+msgstr "Наборы для продаж"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit___last_update
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines___last_update
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard___last_update
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard___last_update
+msgid "Last Modified on"
+msgstr "Последний раз изменено"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_write_uid
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard_write_uid
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_write_uid
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Последний раз обновлено"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_write_date
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_wizard_write_date
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_write_date
+#: model:ir.model.fields,field_description:sale_kits.field_sale_tokit_wizard_write_date
+msgid "Last Updated on"
+msgstr "Последний раз обновлено"
+
+#. module: sale_kits
+#: model:ir.model.fields,help:sale_kits.field_sale_kit_name
+msgid "Name of kit"
+msgstr "Наименование набора"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_product_id
+#: model:ir.ui.view,arch_db:sale_kits.view_kit_lines_tree
+msgid "Product"
+msgstr "Товар"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_kit_lines_form
+msgid "Products"
+msgstr "Продукция"
+
+#. module: sale_kits
+#: model:ir.model.fields,help:sale_kits.field_sale_kit_kit_lines
+msgid "Products for including to kit"
+msgstr "Продукция для включения в набор"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_sale_kit_id
+msgid "Related kit"
+msgstr "Связанный набор"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_kit_lines_tree
+msgid "Sale kit"
+msgstr "Набор для продажи"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_sale_kits_tree
+msgid "Sale kits"
+msgstr "Наборы для продаж"
+
+#. module: sale_kits
+#: model:ir.actions.act_window,name:sale_kits.action_kits
+#: model:ir.actions.act_window,name:sale_kits.action_sale_kits_wizard
+#: model:ir.ui.menu,name:sale_kits.menu_sale_kits
+msgid "Sale order kits"
+msgstr "Наборы"
+
+#. module: sale_kits
+#: model:ir.actions.act_window,help:sale_kits.action_kits
+msgid "Sale order kits help to organize sale process."
+msgstr "Наборы в счете помогают организовать процесс продаж"
+
+#. module: sale_kits
+#: model:ir.actions.act_window,name:sale_kits.action_sale_order_lines_to_kit_wizard
+#: model:ir.ui.view,arch_db:sale_kits.sale_order_lines_to_kit_wizard
+msgid "Sale order lines to kit"
+msgstr "Позиции счета в набор"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_note
+msgid "Sale order note"
+msgstr "Описание счета"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_kits_filter
+msgid "Search kit"
+msgstr "Поиск набора"
+
+#. module: sale_kits
+#: model:ir.model.fields,help:sale_kits.field_sale_kit_wizard_kit_id
+msgid "Select kit to add to sale order"
+msgstr "Выберите набор для добавления в счет"
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_sequence
+msgid "Sequence"
+msgstr "Нумерация"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_kit_lines_form
+msgid "Sequence in kit"
+msgstr "Нумерация в наборе"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_order_form_inherit_kits
+msgid "To kits"
+msgstr "В наборы"
+
+#. module: sale_kits
+#: model:ir.ui.view,arch_db:sale_kits.view_kit_lines_tree
+msgid "UOM"
+msgstr "Ед. Изм."
+
+#. module: sale_kits
+#: model:ir.model.fields,field_description:sale_kits.field_sale_kit_lines_product_uom
+msgid "Units of Measure"
+msgstr "Единицы измерения"
+
+#. module: sale_kits
+#: model:ir.model,name:sale_kits.model_sale_tokit_wizard
+msgid "Wizard to add sale order linels to kit"
+msgstr "Форма для добовления позиций счета в набор"
+
+#. module: sale_kits
+#: model:ir.model,name:sale_kits.model_sale_kit_wizard
+msgid "Wizard to select kit for sale order"
+msgstr "Форма выбора набора для счета"
+
