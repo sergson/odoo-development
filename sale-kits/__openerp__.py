@@ -33,7 +33,7 @@ Module give a possibility to create any kind of sale order lines kits and save i
     'author': 'Serg Terihov',
     'website': '',
 	'price': '10',
-	'currency': 'EUR'
+	'currency': 'EUR',
     'depends': ['sale'],
     'data': [
         'security/ir.model.access.csv',
