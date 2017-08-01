@@ -24,7 +24,7 @@
 {
     'name': 'Sale kits',
     'version': '1.0',
-    'category': 'Sale',
+    'category': 'Sales',
     'author': 'Serg Terihov',
     'website': '',
 	'price': '10',
