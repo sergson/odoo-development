@@ -25,11 +25,6 @@
     'name': 'Sale kits',
     'version': '1.0',
     'category': 'Sale',
-    'description': """
-Sale kits add kits menu in sale order form.
-===========================================================
-Module give a possibility to create any kind of sale order lines kits and save it. 
-""",
     'author': 'Serg Terihov',
     'website': '',
 	'price': '10',
@@ -40,6 +35,7 @@ Module give a possibility to create any kind of sale order lines kits and save i
         'wizard/sale_kits_wizard_view.xml',
         'views/sale_kits_view.xml',
     ],
+	'images': ['static/description/icon.jpg'],
     'installable': True,
     'auto_install': False,
 }
