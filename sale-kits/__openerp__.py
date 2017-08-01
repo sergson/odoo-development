@@ -35,7 +35,6 @@ Module give a possibility to create any kind of sale order lines kits and save i
 	'price': '10',
 	'currency': 'EUR',
     'depends': ['sale'],
-	'images': ['images/sale-kits.pgn'],
     'data': [
         'security/ir.model.access.csv',
         'wizard/sale_kits_wizard_view.xml',
