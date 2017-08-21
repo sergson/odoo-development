@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 ##############################################################################
 #Odoo Proprietary License v1.0
 #   This software and associated files (the "Software") may only be used (executed,
@@ -29,23 +29,6 @@
 #
 ##############################################################################
 
-
-
-{
-    'name': 'Sale kits',
-    'version': '1.0',
-    'category': 'Sales',
-    'author': 'Serg Terihov',
-    'website': '',
-	'price': '10',
-	'currency': 'EUR',
-    'depends': ['sale'],
-    'data': [
-        'security/ir.model.access.csv',
-        'wizard/sale_kits_wizard_view.xml',
-        'views/sale_kits_view.xml',
-    ],
-	'images': ['static/description/icon.png'],
-    'installable': True,
-    'auto_install': False,
-}
+import res_config
+import sale_bank_account
+import invoice_bank_account

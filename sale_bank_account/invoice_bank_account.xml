@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Account Invoice -->
+       <record id="view_invoice_form_inherit_bank_account" model="ir.ui.view">
+            <field name="name">invoice.form.bank</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                 <data>
+                     <field name="date_due" position="after">
+                          <field name="company_bank_account" domain="[('partner_id', '=', company_id)]"/>
+                          <field name="partner_bank_account" domain="[('partner_id', '=', partner_id)]"/>
+                     </field>
+                 </data>
+            </field>
+        </record>
+</odoo>
+

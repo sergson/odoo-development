@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 ##############################################################################
 #Odoo Proprietary License v1.0
 #   This software and associated files (the "Software") may only be used (executed,
@@ -28,24 +28,25 @@
 #DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-
-
-
 {
-    'name': 'Sale kits',
+    'name': 'Bank account in sales',
     'version': '1.0',
-    'category': 'Sales',
+    'summary': 'Bank account selection in sale order',
     'author': 'Serg Terihov',
     'website': '',
-	'price': '10',
+    'images': [''],
+    'category': 'Sale',
+	'price': '1',
 	'currency': 'EUR',
     'depends': ['sale'],
     'data': [
-        'security/ir.model.access.csv',
-        'wizard/sale_kits_wizard_view.xml',
-        'views/sale_kits_view.xml',
+        'res_config_view.xml',
+        'sale_bank_account.xml',
+        'invoice_bank_account.xml',
     ],
+    'css': [''],
 	'images': ['static/description/icon.png'],
     'installable': True,
     'auto_install': False,
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
