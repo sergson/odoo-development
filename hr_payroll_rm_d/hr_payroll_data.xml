@@ -1,0 +1,1068 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+	    <!-- Salary Contribution Register -->
+		
+        <record id="contrib_register_payroll" model="hr.contribution.register">
+            <field name="name">	К выплате по платежной ведомости</field>
+            <field name="partner_id" eval="False"/>
+        </record>
+		
+		<record id="contrib_register_vachicle" model="hr.contribution.register">
+            <field name="name">	Компенсация за использование ЛТС</field>
+            <field name="partner_id" eval="False"/>
+        </record>
+
+        <!-- Salary Rule Category -->
+
+        <record id="SALARY" model="hr.salary.rule.category">
+            <field name="name">Оклад</field>
+            <field name="code">SALARY</field>
+        </record>
+		
+        <record id="TOTAL_CALC" model="hr.salary.rule.category">
+            <field name="name">Всего начислено</field>
+            <field name="code">TOTAL_CALC</field>
+        </record>
+        
+		<record id="DEC_INCOMING_TAX" model="hr.salary.rule.category">
+            <field name="name">Всего удержано налога на доходы</field>
+            <field name="code">DEC_INCOMING_TAX</field>
+        </record>
+		
+		<record id="INSURANCE" model="hr.salary.rule.category">
+            <field name="name">Взносы на обязательное страхование</field>
+            <field name="code">INSURANCE</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет по налогу на доходы</field>
+            <field name="code">TAX_DEDUCTION</field>
+        </record>
+		
+		<record id="CALC_HOSPITAL_ALL" model="hr.salary.rule.category">
+            <field name="name">Начислено по временной нетрудоспособности всего</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_HOSPITAL_ALL</field>
+        </record>
+		
+		<record id="CALC_HOLIDAY_PAY" model="hr.salary.rule.category">
+            <field name="name">Начислено отпускных</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_HOLIDAY_PAY</field>
+        </record>
+
+        <record id="CALC_WAGE_BY_TIME" model="hr.salary.rule.category">
+            <field name="name">Начислена заработная плата за период</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_WAGE_BY_TIME</field>
+        </record>
+
+        <record id="OTHER_INCOMING" model="hr.salary.rule.category">
+            <field name="name">Другие доходы в виде различных социальных и материальных благ</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">OTHER_INCOMING</field>
+        </record>
+		
+		<record id="DEC_INCOME_TAX_UN_HOLIDAY" model="hr.salary.rule.category">
+            <field name="name">Удержано налога на доходы с заработной платы</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'DEC_INCOMING_TAX')]"/>
+            <field name="code">DEC_INCOME_TAX_UN_HOLIDAY</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_HOLIDAY" model="hr.salary.rule.category">
+            <field name="name">Удержано налога на доходы с отпускных</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'DEC_INCOMING_TAX')]"/>
+            <field name="code">DEC_INCOMIN_TAX_HOLIDAY</field>
+        </record>
+		
+		<record id="BY_COMPANY" model="hr.salary.rule.category">
+            <field name="name">Сумма задолженности за организацией</field>
+            <field name="code">BY_COMPANY</field>
+        </record>
+		
+		<record id="BY_EMPLOYEE" model="hr.salary.rule.category">
+            <field name="name">	Сумма задолженности за работником</field>
+            <field name="code">	BY_EMPLOYEE</field>
+        </record>
+		
+		<record id="TO_PAYOFF" model="hr.salary.rule.category">
+            <field name="name">Сумма к выплате</field>
+            <field name="code">TO_PAYOFF</field>
+        </record>
+		
+		<record id="CALC_HOSPITAL_ORG" model="hr.salary.rule.category">
+            <field name="name">Начислено по временной нетрудоспособности за счет работодателя</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'CALC_HOSPITAL_ALL')]"/>
+            <field name="code">CALC_HOSPITAL_ORG</field>
+        </record>
+		
+		<record id="CALC_HOSPITAL_FSS" model="hr.salary.rule.category">
+            <field name="name">Начислено по временной нетрудоспособности за счет ФСС</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'CALC_HOSPITAL_ALL')]"/>
+            <field name="code">CALC_HOSPITAL_FSS</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_OTHER_INCOMING" model="hr.salary.rule.category">
+            <field name="name">Удержано налога на доходы с других доходов</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'DEC_INCOMING_TAX')]"/>
+            <field name="code">DEC_INCOMIN_TAX_OTHER_INCOMING</field>
+        </record>
+		
+		<record id="CALC_HOSPITAL_MOTHER" model="hr.salary.rule.category">
+            <field name="name">Начислено пособие по беременности и родам</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_HOSPITAL_MOTHER</field>
+        </record>
+		
+		<record id="CALC_CHILDREN" model="hr.salary.rule.category">
+            <field name="name">Начислено пособие по уходу за ребенком</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_CHILDREN</field>
+        </record>
+		
+		<record id="CALC_MATERIAL_AID" model="hr.salary.rule.category">
+            <field name="name">Начислена материальная помощь</field>
+            <field name="code">CALC_MATERIAL_AID</field>
+        </record>
+		
+		<record id="CALC_WAGE_BY_BUSINESS_TRIP" model="hr.salary.rule.category">
+            <field name="name">Начислена заработная плата за период командировки</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_WAGE_BY_BUSINESS_TRIP</field>
+        </record>
+		
+		<record id="CALC_WAGE_BY_IDLE" model="hr.salary.rule.category">
+            <field name="name">Начислена заработная плата за период простоя</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_WAGE_BY_IDLE</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_HOSPITAL" model="hr.salary.rule.category">
+            <field name="name">Удержано и зачтено налога на доходы с пособия по временной нетрудоспособности</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'DEC_INCOMING_TAX')]"/>
+            <field name="code">DEC_INCOMIN_TAX_HOSPITAL</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_MATERIAL_AID" model="hr.salary.rule.category">
+            <field name="name">Удержано налога на доходы с материальной помощи</field>
+            <field name="code">DEC_INCOMIN_TAX_MATERIAL_AID</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_BY_BUSINESS_TRIP" model="hr.salary.rule.category">
+            <field name="name">Удержано налога на доходы с заработной платы за период командировки</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'DEC_INCOMING_TAX')]"/>
+            <field name="code">DEC_INCOMIN_TAX_BY_BUSINESS_TRIP</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_BY_IDLE" model="hr.salary.rule.category">
+            <field name="name">	Удержано налога на доходы с заработной платы за период простоя</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'DEC_INCOMING_TAX')]"/>
+            <field name="code">DEC_INCOMIN_TAX_BY_IDLE</field>
+        </record>
+		
+		<record id="CALC_PREMIUM" model="hr.salary.rule.category">
+            <field name="name">Начислена премия за период</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">	CALC_PREMIUM</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_PREMIUM" model="hr.salary.rule.category">
+            <field name="name">Удержано налога на доходы с премии</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'DEC_INCOMING_TAX')]"/>
+            <field name="code">DEC_INCOMIN_TAX_PREMIUM</field>
+        </record>
+		
+		<record id="PENSION" model="hr.salary.rule.category">
+            <field name="name">Начислено взносов на обязательное пенсионное страхование</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'INSURANCE')]"/>
+            <field name="code">PENSION</field>
+        </record>
+		
+		<record id="MEDICAL" model="hr.salary.rule.category">
+            <field name="name">Начислено взносов на обязательное медицинское страхование</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'INSURANCE')]"/>
+            <field name="code">MEDICAL</field>
+        </record>
+		
+		<record id="HOSPITAL_AND_MOTHER" model="hr.salary.rule.category">
+            <field name="name">Начислено взносов на страхование от временной нетрудоспособности и в связи с материнством</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'INSURANCE')]"/>
+            <field name="code">HOSPITAL_AND_MOTHER</field>
+        </record>
+		
+		<record id="ACCIDENT" model="hr.salary.rule.category">
+            <field name="name">Начислено взносов на страхование от несчастного случая и профессиональных заболеваний</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'INSURANCE')]"/>
+            <field name="code">ACCIDENT</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_HOLIDAY" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с отпускных</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TAX_DEDUCTION')]"/>
+            <field name="code">TAX_DEDUCTION_HOLIDAY</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_WAGE_BY_TIME" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с заработной платы</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TAX_DEDUCTION')]"/>
+            <field name="code">TAX_DEDUCTION_WAGE_BY_TIME</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_HOSPITAL" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с пособия по временной нетрудоспособности</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TAX_DEDUCTION')]"/>
+            <field name="code">TAX_DEDUCTION_HOSPITAL</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_OTHER_INCOMING" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с других доходов</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TAX_DEDUCTION')]"/>
+            <field name="code">TAX_DEDUCTION_OTHER_INCOMING</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_MATERIAL_AID" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с материальной помощи</field>
+            <field name="code">TAX_DEDUCTION_MATERIAL_AID</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_BY_BUSINESS_TRIP" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с заработной платы за период командировки</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TAX_DEDUCTION')]"/>
+            <field name="code">TAX_DEDUCTION_BY_BUSINESS_TRIP</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_WAGE_BY_IDLE" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с заработной платы за период простоя</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TAX_DEDUCTION')]"/>
+            <field name="code">TAX_DEDUCTION_WAGE_BY_IDLE</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_PREMIUM" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с премии</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TAX_DEDUCTION')]"/>
+            <field name="code">	TAX_DEDUCTION_PREMIUM</field>
+        </record>
+		
+		<record id="TOTALS" model="hr.salary.rule.category">
+            <field name="name">Промежуточные итоги</field>
+            <field name="code">TOTALS</field>
+        </record>
+		
+		<record id="CALC_CHILDREN_BORN" model="hr.salary.rule.category">
+            <field name="name">Начислено единовременное пособие при рождении ребенка</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_CHILDREN_BORN</field>
+        </record>
+		
+		<record id="CALC_EARLY_REG" model="hr.salary.rule.category">
+            <field name="name">Начислено единовременное пособие за постановку на учет в ранние сроки беременности</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_EARLY_REG</field>
+        </record>
+		
+		<record id="CALC_WAGE_BY_HOLIDAYS" model="hr.salary.rule.category">
+            <field name="name">Начислена заработная плата за отработанные выходные в периоде</field>
+			<field name="parent_id" model="hr.salary.rule.category" search="[('code','like',u'TOTAL_CALC')]"/>
+            <field name="code">CALC_WAGE_BY_HOLIDAYS</field>
+        </record>
+		
+		<record id="PAYROLL" model="hr.salary.rule.category">
+            <field name="name">Расчетная ведомость</field>
+            <field name="code">PAYROLL</field>
+        </record>
+		
+		<record id="PERS_VECHICLE" model="hr.salary.rule.category">
+            <field name="name">Начислена компенсация за использование личного транспортного средства в служебных целях</field>
+            <field name="code">PERS_VECHICLE</field>
+        </record>
+		
+		<record id="CALC_COMP_HOLIDAY_PAY" model="hr.salary.rule.category">
+            <field name="name">Начислена компенсация (отпуск)</field>
+            <field name="code">CALC_COMP_HOLIDAY_PAY</field>
+        </record>
+		
+		<record id="DEC_INCOMIN_TAX_COMP_HOLIDAY" model="hr.salary.rule.category">
+            <field name="name">Удержано налога на доходы с компенсации за неиспользованный отпуск</field>
+            <field name="code">DEC_INCOMIN_TAX_COMP_HOLIDAY</field>
+        </record>
+		
+		<record id="TAX_DEDUCTION_COMP_HOLIDAY" model="hr.salary.rule.category">
+            <field name="name">Налоговый вычет с компенсации за неиспользованный отпуск</field>
+            <field name="code">TAX_DEDUCTION_COMP_HOLIDAY</field>
+        </record>
+		
+		        <!-- Salary Rules -->
+
+        <record id="hr_rule_SALARY" model="hr.salary.rule">
+            <field name="name">Тарифная ставка (оклад)</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">SALARY</field>
+            <field name="category_id" ref="SALARY"/>
+            <field name="condition_select">python</field>
+			<field name="condition_python">if inputs.SALARY.amount or contract.wage:
+    result = 1
+else:
+    result = 0
+			</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">if inputs.SALARY.amount:
+     result = inputs.SALARY.amount 
+else:
+     result = contract.wage
+			</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Тарифная ставка (оклад)', 'code': 'SALARY'})]"/>
+        </record>
+
+
+        <record id="hr_rule_CALC_WAGE_BY_TIME" model="hr.salary.rule">
+            <field name="name">Начислена заработная плата за текущий период</field>
+            <field name="sequence" eval="20"/>
+            <field name="code">CALC_WAGE_BY_TIME</field>
+            <field name="category_id" ref="CALC_WAGE_BY_TIME"/>
+            <field name="condition_select">none</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+		    <field name="amount_select">code</field>
+            <field name="amount_python_compute">if inputs.CALC_WAGE_BY_TIME.amount:
+     result = inputs.CALC_WAGE_BY_TIME.amount 
+else:
+     w_days = 0
+     t_days = 0
+     for line in payslip.worked_days_line_ids:
+        w_days += line.number_of_days
+        t_days += line.x_total_days
+     result = round(w_days*(categories.SALARY/t_days),2)
+			</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислена заработная плата за период', 'code': 'CALC_WAGE_BY_TIME'})]"/>
+        </record>
+
+
+		<record id="hr_rule_TO_PAYOFF" model="hr.salary.rule">
+            <field name="name">Сумма к выплате</field>
+            <field name="sequence" eval="197"/>
+            <field name="code">TO_PAYOFF</field>
+            <field name="category_id" ref="TOTALS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.TOTAL_CALC - categories.DEC_INCOMING_TAX + categories.BY_COMPANY - categories.BY_EMPLOYEE</field>
+        </record>
+		
+		
+		<record id="hr_rule_CALC_HOLIDAY_PAY" model="hr.salary.rule">
+			<field name="name">Начислено отпускных за текущий месяц</field>
+			<field name="sequence" eval="30"/>
+			<field name="code">CALC_HOLIDAY_PAY</field>
+			<field name="category_id" ref="CALC_HOLIDAY_PAY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_HOLIDAY_PAY.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_HOLIDAY_PAY.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено отпускных за текущий месяц', 'code': 'CALC_HOLIDAY_PAY'})]"/>
+		</record>		
+		
+		
+		<record id="hr_rule_CALC_HOSPITAL_ALL" model="hr.salary.rule">
+			<field name="name">Начислено по временной нетрудоспособности</field>
+			<field name="sequence" eval="48"/>
+			<field name="code">CALC_HOSPITAL_ALL</field>
+			<field name="category_id" ref="TOTALS"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_HOSPITAL_ORG.amount != 0 or inputs.CALC_HOSPITAL_FSS.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = categories.CALC_HOSPITAL_ALL</field>
+		</record>
+		
+		
+		<record id="hr_rule_OTHER_INCOMING" model="hr.salary.rule">
+			<field name="name">Другие доходы в виде различных социальных и материальных благ</field>
+			<field name="sequence" eval="50"/>
+			<field name="code">OTHER_INCOMING</field>
+			<field name="category_id" ref="OTHER_INCOMING"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.OTHER_INCOMING.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.OTHER_INCOMING.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Другие доходы в виде различных социальных и материальных благ', 'code': 'OTHER_INCOMING'})]"/>
+		</record>
+
+
+		<record id="hr_rule_TOTAL_CALC" model="hr.salary.rule">
+			<field name="name">Начислено всего</field>
+			<field name="sequence" eval="57"/>
+			<field name="code">TOTAL_CALC</field>
+			<field name="category_id" ref="TOTALS"/>
+			<field name="condition_select">none</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = categories.TOTAL_CALC</field>
+		</record>
+
+
+		<record id="hr_rule_DEC_INCOME_TAX_UN_HOLIDAY" model="hr.salary.rule">
+			<field name="name">Удержано и зачтено налога на доходы с заработной платы</field>
+			<field name="sequence" eval="60"/>
+			<field name="code">DEC_INCOME_TAX_UN_HOLIDAY</field>
+			<field name="category_id" ref="DEC_INCOME_TAX_UN_HOLIDAY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.CALC_WAGE_BY_TIME != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOME_TAX_UN_HOLIDAY.amount:
+     result = inputs.DEC_INCOME_TAX_UN_HOLIDAY.amount
+else:
+     if inputs.CALC_WAGE_BY_TIME.amount:
+         result = round((inputs.CALC_WAGE_BY_TIME.amount - inputs.TAX_DEDUCTION_WAGE_BY_TIME.amount)*0.13,2)
+     else:
+         w_days = 0
+         t_days = 0
+         for line in payslip.worked_days_line_ids:
+            w_days += line.number_of_days
+            t_days += line.x_total_days
+         result = round((w_days*(categories.SALARY/t_days)- inputs.TAX_DEDUCTION_WAGE_BY_TIME.amount)*0.13,2)</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано и зачтено налога на доходы кроме отпускных', 'code': 'DEC_INCOME_TAX_UN_HOLIDAY'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_HOLIDAY" model="hr.salary.rule">
+			<field name="name">Удержано и зачтено налога на доходы с отпускных</field>
+			<field name="sequence" eval="70"/>
+			<field name="code">DEC_INCOMIN_TAX_HOLIDAY</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_HOLIDAY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.CALC_HOLIDAY_PAY != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_HOLIDAY.amount:
+     result = inputs.DEC_INCOMIN_TAX_HOLIDAY.amount 
+else:
+     if inputs.CALC_HOLIDAY_PAY.amount:
+         result = round((inputs.CALC_HOLIDAY_PAY.amount - inputs.TAX_DEDUCTION_HOLIDAY.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано налога на доходы с отпускных', 'code': 'DEC_INCOMIN_TAX_HOLIDAY'})]"/>
+		</record>
+		
+		<record id="hr_rule_DEC_INCOMING_TAX" model="hr.salary.rule">
+			<field name="name">Удержано и зачтено налога на доходы всего</field>
+			<field name="sequence" eval="88"/>
+			<field name="code">DEC_INCOMING_TAX</field>
+			<field name="category_id" ref="TOTALS"/>
+			<field name="condition_select">none</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = categories.DEC_INCOMING_TAX</field>
+		</record>
+		
+		
+		<record id="hr_rule_BY_COMPANY" model="hr.salary.rule">
+			<field name="name">Сумма задолженности за организацией</field>
+			<field name="sequence" eval="90"/>
+			<field name="code">DEC_INCOMING_TAX</field>
+			<field name="category_id" ref="BY_COMPANY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.BY_COMPANY.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.BY_COMPANY.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Сумма задолженности за организацией', 'code': 'BY_COMPANY'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_BY_EMPLOYEE" model="hr.salary.rule">
+			<field name="name">Сумма задолженности за работником</field>
+			<field name="sequence" eval="100"/>
+			<field name="code">BY_EMPLOYEE</field>
+			<field name="category_id" ref="BY_EMPLOYEE"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.BY_EMPLOYEE.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.BY_EMPLOYEE.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Сумма задолженности за работником', 'code': 'BY_EMPLOYEE'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_HOSPITAL_ORG" model="hr.salary.rule">
+			<field name="name">Начислено по временной нетрудоспособности за счет работодателя</field>
+			<field name="sequence" eval="45"/>
+			<field name="code">CALC_HOSPITAL_ORG</field>
+			<field name="category_id" ref="CALC_HOSPITAL_ORG"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_HOSPITAL_ORG.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.CALC_HOSPITAL_ORG.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено по временной нетрудоспособности за счет работодателя', 'code': 'CALC_HOSPITAL_ORG'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_HOSPITAL_FSS" model="hr.salary.rule">
+			<field name="name">Начислено по временной нетрудоспособности за счет ФСС</field>
+			<field name="sequence" eval="46"/>
+			<field name="code">CALC_HOSPITAL_FSS</field>
+			<field name="category_id" ref="CALC_HOSPITAL_FSS"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_HOSPITAL_FSS.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'69.12')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.CALC_HOSPITAL_FSS.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено по временной нетрудоспособности за счет ФСС', 'code': 'CALC_HOSPITAL_FSS'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_OTHER_INCOMING" model="hr.salary.rule">
+			<field name="name">Начислено по временной нетрудоспособности за счет ФСС</field>
+			<field name="sequence" eval="77"/>
+			<field name="code">DEC_INCOMIN_TAX_OTHER_INCOMING</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_OTHER_INCOMING"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.OTHER_INCOMING != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_OTHER_INCOMING.amount:
+     result = inputs.DEC_INCOMIN_TAX_OTHER_INCOMING.amount
+else:
+     if inputs.OTHER_INCOMING.amount:
+         result = round((inputs.OTHER_INCOMING.amount - inputs.TAX_DEDUCTION_OTHER_INCOMING.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано налога на доходы с других доходов', 'code': 'DEC_INCOMIN_TAX_OTHER_INCOMING'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_WAGE_BY_TIME" model="hr.salary.rule">
+			<field name="name">Налоговый вычет с заработной платы</field>
+			<field name="sequence" eval="59"/>
+			<field name="code">TAX_DEDUCTION_WAGE_BY_TIME</field>
+			<field name="category_id" ref="TAX_DEDUCTION_WAGE_BY_TIME"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.TAX_DEDUCTION_WAGE_BY_TIME.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.TAX_DEDUCTION_WAGE_BY_TIME.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с заработной платы', 'code': 'TAX_DEDUCTION_WAGE_BY_TIME'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_HOLIDAY" model="hr.salary.rule">
+			<field name="name">Налоговый вычет с отпускных</field>
+			<field name="sequence" eval="69"/>
+			<field name="code">TAX_DEDUCTION_WAGE_BY_TIME</field>
+			<field name="category_id" ref="TAX_DEDUCTION_HOLIDAY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.TAX_DEDUCTION_HOLIDAY.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.TAX_DEDUCTION_HOLIDAY.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с отпускных', 'code': 'TAX_DEDUCTION_HOLIDAY'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_HOSPITAL" model="hr.salary.rule">
+			<field name="name">Налоговый вычет с пособия по временной нетрудоспособности</field>
+			<field name="sequence" eval="74"/>
+			<field name="code">TAX_DEDUCTION_HOSPITAL</field>
+			<field name="category_id" ref="TAX_DEDUCTION_HOSPITAL"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.TAX_DEDUCTION_HOSPITAL.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.TAX_DEDUCTION_HOSPITAL.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с пособия по временной нетрудоспособности', 'code': 'TAX_DEDUCTION_HOSPITAL'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_HOSPITAL" model="hr.salary.rule">
+			<field name="name">Удержано и зачтено налога на доходы с пособия по временной нетрудоспособности</field>
+			<field name="sequence" eval="75"/>
+			<field name="code">DEC_INCOMIN_TAX_HOSPITAL</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_HOSPITAL"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.CALC_HOSPITAL_ALL != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_HOSPITAL.amount:
+     result = inputs.DEC_INCOMIN_TAX_HOSPITAL.amount
+else:
+     if categories.CALC_HOSPITAL_ALL:
+         result = round((categories.CALC_HOSPITAL_ALL - inputs.TAX_DEDUCTION_HOSPITAL.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано и зачтено налога на доходы с пособия по временной нетрудоспособности', 'code': 'DEC_INCOMIN_TAX_HOSPITAL'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_OTHER_INCOMING" model="hr.salary.rule">
+			<field name="name">Налоговый вычет с других доходов</field>
+			<field name="sequence" eval="76"/>
+			<field name="code">TAX_DEDUCTION_OTHER_INCOMING</field>
+			<field name="category_id" ref="TAX_DEDUCTION_OTHER_INCOMING"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.TAX_DEDUCTION_OTHER_INCOMING.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.TAX_DEDUCTION_OTHER_INCOMING.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с других доходов', 'code': 'TAX_DEDUCTION_OTHER_INCOMING'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_HOSPITAL_MOTHER" model="hr.salary.rule">
+			<field name="name">Начислено пособие по беременности и родам</field>
+			<field name="sequence" eval="52"/>
+			<field name="code">CALC_HOSPITAL_MOTHER</field>
+			<field name="category_id" ref="CALC_HOSPITAL_MOTHER"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.CALC_HOSPITAL_MOTHER.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'69.12')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_HOSPITAL_MOTHER.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено по временной нетрудоспособности в связи с материнством', 'code': 'CALC_HOSPITAL_MOTHER'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_CHILDREN" model="hr.salary.rule">
+			<field name="name">Начислено пособие по уходу за ребенком</field>
+			<field name="sequence" eval="54"/>
+			<field name="code">CALC_CHILDREN</field>
+			<field name="category_id" ref="CALC_CHILDREN"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.CALC_CHILDREN.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'69.12')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_CHILDREN.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено пособие по уходу за ребенком', 'code': 'CALC_CHILDREN'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_MATERIAL_AID" model="hr.salary.rule">
+			<field name="name">Начислена материальная помощь</field>
+			<field name="sequence" eval="55"/>
+			<field name="code">CALC_MATERIAL_AID</field>
+			<field name="category_id" ref="CALC_MATERIAL_AID"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.CALC_MATERIAL_AID.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'91.02')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'73.03')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_MATERIAL_AID.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислена материальная помощь', 'code': 'CALC_MATERIAL_AID'})]"/>
+		</record>
+	
+	
+		<record id="hr_rule_CALC_WAGE_BY_BUSINESS_TRIP" model="hr.salary.rule">
+			<field name="name">Начислена заработная плата за период командировки</field>
+			<field name="sequence" eval="55"/>
+			<field name="code">CALC_WAGE_BY_BUSINESS_TRIP</field>
+			<field name="category_id" ref="CALC_WAGE_BY_BUSINESS_TRIP"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.CALC_WAGE_BY_BUSINESS_TRIP.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_WAGE_BY_BUSINESS_TRIP.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислена заработная плата за период командировки', 'code': 'CALC_WAGE_BY_BUSINESS_TRIP'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_WAGE_BY_IDLE" model="hr.salary.rule">
+			<field name="name">Начислена заработная плата за период простоя</field>
+			<field name="sequence" eval="27"/>
+			<field name="code">CALC_WAGE_BY_IDLE</field>
+			<field name="category_id" ref="CALC_WAGE_BY_IDLE"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.CALC_WAGE_BY_IDLE.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_WAGE_BY_IDLE.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислена заработная плата за период простоя', 'code': 'CALC_WAGE_BY_IDLE'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_MATERIAL_AID" model="hr.salary.rule">
+			<field name="name">Удержано налога на доходы с материальной помощи</field>
+			<field name="sequence" eval="78"/>
+			<field name="code">DEC_INCOMIN_TAX_MATERIAL_AID</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_MATERIAL_AID"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_MATERIAL_AID.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'73.03')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_MATERIAL_AID.amount:
+     result = inputs.DEC_INCOMIN_TAX_MATERIAL_AID.amount 
+else:
+     if inputs.CALC_MATERIAL_AID.amount:
+         result = round((inputs.CALC_MATERIAL_AID.amount - inputs.TAX_DEDUCTION_MATERIAL_AID.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано налога на доходы с материальной помощи', 'code': 'DEC_INCOMIN_TAX_MATERIAL_AID'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_MATERIAL_AID" model="hr.salary.rule">
+			<field name="name">Налоговый вычет с материальной помощи</field>
+			<field name="sequence" eval="77"/>
+			<field name="code">TAX_DEDUCTION_MATERIAL_AID</field>
+			<field name="category_id" ref="TAX_DEDUCTION_MATERIAL_AID"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.TAX_DEDUCTION_MATERIAL_AID.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.TAX_DEDUCTION_MATERIAL_AID.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с материальной помощи', 'code': 'TAX_DEDUCTION_MATERIAL_AID'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_BY_BUSINESS_TRIP" model="hr.salary.rule">
+			<field name="name">Удержано налога на доходы с заработной платы за период командировки</field>
+			<field name="sequence" eval="80"/>
+			<field name="code">DEC_INCOMIN_TAX_BY_BUSINESS_TRIP</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_BY_BUSINESS_TRIP"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.CALC_WAGE_BY_BUSINESS_TRIP != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_BY_BUSINESS_TRIP.amount:
+     result = inputs.DEC_INCOMIN_TAX_BY_BUSINESS_TRIP.amount 
+else:
+     if inputs.CALC_WAGE_BY_BUSINESS_TRIP.amount:
+         result = round((inputs.CALC_WAGE_BY_BUSINESS_TRIP.amount - inputs.TAX_DEDUCTION_BY_BUSINESS_TRIP.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано налога на доходы с заработной платы за период командировки', 'code': 'DEC_INCOMIN_TAX_BY_BUSINESS_TRIP'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_BY_BUSINESS_TRIP" model="hr.salary.rule">
+			<field name="name">Удержано налога на доходы с заработной платы за период командировки</field>
+			<field name="sequence" eval="79"/>
+			<field name="code">TAX_DEDUCTION_BY_BUSINESS_TRIP</field>
+			<field name="category_id" ref="TAX_DEDUCTION_BY_BUSINESS_TRIP"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.TAX_DEDUCTION_BY_BUSINESS_TRIP.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.TAX_DEDUCTION_BY_BUSINESS_TRIP.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с заработной платы за период командировки', 'code': 'TAX_DEDUCTION_BY_BUSINESS_TRIP'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_BY_IDLE" model="hr.salary.rule">
+			<field name="name">Удержано налога на доходы с заработной платы за период простоя</field>
+			<field name="sequence" eval="83"/>
+			<field name="code">DEC_INCOMIN_TAX_BY_IDLE</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_BY_IDLE"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.CALC_WAGE_BY_IDLE != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_BY_IDLE.amount:
+     result = inputs.DEC_INCOMIN_TAX_BY_IDLE.amount 
+else:
+     if inputs.CALC_WAGE_BY_IDLE.amount:
+         result = round((inputs.CALC_WAGE_BY_IDLE.amount - inputs.TAX_DEDUCTION_WAGE_BY_IDLE.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано налога на доходы с заработной платы за период простоя', 'code': 'DEC_INCOMIN_TAX_BY_IDLE'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_WAGE_BY_IDLE" model="hr.salary.rule">
+			<field name="name">Удержано налога на доходы с заработной платы за период простоя</field>
+			<field name="sequence" eval="82"/>
+			<field name="code">	TAX_DEDUCTION_WAGE_BY_IDLE</field>
+			<field name="category_id" ref="TAX_DEDUCTION_WAGE_BY_IDLE"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.TAX_DEDUCTION_WAGE_BY_IDLE.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.TAX_DEDUCTION_WAGE_BY_IDLE.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с заработной платы за период простоя', 'code': 'TAX_DEDUCTION_WAGE_BY_IDLE'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_PREMIUM" model="hr.salary.rule">
+			<field name="name">Начислена премия за период</field>
+			<field name="sequence" eval="24"/>
+			<field name="code">CALC_PREMIUM</field>
+			<field name="category_id" ref="CALC_PREMIUM"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.CALC_PREMIUM.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_PREMIUM.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислена премия за период', 'code': 'CALC_PREMIUM'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_PREMIUM" model="hr.salary.rule">
+			<field name="name">Налоговый вычет с премии</field>
+			<field name="sequence" eval="85"/>
+			<field name="code">TAX_DEDUCTION_PREMIUM</field>
+			<field name="category_id" ref="CALC_PREMIUM"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.TAX_DEDUCTION_PREMIUM.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.TAX_DEDUCTION_PREMIUM.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с премии', 'code': 'TAX_DEDUCTION_PREMIUM'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_PREMIUM" model="hr.salary.rule">
+			<field name="name">Удержано налога на доходы с премии</field>
+			<field name="sequence" eval="86"/>
+			<field name="code">DEC_INCOMIN_TAX_PREMIUM</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_PREMIUM"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.CALC_PREMIUM != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_PREMIUM.amount:
+     result = inputs.DEC_INCOMIN_TAX_PREMIUM.amount 
+else:
+     if inputs.CALC_WAGE_BY_IDLE.amount:
+         result = round((inputs.CALC_PREMIUM.amount - inputs.TAX_DEDUCTION_PREMIUM.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано налога на доходы с премии', 'code': 'DEC_INCOMIN_TAX_PREMIUM'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_PENSION" model="hr.salary.rule">
+			<field name="name">Начислено взносов на обязательное пенсионное страхование</field>
+			<field name="sequence" eval="200"/>
+			<field name="code">PENSION</field>
+			<field name="category_id" ref="PENSION"/>
+			<field name="condition_select">none</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'69.02')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.PENSION.amount:
+     result = inputs.PENSION.amount
+else:
+     if categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY + categories.CALC_COMP_HOLIDAY_PAY != 0:
+         result = round((categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY + categories.CALC_COMP_HOLIDAY_PAY)*0.22,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено взносов на обязательное пенсионное страхование', 'code': 'PENSION'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_MEDICAL" model="hr.salary.rule">
+			<field name="name">Начислено взносов на обязательное медицинское страхование</field>
+			<field name="sequence" eval="210"/>
+			<field name="code">MEDICAL</field>
+			<field name="category_id" ref="MEDICAL"/>
+			<field name="condition_select">none</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'69.03.1')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.MEDICAL.amount:
+     result = inputs.MEDICAL.amount 
+else:
+     if categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY  + categories.CALC_COMP_HOLIDAY_PAY != 0:
+         result = round((categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY  + categories.CALC_COMP_HOLIDAY_PAY)*0.051,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено взносов на обязательное медицинское страхование', 'code': 'MEDICAL'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_HOSPITAL_AND_MOTHER" model="hr.salary.rule">
+			<field name="name">Начислено взносов на страхование от временной нетрудоспособности и в связи с материнством</field>
+			<field name="sequence" eval="220"/>
+			<field name="code">HOSPITAL_AND_MOTHER</field>
+			<field name="category_id" ref="HOSPITAL_AND_MOTHER"/>
+			<field name="condition_select">none</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'69.12')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.HOSPITAL_AND_MOTHER.amount:
+     result = inputs.HOSPITAL_AND_MOTHER.amount 
+else:
+     if categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY + categories.CALC_COMP_HOLIDAY_PAY != 0:
+         result = round((categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY + categories.CALC_COMP_HOLIDAY_PAY)*0.029,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено взносов на страхование от временной нетрудоспособности и в связи с материнством', 'code': 'HOSPITAL_AND_MOTHER'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_ACCIDENT" model="hr.salary.rule">
+			<field name="name">Начислено взносов на страхование от несчастного случая и профессиональных заболеваний</field>
+			<field name="sequence" eval="230"/>
+			<field name="code">ACCIDENT</field>
+			<field name="category_id" ref="ACCIDENT"/>
+			<field name="condition_select">none</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'69.11')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.ACCIDENT.amount:
+     result = inputs.ACCIDENT.amount 
+else:
+     if categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY  + categories.CALC_COMP_HOLIDAY_PAY!= 0:
+         result = round((categories.CALC_WAGE_BY_TIME + categories.CALC_PREMIUM + categories.CALC_WAGE_BY_BUSINESS_TRIP + categories.CALC_WAGE_BY_IDLE + categories.CALC_HOLIDAY_PAY + categories.CALC_COMP_HOLIDAY_PAY)*0.002,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислено взносов на страхование от несчастного случая и профессиональных заболеваний', 'code': 'ACCIDENT'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_CHILDREN_BORN" model="hr.salary.rule">
+			<field name="name">Начислено единовременное пособие при рождении ребенка</field>
+			<field name="sequence" eval="53"/>
+			<field name="code">CALC_CHILDREN_BORN</field>
+			<field name="category_id" ref="CALC_CHILDREN_BORN"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_CHILDREN_BORN.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'69.12')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.CALC_CHILDREN_BORN.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Единовременное пособие при рождении ребенка', 'code': 'CALC_CHILDREN_BORN'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_EARLY_REG" model="hr.salary.rule">
+			<field name="name">Начислено единовременное пособие за постановку на учет в ранние сроки беременности</field>
+			<field name="sequence" eval="51"/>
+			<field name="code">CALC_EARLY_REG</field>
+			<field name="category_id" ref="CALC_EARLY_REG"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_EARLY_REG.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'69.12')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.CALC_EARLY_REG.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Единовременное пособие за постановку на учет в ранние сроки беременности', 'code': 'CALC_EARLY_REG'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CONTRIBUTIONS_ALL" model="hr.salary.rule">
+			<field name="name">Всего начислено взносов</field>
+			<field name="sequence" eval="290"/>
+			<field name="code">CONTRIBUTIONS_ALL</field>
+			<field name="category_id" ref="TOTALS"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.INSURANCE</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = categories.INSURANCE</field>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_WAGE_BY_HOLIDAYS" model="hr.salary.rule">
+			<field name="name">Начислена заработная плата за отработанные выходные</field>
+			<field name="sequence" eval="21"/>
+			<field name="code">CALC_WAGE_BY_HOLIDAYS</field>
+			<field name="category_id" ref="CALC_WAGE_BY_HOLIDAYS"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_WAGE_BY_HOLIDAYS.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.CALC_WAGE_BY_HOLIDAYS.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислена заработная плата за отработанные выходные', 'code': 'CALC_WAGE_BY_HOLIDAYS'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_PAYROLL_TOTAL" model="hr.salary.rule">
+			<field name="name">Всего начислена заработная плата в расчетную ведомость</field>
+			<field name="sequence" eval="56"/>
+			<field name="code">PAYROLL_TOTAL</field>
+			<field name="category_id" ref="PAYROLL"/>
+			<field name="condition_select">none</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = categories.TOTAL_CALC - inputs.CALC_HOLIDAY_PAY.amount - categories.CALC_HOSPITAL_ALL - inputs.OTHER_INCOMING.amount</field>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_PAYROLL" model="hr.salary.rule">
+			<field name="name">Удержано и зачтено налога на доходы в расчетную ведомость</field>
+			<field name="sequence" eval="87"/>
+			<field name="code">DEC_INCOMIN_TAX_PAYROLL</field>
+			<field name="category_id" ref="PAYROLL"/>
+			<field name="condition_select">none</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = categories.DEC_INCOMING_TAX - round(((inputs.CALC_HOLIDAY_PAY.amount - inputs.TAX_DEDUCTION_HOLIDAY.amount)*0.13),2)</field>
+		</record>
+		
+		
+		<record id="hr_rule_PERS_VECHICLE" model="hr.salary.rule">
+			<field name="name">Компенсация за использование личного транспортного средства в служебных целях</field>
+			<field name="sequence" eval="300"/>
+			<field name="code">PERS_VECHICLE</field>
+			<field name="category_id" ref="PERS_VECHICLE"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result=inputs.PERS_VECHICLE.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'73.03')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.PERS_VECHICLE.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Компенсация за использование личного транспортного средства в служебных целях', 'code': 'PERS_VECHICLE'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_CALC_COMP_HOLIDAY_PAY" model="hr.salary.rule">
+			<field name="name">Начислена компенсация за неиспользованный отпуск</field>
+			<field name="sequence" eval="198"/>
+			<field name="code">CALC_COMP_HOLIDAY_PAY</field>
+			<field name="category_id" ref="CALC_COMP_HOLIDAY_PAY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.CALC_COMP_HOLIDAY_PAY.amount != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'20')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result=inputs.CALC_COMP_HOLIDAY_PAY.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Начислена компенсация за неиспользованный отпуск', 'code': 'CALC_COMP_HOLIDAY_PAY'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_DEC_INCOMIN_TAX_COMP_HOLIDAY" model="hr.salary.rule">
+			<field name="name">Удержано и зачтено налога на доходы с компенсации за неиспользованный отпуск</field>
+			<field name="sequence" eval="410"/>
+			<field name="code">DEC_INCOMIN_TAX_COMP_HOLIDAY</field>
+			<field name="category_id" ref="DEC_INCOMIN_TAX_COMP_HOLIDAY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = categories.CALC_COMP_HOLIDAY_PAY != 0</field>
+			<field name="account_debit" model="account.account" search="[('code','like',u'70')]"/>
+			<field name="account_credit" model="account.account" search="[('code','like',u'68.01')]"/>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">if inputs.DEC_INCOMIN_TAX_COMP_HOLIDAY.amount:
+     result = inputs.DEC_INCOMIN_TAX_COMP_HOLIDAY.amount 
+else:
+     if inputs.CALC_COMP_HOLIDAY_PAY.amount:
+         result = round((inputs.CALC_COMP_HOLIDAY_PAY.amount - inputs.TAX_DEDUCTION_COMP_HOLIDAY.amount)*0.13,2)
+     else:
+         result =0</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Удержано и зачтено налога на доходы с компенсации за неиспользованный отпуск', 'code': 'DEC_INCOMIN_TAX_COMP_HOLIDAY'})]"/>
+		</record>
+		
+		
+		<record id="hr_rule_TAX_DEDUCTION_COMP_HOLIDAY" model="hr.salary.rule">
+			<field name="name">Налоговый вычет с компенсации за неиспользованный отпуск</field>
+			<field name="sequence" eval="405"/>
+			<field name="code">TAX_DEDUCTION_COMP_HOLIDAY</field>
+			<field name="category_id" ref="TAX_DEDUCTION_COMP_HOLIDAY"/>
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = inputs.TAX_DEDUCTION_COMP_HOLIDAY.amount != 0</field>
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = inputs.TAX_DEDUCTION_COMP_HOLIDAY.amount</field>
+			<field name="input_ids" eval="[(0, 0, {'name': 'Налоговый вычет с компенсации за неиспользованный отпуск', 'code': 'TAX_DEDUCTION_COMP_HOLIDAY'})]"/>
+		</record>
+        <!-- Salary Structure  -->
+
+         <record id="structure_base" model="hr.payroll.structure">
+            <field name="code">BASE</field>
+            <field name="name">Простая повременная оплата труда</field>
+            <field eval="[(6, 0, [ref('hr_rule_SALARY'), ref('hr_rule_CALC_WAGE_BY_TIME'), ref('hr_rule_TO_PAYOFF'), ref('hr_rule_CALC_HOLIDAY_PAY'), ref('hr_rule_CALC_HOSPITAL_ALL'), ref('hr_rule_OTHER_INCOMING'), ref('hr_rule_TOTAL_CALC'), ref('hr_rule_DEC_INCOME_TAX_UN_HOLIDAY'), ref('hr_rule_DEC_INCOMIN_TAX_HOLIDAY'), ref('hr_rule_DEC_INCOMING_TAX'), ref('hr_rule_BY_COMPANY'), ref('hr_rule_BY_EMPLOYEE'), ref('hr_rule_CALC_HOSPITAL_ORG'), ref('hr_rule_CALC_HOSPITAL_FSS'), ref('hr_rule_DEC_INCOMIN_TAX_OTHER_INCOMING'), ref('hr_rule_TAX_DEDUCTION_WAGE_BY_TIME'), ref('hr_rule_TAX_DEDUCTION_HOLIDAY'), ref('hr_rule_TAX_DEDUCTION_HOSPITAL'), ref('hr_rule_DEC_INCOMIN_TAX_HOSPITAL'), ref('hr_rule_TAX_DEDUCTION_OTHER_INCOMING'), ref('hr_rule_CALC_HOSPITAL_MOTHER'), ref('hr_rule_CALC_CHILDREN'), ref('hr_rule_CALC_MATERIAL_AID'), ref('hr_rule_CALC_WAGE_BY_BUSINESS_TRIP'), ref('hr_rule_CALC_WAGE_BY_IDLE'), ref('hr_rule_DEC_INCOMIN_TAX_MATERIAL_AID'), ref('hr_rule_TAX_DEDUCTION_MATERIAL_AID'), ref('hr_rule_DEC_INCOMIN_TAX_BY_BUSINESS_TRIP'), ref('hr_rule_TAX_DEDUCTION_BY_BUSINESS_TRIP'), ref('hr_rule_DEC_INCOMIN_TAX_BY_IDLE'), ref('hr_rule_TAX_DEDUCTION_WAGE_BY_IDLE'), ref('hr_rule_CALC_PREMIUM'), ref('hr_rule_TAX_DEDUCTION_PREMIUM'), ref('hr_rule_DEC_INCOMIN_TAX_PREMIUM'), ref('hr_rule_PENSION'), ref('hr_rule_MEDICAL'), ref('hr_rule_HOSPITAL_AND_MOTHER'), ref('hr_rule_ACCIDENT'), ref('hr_rule_CALC_CHILDREN_BORN'), ref('hr_rule_CALC_CHILDREN_BORN'), ref('hr_rule_CALC_EARLY_REG'), ref('hr_rule_CONTRIBUTIONS_ALL'), ref('hr_rule_CALC_WAGE_BY_HOLIDAYS'), ref('hr_rule_PAYROLL_TOTAL'), ref('hr_rule_DEC_INCOMIN_TAX_PAYROLL'), ref('hr_rule_PERS_VECHICLE'), ref('hr_rule_CALC_COMP_HOLIDAY_PAY'), ref('hr_rule_DEC_INCOMIN_TAX_COMP_HOLIDAY'), ref('hr_rule_TAX_DEDUCTION_COMP_HOLIDAY')])]" name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+    </data>
+</openerp>
