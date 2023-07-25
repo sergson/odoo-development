@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- QWeb Reports -->
+        <report 
+            id="action_report_journal_modified"
+            model="account_extra_reports_rm.report.journal_mod"
+            string="Sale/Purchase Journal modified"
+            report_type="qweb-pdf"
+            name="account_extra_reports_rm.report_journal_mod"
+            file="account_extra_reports_rm.report_journal_mod"
+            />
+
+        <report 
+            id="action_report_partnerledger_modified"
+            model="account_extra_reports_rm.report_partnerledger_mod"
+            string="Partner Ledger modified"
+            report_type="qweb-pdf"
+            name="account_extra_reports_rm.report_partnerledger_mod"
+            file="account_extra_reports_rm.report_partnerledger_mod"
+            />
+
+    </data>
+</openerp>

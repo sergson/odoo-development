@@ -1,0 +1,109 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_extra_reports_rm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20190401\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-19 19:24+0000\n"
+"PO-Revision-Date: 2022-12-19 19:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_partnerledger_mod
+msgid "<br/>_______________________________________________<br/>_______________________________________________"
+msgstr "<br/>_______________________________________________<br/>_______________________________________________"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_partnerledger_mod
+msgid "<span style=\"white-space:pre-wrap\">_____________________________________________________________________________________________________________________________________________</span> с другой стороны, составили настоящий акт сверки в том, что состояние взаимных расчетов по данным учета следующее:"
+msgstr "<span style=\"white-space:pre-wrap\">_____________________________________________________________________________________________________________________________________________</span> с другой стороны, составили настоящий акт сверки в том, что состояние взаимных расчетов по данным учета следующее:"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_partnerledger_mod
+msgid "<span style=\"white-space:pre-wrap\">__________________________________________________________________________________________________________________________________________________________________ </span>"
+msgstr "<span style=\"white-space:pre-wrap\">__________________________________________________________________________________________________________________________________________________________________ </span>"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_journal_mod
+msgid "Account"
+msgstr "Счет"
+
+#. module: account_extra_reports_rm
+#: model:ir.model,name:account_extra_reports_rm.model_account_common_journal_report_mod
+msgid "Account Common Journal Report"
+msgstr "Отчёт общего журнала учёта"
+
+#. module: account_extra_reports_rm
+#: model:ir.model,name:account_extra_reports_rm.model_account_report_partner_ledger_mod
+msgid "Account Partner Ledger"
+msgstr "Книга счёта партнёра"
+
+#. module: account_extra_reports_rm
+#: model:ir.model,name:account_extra_reports_rm.model_account_print_journal_mod
+msgid "Account Print Journal"
+msgstr "Счет - печать журнала"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_journal_mod
+msgid "Credit"
+msgstr "Кредит"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_journal_mod
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_journal_mod
+msgid "Date"
+msgstr "Дата"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_journal_mod
+msgid "Debit"
+msgstr "Дебет"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_journal_mod
+msgid "Partner"
+msgstr "Контрагент"
+
+#. module: account_extra_reports_rm
+#: model:ir.actions.act_window,name:account_extra_reports_rm.action_account_partner_ledger_menu_modified
+msgid "Partner Ledger"
+msgstr "Акт сверки"
+
+#. module: account_extra_reports_rm
+#: model:ir.actions.report.xml,name:account_extra_reports_rm.action_report_partnerledger_modified
+#: model:ir.ui.menu,name:account_extra_reports_rm.menu_partner_ledger_modified
+msgid "Partner Ledger modified"
+msgstr "Акт сверки"
+
+#. module: account_extra_reports_rm
+#: model:ir.actions.act_window,name:account_extra_reports_rm.action_account_print_journal_menu_modified
+#: model:ir.ui.menu,name:account_extra_reports_rm.menu_print_journal_modified
+msgid "Sale/Purchase Journal"
+msgstr "Журнал-ордер"
+
+#. module: account_extra_reports_rm
+#: model:ir.actions.report.xml,name:account_extra_reports_rm.action_report_journal_modified
+msgid "Sale/Purchase Journal modified"
+msgstr "Журнал-ордер"
+
+#. module: account_extra_reports_rm
+#: model:ir.model,name:account_extra_reports_rm.model_report_account_extra_reports_rm_report_journal_mod
+msgid "report.account_extra_reports_rm.report_journal_mod"
+msgstr "report.account_extra_reports_rm.report_journal_mod"
+
+#. module: account_extra_reports_rm
+#: model:ir.model,name:account_extra_reports_rm.model_report_account_extra_reports_rm_report_partnerledger_mod
+msgid "report.account_extra_reports_rm.report_partnerledger_mod"
+msgstr "report.account_extra_reports_rm.report_partnerledger_mod"
+

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_partnerledger_mod">
+    <t t-call="report.html_container">
+      <t t-set="data_report_dpi" t-value="150"/>
+      <t t-call="report.external_layout"/>
+      <div class="page">
+        <t t-foreach="docs" t-as="o">
+            <div class="row" style="text-align: center; font-size:12px; line-height: 1">
+                    <span>
+                         <strong>Акт сверки</strong><br/> 
+                         взаимных расчетов <t t-if="data['form']['date_from']"> за период с <span t-esc="time.strftime('%d.%m.%Y',time.strptime(data['form']['date_from'],'%Y-%m-%d'))"/><br/></t> <t t-if="data['form']['date_to']">по <span t-esc="time.strftime('%d.%m.%Y',time.strptime(data['form']['date_to'],'%Y-%m-%d'))"/></t><br/>
+                         между <t t-esc="res_company.name"/> и <span t-field="o.name"/>
+                    </span>
+             </div>  
+             <br/> 
+             <div class="row" style="font-size:12px; line-height: 1.5">
+                <span> 
+                     <nobr>Мы, нижеподписавшиеся, <t t-esc="res_company.name"/></nobr><span style="white-space:pre-wrap">__________________________________________________________________________________________________________________________________________________________________ </span><nobr> с одной стороны, и <span t-field="o.name"/></nobr><span style="white-space:pre-wrap">_____________________________________________________________________________________________________________________________________________</span> с другой стороны, составили настоящий акт сверки в том, что состояние взаимных расчетов по данным учета следующее:
+                </span>
+                    <table class="table table-condensed" style="text-align: left; font-size:10px">
+                        <thead>
+                            <tr>
+                                <th colspan="6" style="border: 1px solid">По данным: <t t-esc="res_company.name"/></th>
+                                <th colspan="6" style="border: 1px solid">По данным: <span t-field="o.name"/></th>
+                            </tr>
+                            <tr>
+                                <th class="text-left" style="border-left: 1px solid">Дата</th>
+                                <th class="text-left">Счет</th>
+                                <th class="text-left">Субконто</th>
+                                <th class="text-left">Дебет</th>
+                                <th class="text-left">Кредит</th>
+                                <th class="text-left">Сальдо</th>
+                                <th class="text-left" style="border-left: 1px solid">Дата</th>
+                                <th class="text-left">Счет</th>
+                                <th  class="text-left">Субконто</th>
+                                <th class="text-left">Дебет</th>
+                                <th class="text-left">Кредит</th>
+                                <th class="text-left" style="border-right: 1px solid">Сальдо</th>
+                            </tr>
+                        </thead>
+                           <tr>
+                            <td colspan="1" style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                            <td colspan="2" style="border-top: 1px solid; border-bottom: 1px solid"><strong>Сальдо начальное:</strong></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid; white-space: nowrap">
+                                  <t t-if="sum_partner_full(data, o, 'debit - credit')&gt;0">
+                                        <strong t-esc="sum_partner_before(data, o, 'debit - credit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                  </t>
+                            </td>
+                           <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid; white-space: nowrap">
+                               <t t-if="sum_partner_full(data, o, 'debit - credit')&lt;0">
+                                   <strong t-esc="-sum_partner_before(data, o, 'debit - credit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                               </t>
+                           </td>
+                           <td style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                           <td style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid" colspan="1"></td>
+                            <td style="border-top: 1px solid; border-bottom: 1px solid" colspan="2"><strong>Сальдо начальное:</strong></td>
+                            <td style="border-top: 1px solid; border-bottom: 1px solid"></td>
+                           <td style="border-top: 1px solid; border-bottom: 1px solid"></td>
+                           <td style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                            </tr>
+                        <tr t-foreach="lines(data, o)" t-as="line">
+                            <td style="border-left: 1px solid">
+                                 <span t-esc="time.strftime('%d.%m.%Y',time.strptime(line['date'],'%Y-%m-%d'))"/>
+                            </td>
+                            <td>
+                                <span t-esc="line['a_code']"/>
+                            </td>
+                            <td>
+                                <span t-esc="line['move_name']"/>
+                                <span t-esc="line['ref']"/>
+                                <span t-esc="line['name']"/>
+                            </td>
+                            <td class="text-right" style="white-space: nowrap">
+                                <span t-esc="line['debit']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                            </td>
+                            <td class="text-right" style="white-space: nowrap">
+                                 <span t-esc="line['credit']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                            </td>
+                            <td class="text-center" style="white-space: nowrap">
+                                <span t-esc="sum_partner_before(data, o, 'debit - credit')+line['progress']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                            </td>
+                             <td style="border-left: 1px solid"></td>
+                              <td></td>
+                              <td></td>
+                               <td></td>
+                               <td></td>
+                               <td style="border-right: 1px solid"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                            <td colspan="2" style="border-top: 1px solid; border-bottom: 1px solid"><strong>Обороты за период:</strong></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid; white-space: nowrap"><strong t-esc="sum_partner(data, o, 'debit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid; white-space: nowrap"><strong t-esc="sum_partner(data, o, 'credit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/></td>
+                            <td class="text-right" style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                            <td colspan="1"  style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                            <td colspan="2" style="border-top: 1px solid; border-bottom: 1px solid"><strong>Обороты за период:</strong></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid"></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid"></td>
+                            <td class="text-right" style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td colspan="1" style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                            <td colspan="2" style="border-top: 1px solid; border-bottom: 1px solid"><strong>Сальдо конечное:</strong></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid; white-space: nowrap">
+                                  <t t-if="sum_partner_full(data, o, 'debit - credit')&gt;0">
+                                        <strong t-esc="sum_partner_full(data, o, 'debit - credit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                  </t>
+                            </td>
+                           <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid; white-space: nowrap">
+                               <t t-if="sum_partner_full(data, o, 'debit - credit')&lt;0">
+                                   <strong t-esc="-sum_partner_full(data, o, 'debit - credit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                               </t>
+                           </td>
+                           <td style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                           <td style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid" colspan="1"></td>
+                            <td style="border-top: 1px solid; border-bottom: 1px solid" colspan="2"><strong>Сальдо конечное:</strong></td>
+                            <td style="border-top: 1px solid; border-bottom: 1px solid"></td>
+                           <td style="border-top: 1px solid; border-bottom: 1px solid"></td>
+                           <td style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"></td>
+                        </tr>
+                        <tr style="text-align: left; font-size:12px">
+                             <td colspan="6">
+                             <t t-if="sum_partner_full(data, o, 'debit - credit')&gt;0">
+                                <span>По данным <t t-esc="res_company.name"/> задолженность в пользу <t t-esc="res_company.name"/> <t t-if="data['form']['date_to']">на <span t-esc="time.strftime('%d.%m.%Y',time.strptime(data['form']['date_to'],'%Y-%m-%d'))"/></t> составляет <strong t-esc="sum_partner_full(data, o, 'debit - credit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/></span>
+                              </t>
+                              <t t-if="sum_partner_full(data, o, 'debit - credit')&lt;0">
+                                   <span>По данным <t t-esc="res_company.name"/> задолженность в пользу <span t-field="o.name"/> <t t-if="data['form']['date_to']">на <span t-esc="time.strftime('%d.%m.%Y',time.strptime(data['form']['date_to'],'%Y-%m-%d'))"/></t> составляет <strong t-esc="-sum_partner_full(data, o, 'debit - credit')" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/></span>
+                                   
+                              </t>
+                              </td>  
+                        </tr>
+                        <tr style="text-align: left; font-size:12px">
+                            <td colspan="6">От <t t-esc="res_company.name"/> <br/>_______________________________________________<br/>_______________________________________________</td>
+                            <td colspan="6">От <span t-field="o.name"/> <br/>_______________________________________________<br/>_______________________________________________</td>
+                        </tr>
+                    </table>
+            </div>
+        </t>
+      </div>
+    </t>
+</template>
+</odoo>
