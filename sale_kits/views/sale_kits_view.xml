@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Kits -->
+        <record id="view_sale_kits_tree" model="ir.ui.view">
+            <field name="name">sale.kits.tree</field>
+            <field name="model">sale.kit</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Sale kits">
+                    <field name="name" string="Kit name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_kits_form" model="ir.ui.view">
+            <field name="name">sale.kits.form</field>
+            <field name="model">sale.kit</field>
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+                <form string="Kits for sales">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                            <field name="note"/>
+                            <field name="kit_lines" mode="tree">
+                                <tree string="Kit lines" editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="product_id"/>
+                                    <field name="product_uom"/>                                      
+                                    <field name="sale_kit_id" invisible="1"/>
+                                </tree>
+                            </field>
+                    </div>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+       <record id="view_kits_filter" model="ir.ui.view">
+            <field name="name">sale.kits.filter</field>
+            <field name="model">sale.kit</field>
+            <field name="arch" type="xml">
+                <search string="Search kit">
+                    <field name="name" string="Kit name"/>
+                    <field name="note" string="Kit note"/>
+               </search>
+            </field>
+       </record>
+
+       <record id="action_kits" model="ir.actions.act_window">
+            <field name="name">Sale order kits</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.kit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_kits_filter"/>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Sale order kits help to organize sale process.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_kits"
+            id="menu_sale_kits" parent="base.menu_sales"
+            sequence="200" groups="base.group_sale_manager"/>
+
+<!--Kit lines -->
+        <record id="view_kit_lines_tree" model="ir.ui.view">
+            <field name="name">sale.kit.lines.tree</field>
+            <field name="model">sale.kit.lines</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Sale kit">
+                    <field name="sequence"/>
+                    <field name="sale_kit_id" string = "Kit"/>
+                    <field name="product_id" string = "Product"/>
+                    <field name="product_uom" string = "UOM"/>                   
+                </tree>
+            </field>
+        </record>
+
+       <record id="view_kit_lines_form" model="ir.ui.view">
+            <field name="name">sale.kit.lines.form</field>
+            <field name="model">sale.kit.lines</field>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+                <form string="Kit lines">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="sale_kit_id"/></h1>
+                        </div>
+                        <group>
+                            <group string="Sequence in kit">
+                                <field name="sequence"/>
+                            </group>
+                            <group string="Products">
+                                <field name="product_id"/>
+                                <field name="product_uom"/>
+                            </group>
+                        </group>
+                    </sheet>
+               </form>
+            </field>
+        </record>
+
+<!-- Sale order -->
+       <record id="view_order_form_inherit_kits" model="ir.ui.view">
+            <field name="name">sale.order.form.kits</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                 <data>
+                   <field name="order_line" position="before">
+                       <button name="%(action_sale_kits_wizard)d" type="action" string="From kits" states="draft, sent" class="oe_highlight"/>                       
+                       <button name="%(action_sale_order_lines_to_kit_wizard)d" type="action" string="To kits" states="sale,done" class="oe_highlight" groups="base.group_sale_manager"/>
+                  </field>    
+                 </data>
+            </field>
+        </record>
+</odoo>
+

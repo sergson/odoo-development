@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_kits_salesman_all,sale.kit,model_sale_kit,base.group_sale_salesman_all_leads,1,0,0,0
+access_sale_kit_lines_salesman_all,sale.kit.lines,model_sale_kit_lines,base.group_sale_salesman_all_leads,1,0,0,0
+access_sale_kit_wizard_salesman_all,sale.kit.wizard,model_sale_kit_wizard,base.group_sale_salesman_all_leads,1,1,1,1
+access_sale_tokit_wizard_salesman_all,sale.tokit.wizard,model_sale_tokit_wizard,base.group_sale_salesman_all_leads,1,1,1,1
+access_sale_kits_salesman,sale.kit,model_sale_kit,base.group_sale_salesman,1,0,0,0
+access_sale_kit_lines_salesman,sale.kit.lines,model_sale_kit_lines,base.group_sale_salesman,1,0,0,0
+access_sale_kit_wizard_salesman,sale.kit.wizard,model_sale_kit_wizard,base.group_sale_salesman,1,1,1,1
+access_sale_tokit_wizard_salesman,sale.tokit.wizard,model_sale_tokit_wizard,base.group_sale_salesman,1,1,1,1
+access_sale_kits,sale.kit,model_sale_kit,base.group_sale_manager,1,1,1,1
+access_sale_kit_lines,sale.kit.lines,model_sale_kit_lines,base.group_sale_manager,1,1,1,1
+access_sale_kit_wizard,sale.kit.wizard,model_sale_kit_wizard,base.group_sale_manager,1,1,1,1
+access_sale_tokit_wizard,sale.tokit.wizard,model_sale_tokit_wizard,base.group_sale_manager,1,1,1,1
