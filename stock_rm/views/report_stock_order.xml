@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="external_layout_barcode_right" inherit_id="report.external_layout" primary="True">
+            <xpath expr="//t[@t-call='report.external_layout_header']" position="attributes">
+                <attribute name="t-call">stock_rm.external_layout_header_barcode_right</attribute>
+            </xpath>
+        </template>
+        <template id="external_layout_header_barcode_right" inherit_id="report.external_layout_header" primary="True">
+            <xpath expr="//div[@name='company_address']" position="after">
+                <div class="col-xs-4 pull-right" name="right_box">
+                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px;"/>
+                </div>
+            </xpath>
+        </template>
+        <template id="report_stock_order">
+            <t t-name="stock_rm.report_stock_order">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="stock_rm.external_layout_barcode_right">
+                        <div class="page">
+
+<STYLE TYPE="text/css">
+body { background: #ffffff; margin: 0; font-family: Arial; font-size: 6pt; font-style: normal; }
+tr.r15{ height: 15px; }
+tr.r15 td.ltrb6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb8l{text-align: left; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb8r{text-align: right; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.r6{text-align: right; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.r8{text-align: right; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.c6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.c10{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.b8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b8l{text-align: left; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bottom; border-collapse:collapse;width: 100%; font-family: Arial; font-size: 6pt; font-style: normal; }
+td { padding: 0px; padding-left: 2px; overflow:hidden; }
+</STYLE>
+
+
+ <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"/></t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+            <t t-set="context" t-value="o._context"/>
+
+<div t-if="o.picking_type_id.code=='incoming'">
+                <table cellspacing="0">
+                    <col width="17"/>
+                    <col width="17"/>
+                    <col width="51"/>
+                    <col width="51"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="37"/>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="r8" colspan="5"/>
+                                 <td class="r6" colspan="8">Типовая межотраслевая форма № М-4. Утв. Постановлением Госкомстата России от 30.10.1997 № 71а</td>
+                           </tr>
+		          <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="c10" colspan="7">ПРИХОДНЫЙ ОРДЕР №<span t-field="o.name"/></td>
+                                 <td class="r8" colspan="5"/>
+                           </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="17"/>
+                                 <td class="ltrb8">Код</td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="15"/>
+                                 <td class="r8" colspan="2">Форма по ОКУД</td>
+                                 <td class="ltrb8">0315003</td>
+                            </tr>
+                           <tr class="r15">
+                                 <td class="r8" colspan="4">Организация</td>
+                                 <td class="b8" colspan="11"><span t-field="company.name"/></td>
+                                 <td class="r8"/>
+                                 <td class="r8">по ОКПО</td>
+                                 <td class="ltrb8"><span t-field="company.okpo"/></td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="4">Структурное подразделение</td>
+                                 <td class="b8" colspan="11">-</td>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="18"/>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" rowspan="3" colspan="2">Дата состав- ления</td>
+                                <td class="ltrb8" rowspan="3">Код вида операции</td>
+                                <td class="ltrb8" rowspan="3" colspan="2">Склад</td>
+                                <td class="ltrb8" colspan="4">Поставщик</td>
+                                <td class="ltrb8" colspan="2" rowspan="3">Страховая компания</td>
+                                <td class="ltrb8" colspan="3">Корреспондирующий счет</td>
+                                <td class="ltrb8" colspan="4">Номер документа</td>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" rowspan="2" colspan="3">наименование</td>
+                                <td class="ltrb8" rowspan="2">код</td>
+			        <td class="ltrb8" rowspan="2">счет, субсчет</td>
+                                <td class="ltrb8" rowspan="2" colspan="2">код аналитического учета</td>
+				<td class="ltrb8" rowspan="2" colspan="2">сопроводительного</td>
+                                <td class="ltrb8" rowspan="2" colspan="2">платежного</td>
+                            </tr>
+                            <tr class="r15">
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" colspan="2"><span t-field="o.min_date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YY&quot;}"/></td>
+                                <td class="ltrb8">-</td>
+                                <td class="ltrb8" colspan="2"><span t-esc="o.picking_type_id.warehouse_id.partner_id.street"/>, <span t-esc="o.picking_type_id.warehouse_id.partner_id.street2"/></td>
+                                <td class="ltrb8" colspan="3"><span t-esc="o.partner_id.name"/></td>
+                                <td class="ltrb8">-</td>
+                                <td class="ltrb8" colspan="2">-</td>
+                                <td class="ltrb8"><t t-set="accounts" t-value="' '"/><t t-foreach="o.move_lines" t-as="line"><t t-if="line.product_id.categ_id.property_stock_account_input_categ_id.code"><t t-if="line.product_id.categ_id.property_stock_account_input_categ_id.code not in accounts"><t t-set="accounts" t-value="accounts+' '+ line.product_id.categ_id.property_stock_account_input_categ_id.code"/></t></t>
+
+<t t-if="'expense_id' in line"><t t-if="line.expense_id.account_move_id"><t t-if="line.expense_id.account_move_id[0].line_ids[0].account_id.code  not in accounts"><t t-set="accounts" t-value="accounts+' '+ line.expense_id.account_move_id[0].line_ids[0].account_id.code"/></t></t></t>
+
+</t><span t-esc="accounts"/></td>
+                                <td class="ltrb8" colspan="2">-</td>
+                                <td class="ltrb8" colspan="2"><t t-if="o.move_lines[0].purchase_line_id"><t t-set="invoices" t-value="' '"/>
+<t t-set="payments" t-value="' '"/><t t-foreach="o.move_lines[0].purchase_line_id.order_id.invoice_ids" t-as="invoice"><t t-if="invoice.number not in invoices"><t t-set="invoices" t-value="invoices + ' '+ invoice.number+' '+time.strftime('%d.%m.%Y',time.strptime(invoice.date_invoice,'%Y-%m-%d'))"/><t t-foreach="invoice.payment_ids" t-as="payment"><t t-if="payment.name not in payments"><t t-set="payments" t-value="payments + ' '+ payment.name+' '+time.strftime('%d.%m.%Y',time.strptime(payment.payment_date,'%Y-%m-%d'))"/></t></t></t></t></t><span t-esc="invoices"/></td>
+                                <td class="ltrb8" colspan="2"><span t-esc="payments"/></td>
+                            </tr>
+							<tr class="r15">
+							    <td class="r8" colspan="18"/>
+							</tr>
+							<tr class="r15">
+							    <td class="ltrb8" colspan="7">Материальные ценности</td>
+								<td class="ltrb8" colspan="2">Единица измерения</td>
+								<td class="ltrb8" colspan="2">Количество</td>
+								<td class="ltrb8" rowspan="3">Цена, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Сумма без учета НДС, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Сумма НДС, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Всего с учетом НДС, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Номер паспорта</td>
+								<td class="ltrb8" rowspan="3" colspan="2">Порядковый номер по складской картотеке</td>
+							</tr>
+                                                       <tr class="r15">
+								<td class="ltrb8" colspan="6" rowspan="2">наименование, сорт, размер, марка</td>
+								<td class="ltrb8" rowspan="2">номенкла- турный номер</td>
+								<td class="ltrb8" rowspan="2">код</td>
+								<td class="ltrb8" rowspan="2">наименование</td>
+								<td class="ltrb8" rowspan="2">по документу</td>
+								<td class="ltrb8" rowspan="2">принято</td>
+							</tr>
+							<tr class="r15"/>
+							<tr class="r15">
+								<td class="ltrb8" colspan="6">1</td>
+								<td class="ltrb8">2</td>
+								<td class="ltrb8">3</td>
+								<td class="ltrb8">4</td>
+								<td class="ltrb8">5</td>
+								<td class="ltrb8">6</td>
+								<td class="ltrb8">7</td>
+								<td class="ltrb8">8</td>
+								<td class="ltrb8">9</td>
+								<td class="ltrb8">10</td>
+								<td class="ltrb8">11</td>
+								<td class="ltrb8" colspan="2">12</td>
+							</tr>
+ 							<t t-set="qty" t-value="0"/>
+  							<t t-set="summ" t-value="0"/>
+  							<t t-set="summ_unnds" t-value="0"/>
+  							<t t-set="nds" t-value="0"/>
+							 <t t-if="o.move_lines[0].purchase_line_id">
+							<tr class="r15" t-foreach="o.move_lines" t-as="line">
+								<td class="ltrb8l" colspan="6"><span t-field="line.purchase_line_id.product_id"/></td>
+								<td class="ltrb8"><span t-field="line.purchase_line_id.product_id.barcode"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8"><span t-field="line.purchase_line_id.product_id.uom_po_id.name"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.purchase_line_id.product_qty)"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.purchase_line_id.qty_received)"/><t t-set="qty" t-value="qty + line.purchase_line_id.qty_received"/></td>
+								<td class="ltrb8"><t t-set="line_amount" t-value="(round (line.purchase_line_id.price_subtotal / line.purchase_line_id.product_qty, 2))"/><span t-esc="('%.2f')%line_amount"/></td>
+								<td class="ltrb8"><t t-set="line_summ_unnds" t-value="(round (line.purchase_line_id.price_subtotal / line.purchase_line_id.product_qty*line.purchase_line_id.qty_received, 2))"/><t t-set="summ_unnds" t-value="summ_unnds+line_summ_unnds"/><span t-esc="('%.2f')%line_summ_unnds"/></td>
+								<td class="ltrb8"><t t-set="line_nds" t-value="round(line.purchase_line_id.price_tax/line.purchase_line_id.product_qty*line.purchase_line_id.qty_received, 2)"/><t t-esc="('%.2f')%(line_nds)"/><t t-set="nds" t-value="nds + line_nds"/></td>
+								<td class="ltrb8"><t t-set="line_summ" t-value="(round(line.purchase_line_id.price_unit*line.purchase_line_id.qty_received, 2) + line.purchase_line_id.price_tax/line.purchase_line_id.product_qty*line.purchase_line_id.qty_received)"/><t t-set="summ" t-value="summ+line_summ"/><t t-esc="('%.2f')%line_summ"/></td>
+								<td class="ltrb8">-</td>
+								<td class="ltrb8" colspan="2">-</td>
+							    </tr>
+							    </t>
+							    <t t-if="not(o.move_lines[0].purchase_line_id)">
+							    <tr class="r15" t-foreach="o.move_lines" t-as="line">
+								<td class="ltrb8l" colspan="6"><span t-field="line.product_id"/></td>
+								<td class="ltrb8"><span t-field="line.product_id.barcode"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8"><span t-field="line.product_id.uom_po_id.name"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_uom_qty)"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_uom_qty)"/><t t-set="qty" t-value="qty + line.product_uom_qty"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(round(line.product_id.supplier_taxes_id.compute_all(line.price_unit  or line.product_id.standard_price)['total_excluded'],2))"/></td>
+								<td class="ltrb8"><t t-set="line_summ_unnds" t-value="line.product_id.supplier_taxes_id.compute_all(line.price_unit or line.product_id.standard_price, None, line.product_uom_qty)['total_excluded']"/><t t-set="summ_unnds" t-value="summ_unnds+line_summ_unnds"/><span t-esc="('%.2f')%round(line_summ_unnds,2)"/></td>
+								<td class="ltrb8"><t t-set="line_nds" t-value="line.product_id.supplier_taxes_id.compute_all(line.price_unit or line.product_id.standard_price, None, line.product_uom_qty)['total_included']-line.product_id.supplier_taxes_id.compute_all(line.price_unit or line.product_id.standard_price, None, line.product_uom_qty)['total_excluded']"/><span t-esc="('%.2f')%round(line_nds, 2)"/><t t-set="nds" t-value="nds + line_nds"/></td>
+								<td class="ltrb8"><t t-set="line_summ" t-value="line.product_id.supplier_taxes_id.compute_all(line.price_unit or line.product_id.standard_price, None, line.product_uom_qty)['total_included']"/><t t-set="summ" t-value="summ+line_summ"/><span t-esc="('%.2f')%round(line_summ, 2)"/></td>
+								<td class="ltrb8">-</td>
+								<td class="ltrb8" colspan="2">-</td>
+							    </tr>
+							    </t>
+
+							<tr class="r15">
+							    <td class="ltrb8r" colspan="10">ИТОГО</td>
+								<td class="ltrb8"><span t-esc="qty"/></td>
+								<td class="ltrb8">Х</td>
+								<td class="ltrb8"><span t-esc="('%.2f')%summ_unnds"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%nds"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%summ"/></td>
+								<td class="ltrb8" colspan="3"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="18"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="2">Принял</td>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="r8">Сдал</td>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="2"/>
+								<td class="c6" colspan="2">(должность)</td>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+								<td class="r8"/>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(должность)</td>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+							</tr>
+                    </table>
+</div>
+
+
+<div t-if="o.picking_type_id.code=='internal'">
+                <table cellspacing="0">
+                    <col width="17"/>
+                    <col width="17"/>
+                    <col width="51"/>
+                    <col width="51"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="37"/>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="r8" colspan="5"/>
+                                 <td class="r6" colspan="8">Типовая межотраслевая форма № М-11. Утв. Постановлением Госкомстата России от 30.10.97 № 71а</td>
+                           </tr>
+		          <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="c10" colspan="7">ТРЕБОВАНИЕ-НАКЛАДНАЯ № <span t-field="o.name"/></td>
+                                 <td class="r8" colspan="5"/>
+                           </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="17"/>
+                                 <td class="ltrb8">Код</td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="15"/>
+                                 <td class="r8" colspan="2">Форма по ОКУД</td>
+                                 <td class="ltrb8">315006</td>
+                            </tr>
+                           <tr class="r15">
+                                 <td class="r8" colspan="4">Организация</td>
+                                 <td class="b8" colspan="11"><span t-field="company.name"/></td>
+                                 <td class="r8"/>
+                                 <td class="r8">по ОКПО</td>
+                                 <td class="ltrb8"><span t-field="company.okpo"/></td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="18"/>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" rowspan="3" colspan="2">Дата состав- ления</td>
+                                <td class="ltrb8" rowspan="3">Код вида операции</td>
+                                <td class="ltrb8" colspan="4">Отправитель</td>
+                                <td class="ltrb8" colspan="4">Получатель</td>
+                                <td class="ltrb8" colspan="3">Корреспондирующий счет</td>
+                                <td class="ltrb8" colspan="2" rowspan="3">Учетная единица выпуска продукции (работ, услуг)</td>
+								<td class="ltrb8" colspan="2" rowspan="3"/>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" rowspan="2" colspan="2">структурное подразделение </td>
+                                <td class="ltrb8" rowspan="2" colspan="2">вид деятельности </td>
+			                    <td class="ltrb8" rowspan="2" colspan="2">структурное подразделение</td>
+                                <td class="ltrb8" rowspan="2" colspan="2">вид деятельности </td>
+			                	<td class="ltrb8" rowspan="2" colspan="1">счет, субсчет</td>
+                                <td class="ltrb8" rowspan="2" colspan="2">код аналитичес-кого учета</td>
+                            </tr>
+                            <tr class="r15">
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" colspan="2"><span t-field="o.min_date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YY&quot;}"/></td>
+                                <td class="ltrb8">-</td>
+                                <td class="ltrb8" colspan="2"/>
+                                <td class="ltrb8" colspan="2"/>
+                                <td class="ltrb8" colspan="2"/>
+                                <td class="ltrb8" colspan="2"/>
+                                <td class="ltrb8" colspan="1"/>
+                                <td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="2"/>
+                            </tr>
+							<tr class="r15">
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3">Через кого</td>
+								<td class="b8" colspan="15"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3">Затребовал</td>
+								<td class="b8" colspan="6"/>
+								<td class="r8"/>
+								<td class="r8">Разрешил</td>
+								<td class="b8" colspan="7"/>
+							</tr>
+							<tr class="r15">
+							</tr>
+							<tr class="r15">
+								<td class="ltrb8" colspan="3">Корреспондирующий счет</td>
+							    <td class="ltrb8" colspan="7">Материальные ценности</td>
+								<td class="ltrb8" colspan="2">Единица измерения</td>
+								<td class="ltrb8" colspan="2">Количество</td>
+								<td class="ltrb8" rowspan="3">Цена, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Сумма без учета НДС, руб. коп.</td>
+								<td class="ltrb8" rowspan="3" colspan="2">Порядковый номер по складской картотеке</td>
+							</tr>
+                            <tr class="r15">
+								<td class="ltrb8" rowspan="2" colspan="2">счет, субсчет</td>
+								<td class="ltrb8" rowspan="2" colspan="1">код аналитичес-кого учета</td>
+								<td class="ltrb8" colspan="6" rowspan="2">наименование</td>
+								<td class="ltrb8" rowspan="2">номенкла- турный номер</td>
+								<td class="ltrb8" rowspan="2">код</td>
+								<td class="ltrb8" rowspan="2">наимено- вание</td>
+								<td class="ltrb8" rowspan="2">затребовано</td>
+								<td class="ltrb8" rowspan="2">отпущено</td>
+							</tr>
+							<tr class="r15"/>
+							<tr class="r15">
+								<td class="ltrb8" colspan="2">1</td>
+								<td class="ltrb8">2</td>
+								<td class="ltrb8" colspan="6">3</td>
+								<td class="ltrb8">4</td>
+								<td class="ltrb8">5</td>
+								<td class="ltrb8">6</td>
+								<td class="ltrb8">7</td>
+								<td class="ltrb8">8</td>
+								<td class="ltrb8">9</td>
+								<td class="ltrb8">10</td>
+								<td class="ltrb8" colspan="2">11</td>
+							</tr>
+							<t t-set="summ" t-value="0"/>
+							<t t-set="qty" t-value="0"/>
+
+                                                        <tr class="r15" t-foreach="o.move_lines" t-as="line">
+								<td class="ltrb8l" colspan="2"><span t-field="line.location_dest_id.valuation_in_account_id.code"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8l" colspan="6"><span t-field="line.product_id"/></td>
+								<td class="ltrb8"><span t-field="line.product_id.barcode"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8"><span t-esc="line.product_id.uom_po_id.name"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_uom_qty)"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_uom_qty)"/><t t-set="qty" t-value="qty + line.product_uom_qty"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(round(line.product_id.supplier_taxes_id.compute_all(line.price_unit  or line.product_id.standard_price)['total_excluded'],2))"/></td>
+								<td class="ltrb8"><t t-set = "line_summ" t-value="round(line.product_id.supplier_taxes_id.compute_all(line.price_unit  or line.product_id.standard_price, None, line.product_uom_qty)['total_excluded'], 2)"/><span t-esc = "('%.2f')%line_summ"/><t t-set="summ" t-value="summ+line_summ"/></td>
+								<td class="ltrb8" colspan="2">-</td>
+							</tr>
+
+<!--
+                                                      <tr class="r15" t-foreach="o.pack_operation_product_ids" t-as="line">
+								<td class="ltrb8l" colspan="2"><span t-field="line.location_dest_id.valuation_in_account_id.code"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8l" colspan="6"><span t-field="line.product_id"/></td>
+								<td class="ltrb8"><span t-field="line.product_id.barcode"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8"><span t-esc="line.product_id.uom_po_id.name"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_qty)"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.qty_done)"/><t t-set="qty" t-value="qty + line.qty_done"/></td>
+								<td class="ltrb8"><t t-esc="('%.2f')%round(line.product_id.supplier_taxes_id.compute_all(sum([line.linked_move_operation_ids.move_id.price_unit]) or line.product_id.standard_price)['total_excluded'], 2)"/></td>
+								<td class="ltrb8"><t t-set = "line_summ" t-value="round(line.product_id.supplier_taxes_id.compute_all(sum([line.linked_move_operation_ids.move_id.price_unit]) or line.product_id.standard_price, None, line.qty_done)['total_excluded'], 2)"/><span t-esc = "('%.2f')%line_summ"/><t t-set="summ" t-value="summ+line_summ"/></td>
+								<td class="ltrb8" colspan="2">-</td>
+							</tr>
+-->
+
+							<tr class="r15">
+							        <td class="ltrb8r" colspan="13">ИТОГО</td>
+								<td class="ltrb8"><span t-esc = "qty" /></td>
+								<td class="ltrb8">Х</td>
+								<td class="ltrb8"> <span t-esc = "summ"/></td>
+								<td class="ltrb8" colspan="2">Х</td>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="18"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="2">Отпустил</td>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="r8">Получил</td>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="2"/>
+								<td class="c6" colspan="2">(должность)</td>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+								<td class="r8"/>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(должность)</td>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+							</tr>
+                    </table>
+</div>
+
+
+<div t-if="o.picking_type_id.code=='outgoing'">
+                <table cellspacing="0">
+                    <col width="17"/>
+                    <col width="17"/>
+                    <col width="51"/>
+                    <col width="51"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="37"/>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="r8" colspan="5"/>
+                                 <td class="r6" colspan="8">Типовая межотраслевая форма № М-15. Утв. Постановлением Госкомстата России от 30.10.97 № 71а</td>
+                           </tr>
+		          <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="c10" colspan="7">НАКЛАДНАЯ № <span t-field="o.name"/></td>
+                                 <td class="r8" colspan="5"/>
+                           </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+							     <td class="c10" colspan="7">на отпуск материалов на сторону</td>
+								 <td class="c10" colspan="5"/>
+                                 <td class="ltrb8">Код</td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="15"/>
+                                 <td class="r8" colspan="2">Форма по ОКУД</td>
+                                 <td class="ltrb8">0315007</td>
+                            </tr>
+                           <tr class="r15">
+                                 <td class="r8" colspan="4">Организация</td>
+                                 <td class="b8" colspan="11"><span t-field="company.name"/></td>
+                                 <td class="r8"/>
+                                 <td class="r8">по ОКПО</td>
+                                 <td class="ltrb8"><span t-field="company.okpo"/></td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="18"/>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" rowspan="3" colspan="2">Дата состав- ления</td>
+                                <td class="ltrb8" rowspan="3">Код вида операции</td>
+                                <td class="ltrb8" colspan="4">Отправитель</td>
+                                <td class="ltrb8" colspan="4">Получатель</td>
+                                <td class="ltrb8" colspan="6">Ответственный за поставку</td>
+								<td class="ltrb8" colspan="1" rowspan="3"/>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" rowspan="2" colspan="2">структурное подразделение </td>
+                                <td class="ltrb8" rowspan="2" colspan="2">вид деятельности </td>
+			                    <td class="ltrb8" rowspan="2" colspan="2">структурное подразделение</td>
+                                <td class="ltrb8" rowspan="2" colspan="2">вид деятельности </td>
+			                	<td class="ltrb8" rowspan="2" colspan="2">структурное подразделение</td>
+                                <td class="ltrb8" rowspan="2" colspan="2">вид деятельности</td>
+								<td class="ltrb8" rowspan="2" colspan="2">код исполнителя</td>
+                            </tr>
+                            <tr class="r15">
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" colspan="2"><span t-field="o.min_date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YY&quot;}"/></td>
+                                <td class="ltrb8">-</td>
+                                <td class="ltrb8" colspan="2">-</td>
+                                <td class="ltrb8" colspan="2">-</td>
+                                <td class="ltrb8" colspan="2">-</td>
+                                <td class="ltrb8" colspan="2">-</td>
+                                <td class="ltrb8" colspan="2">-</td>
+                                <td class="ltrb8" colspan="2">-</td>
+				<td class="ltrb8" colspan="2">-</td>
+				<td class="ltrb8" colspan="1"/>
+                            </tr>
+							<tr class="r15">
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3">Основание</td>
+							    <td class="b8" colspan="1"/>
+							    <td class="b8l" colspan="14"><t t-if="'sale_id' in o"><t t-if="o.sale_id"><t t-set="orders" t-value="' '"/><t t-foreach="o.sale_id" t-as="order"><t t-if="order.name not in orders"><t t-set="orders" t-value="orders + ' '+ order.name+' '+time.strftime('%d.%m.%Y',time.strptime(order.date_order,'%Y-%m-%d %H:%M:%S'))"/></t></t></t><span t-esc="orders"/></t></td>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3">Кому</td>
+								<td class="b8" colspan="6"><t t-if="'sale_id' in o"><t t-if="o.sale_id"><t t-set="partners" t-value="' '"/><t t-foreach="o.sale_id" t-as="order"><t t-if="order.partner_id.name not in partners"><t t-set="partners" t-value="partners + ' '+ order.partner_id.name"/></t></t></t><span t-esc="partners"/></t></td>
+								<td class="r8" colspan="2">Через кого</td>
+								<td class="b8" colspan="7"/>
+							</tr>
+							<tr class="r15">
+							</tr>
+							<tr class="r15">
+								<td class="ltrb8" colspan="3">Корреспондирующий счет</td>
+							    <td class="ltrb8" colspan="3">Материальные ценности</td>
+								<td class="ltrb8" colspan="2">Единица измерения</td>
+								<td class="ltrb8" colspan="2">Количество</td>
+								<td class="ltrb8" rowspan="3">Цена, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Сумма без учета НДС, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Сумма НДС, руб. коп.</td>
+								<td class="ltrb8" rowspan="3">Всего с учетом НДС, руб. коп.</td>
+								<td class="ltrb8" colspan="2">Номер</td>
+								<td class="ltrb8" rowspan="3" colspan="2">Порядковый номер по складской картотеке</td>
+							</tr>
+                            <tr class="r15">
+								<td class="ltrb8" rowspan="2" colspan="2">счет, субсчет</td>
+								<td class="ltrb8" rowspan="2" colspan="1">код аналитичес-кого учета</td>
+								<td class="ltrb8" colspan="2" rowspan="2">наименование</td>
+								<td class="ltrb8" rowspan="2">номенкла- турный номер</td>
+								<td class="ltrb8" rowspan="2">код</td>
+								<td class="ltrb8" rowspan="2">наимено- вание</td>
+								<td class="ltrb8" rowspan="2">надлежит отпустить</td>
+								<td class="ltrb8" rowspan="2">отпущено</td>
+								<td class="ltrb8" rowspan="2">инвентарный</td>
+								<td class="ltrb8" rowspan="2">паспорта</td>
+							</tr>
+							<tr class="r15"/>
+							<tr class="r15">
+								<td class="ltrb8" colspan="2">1</td>
+								<td class="ltrb8">2</td>
+								<td class="ltrb8" colspan="2">3</td>
+								<td class="ltrb8">4</td>
+								<td class="ltrb8">5</td>
+								<td class="ltrb8">6</td>
+								<td class="ltrb8">7</td>
+								<td class="ltrb8">8</td>
+								<td class="ltrb8">9</td>
+								<td class="ltrb8">10</td>
+								<td class="ltrb8">11</td>
+								<td class="ltrb8">12</td>
+								<td class="ltrb8">13</td>
+								<td class="ltrb8">14</td>
+								<td class="ltrb8" colspan="2">15</td>
+							</tr>
+  							<t t-set="qty" t-value="0"/>
+  							<t t-set="summ" t-value="0"/>
+  							<t t-set="nds" t-value="0"/>
+  							<t t-if="'sale_id' in o">
+  							<tr class="r15" t-foreach="o.sale_id.order_line" t-as="line">
+								<td class="ltrb8l" colspan="2"><span t-field="line.product_id.categ_id.property_stock_account_output_categ_id.code"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8l" colspan="2"><span t-field="line.product_id"/></td>
+								<td class="ltrb8"><span t-field="line.product_id.barcode"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8"><span t-esc="line.product_id.uom_po_id.name"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_uom_qty)"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.qty_delivered)"/><t t-set="qty" t-value="qty+line.qty_delivered"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(round((line.tax_id.compute_all(line.price_unit, None, line.product_uom_qty))['total_excluded']/line.product_uom_qty, 2))"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(round((line.tax_id.compute_all(line.price_unit, None, line.qty_delivered))['total_excluded'], 2))"/></td>
+								<td class="ltrb8"><t t-set="line_nds" t-value="((((line.tax_id.compute_all(line.price_unit, None, line.qty_delivered))['total_included'])-((line.tax_id.compute_all(line.price_unit, None, line.qty_delivered))['total_excluded'])))"/><span t-esc="('%.2f')%line_nds"/><span t-set="nds" t-value="nds+line_nds"/></td>
+								<td class="ltrb8"><t t-set="line_summ" t-value="(round((line.tax_id.compute_all(line.price_unit, None, line.qty_delivered))['total_included'], 2))"/><t t-set="summ" t-value="summ+line_summ"/><span t-esc="('%.2f')%line_summ"/></td>
+								<td class="ltrb8">-</td>
+								<td class="ltrb8">-</td>
+								<td class="ltrb8" colspan="2">-</td>
+							</tr>
+  							</t>
+  							<t t-if="not('sale_id' in o)">
+							<tr class="r15" t-foreach="o.move_lines" t-as="line">
+								<td class="ltrb8l" colspan="2"><span t-field="line.product_id.categ_id.property_stock_account_output_categ_id.code"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8l" colspan="2"><span t-field="line.product_id"/></td>
+								<td class="ltrb8"><span t-field="line.product_id.barcode"/></td>
+								<td class="ltrb8"/>
+								<td class="ltrb8"><span t-esc="line.product_id.uom_po_id.name"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_qty)"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(line.product_uom_qty)"/><t t-set="qty" t-value="qty+line.product_uom_qty"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(round((line.product_id.taxes_id.compute_all(line.price_unit*line.product_uom_qty))['total_excluded']/line.product_uom_qty, 2))"/></td>
+								<td class="ltrb8"><span t-esc="('%.2f')%(round((line.product_id.taxes_id.compute_all(line.price_unit*line.product_uom_qty))['total_excluded'], 2))"/></td>
+								<td class="ltrb8"><t t-set="line_nds" t-value="((((line.product_id.taxes_id.compute_all(line.price_unit*line.product_uom_qty))['total_included'])-((line.product_id.taxes_id.compute_all(line.price_unit*line.product_uom_qty))['total_excluded'])))"/><span t-esc="('%.2f')%line_nds"/><span t-set="nds" t-value="nds+line_nds"/></td>
+								<td class="ltrb8"><t t-set="line_summ" t-value="(round((line.product_id.taxes_id.compute_all(line.price_unit))['total_included']*line.product_uom_qty, 2))"/><t t-set="summ" t-value="summ+line_summ"/><span t-esc="('%.2f')%line_summ"/></td>
+								<td class="ltrb8">-</td>
+								<td class="ltrb8">-</td>
+								<td class="ltrb8" colspan="2">-</td>
+							</tr>
+  							</t>
+							<tr class="r15">
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3">Всего отпущено</td>
+								<td class="b8" colspan="5"> <span t-esc="qty"/> (<span t-esc="helper.in_words(qty)"/>)</td>
+								<td class="r8" colspan="2">наименований</td>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3"/>
+								<td class="c6" colspan="5">(прописью)</td>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3">на суммму</td>
+								<td class="b8" colspan="5"> <span t-esc="summ"/> (<span t-esc="helper.rubles(summ)"/>)</td>
+								<td class="r8" colspan="1"/>
+								<td class="r8" colspan="3">в том числе сумма НДС</td>
+								<td class="b8" colspan="5"> <span t-esc="nds"/> (<span t-esc="helper.rubles(nds)"/>)</td>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3"/>
+								<td class="c6" colspan="5">(прописью)</td>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3">Отпуск разрешил</td>
+								<td class="b8" colspan="1"/>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="r8" colspan="3">Главный бухгалтер</td>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="3"/>
+								<td class="c6" colspan="1">(должность)</td>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+								<td class="r8"/>
+								<td class="r8"/>
+								<td class="c6" colspan="2"/>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="2">Отпустил</td>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="r8">Получил</td>
+								<td class="b8" colspan="2"/>
+								<td class="r8"/>
+								<td class="b8"/>
+								<td class="r8"/>
+								<td class="b8" colspan="2"/>
+							</tr>
+							<tr class="r15">
+							    <td class="r8" colspan="2"/>
+								<td class="c6" colspan="2">(должность)</td>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+								<td class="r8"/>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(должность)</td>
+								<td class="r8"/>
+								<td class="c6">(подпись)</td>
+								<td class="r8"/>
+								<td class="c6" colspan="2">(расшифровка подписи)</td>
+							</tr>
+                    </table>
+</div>
+
+
+                        </div>
+                    </t>
+                    </t>
+                </t>
+             </t>
+        </template>
+    </data>
+</openerp>

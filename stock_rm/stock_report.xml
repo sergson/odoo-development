@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            string="Stock order"
+            id="action_report_stock_order"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="stock_rm.report_stock_order"
+            file="stock_rm.report_stock_order"
+        />
+    </data>
+</openerp>
