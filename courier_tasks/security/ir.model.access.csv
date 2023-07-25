@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_courier_tasks_courier,courier.tasks.courier,model_courier_tasks,base.group_courier_courier,1,1,0,0
+access_courier_tasks_user,courier.tasks.user,model_courier_tasks,base.group_courier_user,1,1,1,0
+access_courier_tasks_manager,courier.tasks.manager,model_courier_tasks,base.group_courier_manager,1,1,1,1
+access_courier_couriers_courier,courier.couriers.courier,model_courier_couriers,base.group_courier_courier,1,0,0,0
+access_courier_couriers_user,courier.couriers.user,model_courier_couriers,base.group_courier_user,1,0,0,0
+access_courier_couriers_manager,courier.couriers.manager,model_courier_couriers,base.group_courier_manager,1,1,1,1

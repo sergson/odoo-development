@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!--- Main menu -->
+        <menuitem id="menu_courier_tasks_root" name="Courier tasks" sequence="100" web_icon="courier_tasks,static/description/icon.png" groups="base.group_courier_user,base.group_courier_courier,base.group_courier_manager"/>
+
+        <!-- Tasks views-->
+
+        <record id="view_courier_tasks_kanban" model="ir.ui.view">
+            <field name="name">courier.tasks.kanban</field>
+            <field name="model">courier.tasks</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="date_done"/>
+                    <field name="state"/>
+                    <field name="courier"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <strong><span><t t-esc="record.name.value"/></span></strong>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <strong><span class="pull-right text-right"><t t-esc="record.create_date.value"/></span></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 text-muted">
+                                        <span><t t-esc="record.courier.value"/> <t t-esc="record.date_done.value"/></span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span t-attf-class="pull-right text-right label #{['draft'].indexOf(record.state.raw_value) > -1 ? 'label-default' : ['cancel'].indexOf(record.state.raw_value) > -1 ? 'label-danger' : ['done'].indexOf(record.state.raw_value) > -1 ? 'label-success' : 'label-primary'}"><t t-esc="record.state.value"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_courier_tasks_tree" model="ir.ui.view">
+            <field name="name">courier.tasks.tree</field>
+            <field name="model">courier.tasks</field>
+            <field eval="15" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Tasks" decoration-info="state=='draft'" decoration-success="state=='done'" decoration-muted="state=='cancel'" decoration-bf="message_unread == True" editable="top">
+                    <field name="create_date" readonly="1"/>
+                    <field name="create_uid" readonly="1"/>
+                    <field name="name"/>
+                    <field name="courier"/>
+                    <field name="date_done"/>
+                    <field name="hours" sum = "Total time"/>
+                    <field name="dist" sum = "Total dist."/>
+                    <field name="active"/>          
+                    <field name="state"/>
+                     <field name="message_unread" invisible="1"/>
+                    <button name="done_task" states="draft" string="Set to done" type="object" icon="fa-check" groups="base.group_courier_courier,base.group_courier_manager"/>
+                    <button name="cancel_task" states="done" string="Set to cancel" type="object" icon="fa-check" groups="base.group_courier_courier,base.group_courier_manager"/>
+                    <button name="reset_task" states="cancel" string="Set to draft" type="object" icon="fa-check" groups="base.group_courier_manager"/>
+                </tree>
+            </field>
+        </record>
+   
+        <record model="ir.ui.view" id="view_courier_tasks_tree_inherited">
+            <field name="model">courier.tasks</field>
+            <field name="inherit_id" ref="courier_tasks.view_courier_tasks_tree" />
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_courier_courier')])]"/>
+            <field name="arch" type="xml">
+
+                <field name="name" position="attributes">
+                     <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                <field name="courier" position="attributes">
+                     <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+
+
+            </field>
+        </record>
+
+        <record id="view_courier_tasks_my_tree" model="ir.ui.view">
+            <field name="name">my.courier.tasks.tree</field>
+            <field name="model">courier.tasks</field>
+            <field eval="15" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Tasks" decoration-info="state=='draft'" decoration-success="state=='done'" decoration-muted="state=='cancel'" decoration-bf="message_unread == True" editable="top">
+                    <field name="create_date" readonly="1"/>
+                    <field name="create_uid" readonly="1"/>
+                    <field name="name"/>
+                    <field name="courier"/>
+                    <field name="date_done"/>
+                    <field name="hours" sum = "Total time"/>
+                    <field name="dist" sum = "Total dist."/>
+                    <field name="active"/>          
+                    <field name="state"/>
+                    <field name="message_unread" invisible="1"/>
+                    <button name="done_task" states="draft" string="Set to done" type="object" icon="fa-check" groups="base.group_courier_courier,base.group_courier_manager"/>
+                    <button name="cancel_task" states="done" string="Set to cancel" type="object" icon="fa-check" groups="base.group_courier_courier,base.group_courier_manager"/>
+                    <button name="reset_task" states="cancel" string="Set to draft" type="object" icon="fa-check" groups="base.group_courier_manager"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_courier_tasks_my_tree_inherited">
+            <field name="model">courier.tasks</field>
+            <field name="inherit_id" ref="courier_tasks.view_courier_tasks_my_tree" />
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_courier_courier')])]"/>
+            <field name="arch" type="xml">
+
+                <field name="name" position="attributes">
+                    <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                <field name="courier" position="attributes">
+                     <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="view_courier_tasks_form" model="ir.ui.view">
+            <field name="name">courier.tasks.form</field>
+            <field name="model">courier.tasks</field>
+            <field eval="25" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Tasks">
+                <header>
+                    <button name="done_task" states="draft" string="Task to done" type="object" groups="base.group_courier_courier,base.group_courier_manager" class="oe_highlight"/>
+                    <button name="cancel_task" states="done" string="Cancel tack" type="object" groups="base.group_courier_courier,base.group_courier_manager" class="oe_highlight"/>
+                    <button name="reset_task" states="cancel" string="Set to Draft" type="object" groups="base.group_courier_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done" statusbar_colors='{"done":"blue","cancel":"red"}'/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" groups="base.group_courier_manager"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <field name="create_date" readonly="1"/>
+                        <field name="create_uid" readonly="1"/>
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. send post to Google"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="courier"/>
+                        <field name="date_done" groups="base.group_courier_courier,base.group_courier_manager"/>
+                        <field name="hours" groups="base.group_courier_courier,base.group_courier_manager"/>
+                        <field name="dist" groups="base.group_courier_courier,base.group_courier_manager"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_courier_tasks_form_inherited">
+            <field name="model">courier.tasks</field>
+            <field name="inherit_id" ref="courier_tasks.view_courier_tasks_form" />
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_courier_courier')])]"/>
+            <field name="arch" type="xml">
+
+                <field name="name" position="attributes">
+                     <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                <field name="courier" position="attributes">
+                     <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="view_courier_tasks_pivot" model="ir.ui.view">
+            <field name="name">courier.tasks.pivot</field>
+            <field name="model">courier.tasks</field>
+            <field name="arch" type="xml">
+                <pivot string="Tasks Analysis" disable_linking="True">
+                    <field name="courier" type="row"/>
+                    <field name="create_date" interval="month" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record id="view_courier_tasks_graph" model="ir.ui.view">
+            <field name="name">courier.tasks.graph</field>
+            <field name="model">courier.tasks</field>
+            <field name="arch" type="xml">
+                <graph string="Tasks Analysis">
+                    <field name="courier" type="col"/>
+                    <field name="create_date" interval="month" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_courier_tasks_filter" model="ir.ui.view">
+            <field name="name">courier.tasks.filter</field>
+            <field name="model">courier.tasks</field>
+            <field name="arch" type="xml">
+                <search string="Tasks">
+                    <field name="name" string="Tasks"/>
+                    <field name="create_date"/>
+                    <field name="courier"/>
+                    <field name="date_done"/>
+                    <separator />
+                    <filter domain="[('state', '=', 'draft')]" string="New" help="New tasks"/>
+                    <filter domain="[('state', '=', 'done')]" string="Finished" name="done" help="Finished tasks"/>
+                    <filter domain="[('state', '=', 'cancel')]" string="Canceled" name="canleled" help="Canceled tasks"/>
+                    <separator />
+                    <filter string="My team tasks" name="my_team_tasks" domain="[('create_uid.parent_id.user_id', '=', uid)]" groups="base.group_courier_manager" help="Tasks of your team member"/>
+                    <filter string="My tasks" name="my_tasks" domain="[('create_uid', '=', uid)]"/>
+                    <separator />
+                    <filter string="New mail" name="message_unread" domain="[('message_unread', '=', True)]"/>
+                    <separator />
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>                    
+                    <group expand="0" string="Group by">
+                        <filter string="Courier" domain="[]" context="{'group_by': 'courier'}"/>
+                        <filter string="User" domain="[]" context="{'group_by': 'created_uid'}"/>
+                        <filter string="Company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                        <filter string="Task month" domain="[]" context="{'group_by': 'create_date'}" help="Tasks by month"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+       <!-- Couriers views -->
+        <record id="view_courier_couriers_tree" model="ir.ui.view">
+            <field name="name">courier.couriers.tree</field>
+            <field name="model">courier.couriers</field>
+            <field name="arch" type="xml">
+                <tree string="Couriers">
+                    <field name="create_date"/>
+                    <field name="name" groups="base.group_courier_manager"/>
+                    <field name="courier_id" groups="base.group_courier_manager"/>
+                    <field name="email" groups="base.group_courier_manager"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_courier_couriers_form" model="ir.ui.view">
+            <field name="name">courier.couriers.form</field>
+            <field name="model">courier.couriers</field>
+            <field eval="25" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Couriers">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" groups="base.group_courier_manager"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. send post to Google" groups="base.group_courier_manager"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="courier_id" groups="base.group_courier_manager"/>
+                        <field name="email" groups="base.group_courier_manager"/>
+                        <field name="company_id" groups="base.group_courier_manager"/>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_courier_couriers_kanban" model="ir.ui.view">
+            <field name="name">courier.couriers.kanban</field>
+            <field name="model">courier.couriers</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="email"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <strong><span><t t-esc="record.name.value"/></span></strong>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <strong><span class="pull-right text-right"><t t-esc="record.create_date.value"/></span></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 text-muted">
+                                        <span><t t-esc="record.email.value"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_courier_couriers_filter" model="ir.ui.view">
+            <field name="name">courier.couriers.filter</field>
+            <field name="model">courier.couriers</field>
+            <field name="arch" type="xml">
+                <search string="Couriers">
+                    <field name="name" string="Couriers"/>
+                    <field name="courier_id"/>
+                    <field name="email"/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>                     
+                </search>
+            </field>
+        </record>
+
+    <!-- Tasks actions-->
+
+        <record id="tasks_all" model="ir.actions.act_window">
+            <field name="name">All tasks</field>
+            <field name="res_model">courier.tasks</field>
+            <field name="view_mode">tree,form,kanban,graph,pivot</field>
+            <field name="search_view_id" ref="view_courier_tasks_filter"/>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click here to create new task.
+              </p><p>
+                Once you have created your task, it's will done by courier.
+              </p>
+            </field>
+        </record>
+
+        <record id="my_tasks_all" model="ir.actions.act_window">
+            <field name="name">My tasks</field>
+            <field name="res_model">courier.tasks</field>
+            <field name="view_mode">tree,form,kanban,graph,pivot</field>
+            <field name="search_view_id" ref="view_courier_tasks_filter"/>
+            <field name="domain">['|',('create_uid', '=', uid),('courier.courier_id', '=', uid)]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click here to create new task.
+              </p><p>
+                Once you have created your task, it's will done by courier.
+              </p>
+            </field>
+        </record>
+
+        <record id="courier_tasks_tree_action" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_courier_tasks_my_tree"/>
+            <field name="act_window_id" ref="my_tasks_all"/>
+        </record>
+
+        <record id="courier_tasks_kanban_action" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_courier_tasks_kanban"/>
+            <field name="act_window_id" ref="my_tasks_all"/>
+        </record>
+
+        <record id="courier_tasks_form_action" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_courier_tasks_form"/>
+            <field name="act_window_id" ref="my_tasks_all"/>
+        </record>
+
+        <record id="action_my_finished_tasks" model="ir.actions.act_window">
+            <field name="name">Finished tasks</field>
+            <field name="res_model">courier.tasks</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="view_id" ref="view_courier_tasks_tree"/>
+            <field name="search_view_id" ref="view_courier_tasks_filter"/>
+            <field name="domain">[('state','=','done'),'|',('create_uid', '=', uid),('courier.courier_id', '=', uid)]</field>
+            <field name="help" type="html">
+              <p>
+                From here will be able done tasks which are finished by courier.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_request_my_draft_tasks" model="ir.actions.act_window">
+            <field name="name">Draft tasks</field>
+            <field name="res_model">courier.tasks</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="view_id" ref="view_courier_tasks_tree"/>
+            <field name="search_view_id" ref="view_courier_tasks_filter"/>
+            <field name="domain">[('state','=','draft'),'|',('create_uid', '=', uid),('courier.courier_id', '=', uid)]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click here to create new task.
+              </p><p>
+                Once you have created your task, it's will done by courier.
+              </p>
+            </field>
+        </record>
+
+        <record id="courier_task_done_action_server" model="ir.actions.server">
+            <field name="name">Done task</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_courier_tasks"/>
+            <field name="state">code</field>
+            <field name="code">
+                self.done_task(cr, uid, context.get('active_ids', []), context=context)
+            </field>
+        </record>
+
+        <record id="action_courier_task_done" model="ir.values">
+            <field name="name">action_courier_task_done</field>
+            <field name="action_id" ref="courier_task_done_action_server" />
+            <field name="value" eval="'ir.actions.server,' + str(ref('courier_task_done_action_server'))" />
+            <field name="key">action</field>
+            <field name="model_id" ref="model_courier_tasks"/>
+            <field name="model">courier.tasks</field>
+            <field name="key2">client_action_multi</field>
+        </record>
+
+        <record id="courier_tasks_action" model="ir.actions.act_window">
+            <field name="name">Tasks analysis</field>
+            <field name="res_model">courier.tasks</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot,graph,tree,form,kanban</field>
+        </record>
+      
+        <!-- Menu-->
+        <menuitem id="menu_tasks_my" action="my_tasks_all" name="All my tasks" sequence="59" parent="menu_courier_tasks_root"/>
+        <menuitem id="menu_tasks_all" action="tasks_all" name="All tasks" sequence="69" parent="menu_courier_tasks_root" groups="base.group_courier_manager"/>
+        <menuitem id="menu_tasks_draft_my" action="action_request_my_draft_tasks" name="To do" sequence="39" parent="menu_courier_tasks_root"/>
+        <menuitem id="menu_tasks_done_my" action="action_my_finished_tasks" name="Finished" sequence="49" parent="menu_courier_tasks_root"/>
+        <menuitem id="menu_courier_tasks" name="Reporting" sequence="99" parent="menu_courier_tasks_root" action="courier_tasks_action" groups="base.group_courier_manager"/>
+
+
+        <!-- Couriers actions -->
+
+        <record id="couriers_all" model="ir.actions.act_window">
+            <field name="name">Couriers</field>
+            <field name="res_model">courier.couriers</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="view_courier_couriers_filter"/>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click here to create new courier.
+              </p>
+            </field>
+        </record>
+
+        <record id="courier_couriers_tree_action" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_courier_couriers_tree"/>
+            <field name="act_window_id" ref="couriers_all"/>
+        </record>
+
+        <record id="courier_couriers_kanban_action" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_courier_couriers_kanban"/>
+            <field name="act_window_id" ref="couriers_all"/>
+        </record>
+
+        <record id="courier_couriers_form_action" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_courier_couriers_form"/>
+            <field name="act_window_id" ref="couriers_all"/>
+        </record>
+
+        <!-- Menu -->
+
+        <menuitem id="menu_couriers_all" action="couriers_all" name="Couriers" sequence="99" parent="menu_courier_tasks_root" groups="base.group_courier_manager"/>
+
+</odoo>
+
+

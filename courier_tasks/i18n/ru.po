@@ -1,0 +1,471 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* courier_tasks
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20170911\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-21 17:02+0000\n"
+"PO-Revision-Date: 2017-09-22 00:44+0700\n"
+"Last-Translator: <>\n"
+"Language-Team: Serg Terihov\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ru\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#. module: courier_tasks
+#: model:mail.template,body_html:courier_tasks.courier_task
+#: model:mail.template,subject:courier_tasks.courier_task
+msgid "${object.name}"
+msgstr "${object.name}"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_needaction
+msgid "Action Needed"
+msgstr "Требуется действие"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_active
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_active
+msgid "Active"
+msgstr "Активен"
+
+#. module: courier_tasks
+#: model:ir.ui.menu,name:courier_tasks.menu_tasks_my
+msgid "All my tasks"
+msgstr "Все мои задания"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,name:courier_tasks.tasks_all
+#: model:ir.ui.menu,name:courier_tasks.menu_tasks_all
+msgid "All tasks"
+msgstr "Все задания"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_couriers_filter
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Archived"
+msgstr "Помещено в архив"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_form
+msgid "Cancel tack"
+msgstr "Отменить задание"
+
+#. module: courier_tasks
+#: selection:courier.tasks,state:0
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Canceled"
+msgstr "Отменено"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Canceled tasks"
+msgstr "Отмененные задания"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,help:courier_tasks.couriers_all
+msgid "Click here to create new courier."
+msgstr "Нажмите здесь, чтобы назначить нового курьера."
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,help:courier_tasks.action_request_my_draft_tasks
+#: model:ir.actions.act_window,help:courier_tasks.my_tasks_all
+#: model:ir.actions.act_window,help:courier_tasks.tasks_all
+msgid "Click here to create new task."
+msgstr "Нажмите здесь, чтобы создать новое задание."
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_company_id
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_company_id
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Company"
+msgstr "Компания"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_courier_id
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_courier
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Courier"
+msgstr "Курьер"
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_couriers_email
+msgid "Courier email addres to send task description"
+msgstr "Адрес электронной почты для отправки задания"
+
+#. module: courier_tasks
+#: model:ir.module.category,name:courier_tasks.module_category_courier_management
+msgid "Courier management"
+msgstr "Управление курьерами"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_name
+msgid "Courier name"
+msgstr "Имя курьера"
+
+#. module: courier_tasks
+#: model:ir.model,name:courier_tasks.model_courier_tasks
+#: model:ir.ui.menu,name:courier_tasks.menu_courier_tasks_root
+msgid "Courier tasks"
+msgstr "Задания курьеру"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,name:courier_tasks.couriers_all
+#: model:ir.model,name:courier_tasks.model_courier_couriers
+#: model:ir.ui.menu,name:courier_tasks.menu_couriers_all
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_couriers_filter
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_couriers_form
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_couriers_tree
+msgid "Couriers"
+msgstr "Курьеры"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_create_uid
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_create_uid
+msgid "Created by"
+msgstr "Пользователь"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_create_date
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_create_date
+msgid "Created on"
+msgstr "Дата"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_date_done
+msgid "Date of task have finished"
+msgstr "Дата исполнения"
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_message_last_post
+msgid "Date of the last message posted on the record."
+msgstr "Дата последнего сообщения"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_display_name
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_dist
+msgid "Distance traveled"
+msgstr "Расстояние"
+
+#. module: courier_tasks
+#: selection:courier.tasks,state:0
+msgid "Done"
+msgstr "Сделано"
+
+#. module: courier_tasks
+#: model:ir.actions.server,name:courier_tasks.courier_task_done_action_server
+msgid "Done task"
+msgstr "Выполнено"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,name:courier_tasks.action_request_my_draft_tasks
+msgid "Draft tasks"
+msgstr "Задания к выполнению"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_email
+msgid "Email to send task"
+msgstr "Email для отправки"
+
+#. module: courier_tasks
+#: model:ir.ui.menu,name:courier_tasks.menu_tasks_done_my
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Finished"
+msgstr "Выполнено"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,name:courier_tasks.action_my_finished_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Finished tasks"
+msgstr "Выполненные задания"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_follower_ids
+msgid "Followers"
+msgstr "Подписчики"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Подписчики (каналы)"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Подписчики (партнеры)"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,help:courier_tasks.action_my_finished_tasks
+msgid "From here will be able done tasks which are finished by courier."
+msgstr "Здесь будут доступны выполненные задания."
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Group by"
+msgstr "Группировать по"
+
+#. module: courier_tasks
+#: model:ir.module.category,description:courier_tasks.module_category_courier_management
+msgid "Helps you manage courier tasks"
+msgstr "Помогает управлять заданиями курьера"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_hours
+msgid "Hours to doing task"
+msgstr "Время выполнения"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_id
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_id
+msgid "ID"
+msgstr "ID"
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_message_unread
+msgid "If checked new messages require your attention."
+msgstr "Если отмечено, новые сообщения требуют вашего внимания."
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Если отмечено - новые сообщения требуют Вашего внимания !"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_is_follower
+msgid "Is Follower"
+msgstr "Подписчик"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_last_post
+msgid "Last Message Date"
+msgstr "Последнее сообщение по дате"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers___last_update
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks___last_update
+msgid "Last Modified on"
+msgstr "Последнее изменение"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_write_uid
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_write_uid
+msgid "Last Updated by"
+msgstr "Последний раз обновлено"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_couriers_write_date
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_write_date
+msgid "Last Updated on"
+msgstr "Последний раз обновлено"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_ids
+msgid "Messages\""
+msgstr "Сообщения"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,name:courier_tasks.my_tasks_all
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "My tasks"
+msgstr "Мои задания"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "My team tasks"
+msgstr "Задания моей команды"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "New"
+msgstr "Новый"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "New mail"
+msgstr "Новое сообщение"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "New tasks"
+msgstr "Новые задания"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_needaction_counter
+msgid "Number of Actions"
+msgstr "Количество действий"
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Количество сообщений, требующих действий"
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_message_unread_counter
+msgid "Number of unread messages"
+msgstr "Количество непрочтённых сообщений"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,help:courier_tasks.action_request_my_draft_tasks
+#: model:ir.actions.act_window,help:courier_tasks.my_tasks_all
+#: model:ir.actions.act_window,help:courier_tasks.tasks_all
+msgid "Once you have created your task, it's will done by courier."
+msgstr "После создания задания оно должной быть отмечено курьером, как выполненное."
+
+#. module: courier_tasks
+#: model:ir.ui.menu,name:courier_tasks.menu_courier_tasks
+msgid "Reporting"
+msgstr "Отчеты"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_form
+msgid "Set to Draft"
+msgstr "Сбросить"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_my_tree
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_tree
+msgid "Set to cancel"
+msgstr "Отменить"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_my_tree
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_tree
+msgid "Set to done"
+msgstr "Выполнено"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_my_tree
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_tree
+msgid "Set to draft"
+msgstr "Сбросить"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_state
+msgid "Status"
+msgstr "Статус"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_name
+msgid "Task description"
+msgstr "Описание задания"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Task month"
+msgstr "Месяц"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_form
+msgid "Task to done"
+msgstr "Выполнено"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_form
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_my_tree
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_tree
+msgid "Tasks"
+msgstr "Задания"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_graph
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_pivot
+msgid "Tasks Analysis"
+msgstr "Анализ заданий"
+
+#. module: courier_tasks
+#: model:ir.actions.act_window,name:courier_tasks.courier_tasks_action
+msgid "Tasks analysis"
+msgstr "Анализ заданий"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Tasks by month"
+msgstr "Задания по месяцам"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "Tasks of your team member"
+msgstr "Задания участника вашей команты"
+
+#. module: courier_tasks
+#: selection:courier.tasks,state:0
+#: model:ir.ui.menu,name:courier_tasks.menu_tasks_draft_my
+msgid "To do"
+msgstr "Выполнение"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_my_tree
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_tree
+msgid "Total dist."
+msgstr "Всего, расстояние."
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_my_tree
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_tree
+msgid "Total time"
+msgstr "Всего, время"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_unread
+msgid "Unread Messages"
+msgstr "Непрочитанные"
+
+#. module: courier_tasks
+#: model:ir.model.fields,field_description:courier_tasks.field_courier_tasks_message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Счетчик непрочтённых сообщений"
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_filter
+msgid "User"
+msgstr "Пользователь"
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_state
+msgid ""
+"When the task is created the status is 'To do', task description will sent to courier by e-mail\n"
+"            If the courier have done the task, the status is 'Done'.\n"
+"            If the task is wrong, courier may cancel task without doing"
+msgstr ""
+"После создания задачи в статусе 'Выполнение', описание будет направлено курьеру электронной почтой \n"
+"            если курьер выполнил задание, статус может быть изменен на 'Выполнено'.\n"
+"            если задание ошибочное, возможно отклонение задания"
+
+#. module: courier_tasks
+#: code:addons/courier_tasks/models/courier_tasks.py:70
+#, python-format
+msgid "You can only delete draft task!"
+msgstr "Удаление возможно только заданий к выполнению!"
+
+#. module: courier_tasks
+#: code:addons/courier_tasks/models/courier_tasks.py:76
+#, python-format
+msgid "You can only submit draft task!"
+msgstr "Подтвердить возможно только задания к исполнению!"
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_dist
+msgid "You may set distance in km traveled for task before have set status to 'done'."
+msgstr "Можете указать расстояние в км. пройденное при выполнении задания."
+
+#. module: courier_tasks
+#: model:ir.model.fields,help:courier_tasks.field_courier_tasks_hours
+msgid "You may set time in hours spended by task before have set status to 'done'."
+msgstr "Можете указать время в часах потраченное на выполнение задания."
+
+#. module: courier_tasks
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_couriers_form
+#: model:ir.ui.view,arch_db:courier_tasks.view_courier_tasks_form
+msgid "e.g. send post to Google"
+msgstr "например отправить почту заказчику"

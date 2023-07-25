@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="courier_task" model="mail.template">
+            <field name="name">Courier task</field>
+            <field name="model_id" ref="courier_tasks.model_courier_tasks"/>
+            <field name="email_from">${(object.create_uid.email or '')|safe}</field>
+            <field name="email_to" >${object.courier.email|safe}</field>
+            <field name="lang">${object.create_uid.lang}</field>
+            <field name="subject">${object.name}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">${object.name}</field>
+        </record>
+
+    </data>
+</openerp>
