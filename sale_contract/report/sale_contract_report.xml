@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            string="Sale contract doc" 
+            id="act_sale_contract_doc_report" 
+            model="sale.contract.doc" 
+            name="sale_contract.sale_contract_doc_report" 
+            file="sale_contract.sale_contract_doc_report" 
+            report_type="qweb-pdf"/>
+    </data>
+</openerp>

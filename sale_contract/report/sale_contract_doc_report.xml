@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="sale_contract_doc_report">
+    <t t-call="report.html_container">
+      <t t-set="data_report_dpi" t-value="150"/>
+        <t t-foreach="docs" t-as="o">
+        <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"/></t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+            <t t-set="context" t-value="o._context"/>
+           <div class="page">
+<STYLE TYPE="text/css">
+body { background: #ffffff; margin: 0; font-family: Arial; font-size: 12pt; font-style: normal; max-width: 99%}
+tr.r15{ height: auto; page-break-inside:avoid;"}
+
+tr.r15 td.ltrb10c{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb10l{text-align: left; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb10r{text-align: right; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb10j{text-align: justify; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+
+tr.r15 td.ltrb10cb{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb10lb{text-align: left; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb10rb{text-align: right; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb10jb{text-align: justify; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+
+tr.r15 td.b10c{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b10l{text-align: left; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid; }
+tr.r15 td.b10r{text-align: right; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid;}
+tr.r15 td.b10j{text-align: justify; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid;}
+
+tr.r15 td.b10cb{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b10lb{text-align: left; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b10rb{text-align: right; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b10jb{text-align: justify; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid; font-weight: bold;}
+
+tr.r15 td.ltrb12r{text-align: right; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb12c{text-align: center; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb12l{text-align: left; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb12j{text-align: justify; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+
+tr.r15 td.ltrb12rb{text-align: right; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb12cb{text-align: center; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb12lb{text-align: left; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb12jb{text-align: justify; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+
+tr.r15 td.b12r{text-align: right; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b12c{text-align: center; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b12l{text-align: left; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b12j{text-align: justify; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+
+tr.r15 td.b12rb{text-align: right; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b12cb{text-align: center; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b12lb{text-align: left; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b12jb{text-align: justify; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid; font-weight: bold;}
+
+tr.r15 td.ltrb14r{text-align: right; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb14c{text-align: center; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb14l{text-align: left; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb14j{text-align: justify; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+
+tr.r15 td.ltrb14rb{text-align: right; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb14cb{text-align: center; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb14lb{text-align: left; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+tr.r15 td.ltrb14jb{text-align: justify; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; font-weight: bold;}
+
+tr.r15 td.b14r{text-align: right; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b14c{text-align: center; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b14l{text-align: left; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+tr.r15 td.b14j{text-align: justify; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+
+tr.r15 td.b14rb{text-align: right; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b14cb{text-align: center; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium;  border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b14lb{text-align: left; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid; font-weight: bold;}
+tr.r15 td.b14jb{text-align: justify; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid; font-weight: bold;}
+
+tr.r15 td.n10l{text-align: left; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n10c{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n10r{text-align: right; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n10j{text-align: justify; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium;}
+
+tr.r15 td.n10lb{text-align: left; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n10cb{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n10rb{text-align: right; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n10jb{text-align: justify; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+
+tr.r15 td.n12r{text-align: right; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n12c{text-align: center; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n12l{text-align: left; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n12j{text-align: justify; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium;}
+
+tr.r15 td.n12rb{text-align: right; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n12cb{text-align: center; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n12lb{text-align: left; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n12jb{text-align: justify; font-family: Arial; font-size: 12pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+
+tr.r15 td.n14r{text-align: right; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n14c{text-align: center; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n14l{text-align: left; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.n14j{text-align: justify; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium;}
+
+tr.r15 td.n14rb{text-align: right; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n14cb{text-align: center; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n14lb{text-align: left; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.n14jb{text-align: justify; font-family: Arial; font-size: 14pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+
+table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bottom; border-collapse:collapse;width: 100%; font-family: Arial; font-size: 12pt; font-style: normal; } td { padding: 0px; padding-left: 2px; overflow:hidden; }
+</STYLE>
+                <table cellspacing="0">
+                                        <!--32 columns on page-->
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <col width="10"/>
+                                        <!-- 32 columns on page -->
+                      <t t-foreach="(o.terms)" t-as="term">
+                          <t t-raw="term.report_text"/>
+                      </t>
+                </table>
+           </div>
+        </t>
+    </t>
+</template>
+</odoo>

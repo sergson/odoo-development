@@ -1,0 +1,454 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20170129\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-19 14:30+0000\n"
+"PO-Revision-Date: 2017-03-19 14:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_form
+#: selection:sale.contract.doc,state:0
+msgid "Acceptance"
+msgstr "Акцепт"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.sale_cont_doc_templ_wizard
+msgid "Add"
+msgstr "Добавить"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,help:sale_contract.action_sale_cont_doc_templ_wizard
+msgid "Add documents by templates"
+msgstr "Добавить документы из шаблонов"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.sale_cont_doc_templ_wizard
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_cond_ext_vals
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_templ_cond_ext_vals
+msgid "Comma with space separated field names of selected model for including in conditions, though {name1.model_field},{name2}..."
+msgstr "Разделенные запятой с пробелом имена полей из выбранной молели для включения их значений в пункты документа, с помощью выражения вида: {name1.model_field},{name2}..."
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_name
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond_name
+msgid "Conditin short name"
+msgstr "Краткое наименование"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_ext_vals
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond_ext_vals
+msgid "Condition external values"
+msgstr "Внешние значения"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_cond_model
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond_cond_model
+msgid "Condition model"
+msgstr "Модель"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_cond_form
+msgid "Condition text"
+msgstr "Текст"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_cond
+msgid "Condition text and view"
+msgstr "Текст и вид пункта документа"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_contract_doc_templ_terms
+msgid "Conditions in  Qweb format for document temlate"
+msgstr "Содержимое пункта документа в формате Qweb"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_contract_doc_terms
+msgid "Conditions, Qweb format for document"
+msgstr "Содержимое пункта документа в формате Qweb"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_order_sale_contract_doc_ids
+msgid "Contract and documents"
+msgstr "Договор и документы"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_order_contract_date
+#: model:ir.model.fields,help:sale_contract.field_sale_order_contract_date
+msgid "Contract date"
+msgstr "Дата договора"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_order_contract_number
+#: model:ir.model.fields,help:sale_contract.field_sale_order_contract_number
+msgid "Contract number"
+msgstr "Номер договора"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_create_uid
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard_create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_create_date
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard_create_date
+msgid "Created on"
+msgstr "Создан"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_report_sale_contract_doc_display_name
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_display_name
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond_display_name
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_display_name
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_display_name
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard_display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_form
+#: selection:sale.contract.doc,state:0
+msgid "Dissolved"
+msgstr "Расторгнут"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,name:sale_contract.action_sale_cont_doc_templ_cond
+#: model:ir.ui.menu,name:sale_contract.menu_sale_cont_doc_cond_templ
+msgid "Doc. templ. conditions"
+msgstr "Содержимое документов"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.sale_cont_doc_templ_form
+msgid "Document and contract template for sales"
+msgstr "Шаблон договора и документа для заказов "
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.sale_cont_doc_templ_wizard
+msgid "Document and contract templates for sail"
+msgstr "Шаблоны документов"
+
+#. module: sale_contract
+#: model:ir.model,name:sale_contract.model_sale_cont_doc_cond
+msgid "Document conditions"
+msgstr "Пункты документа"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_name
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_tree
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_docs_tree
+msgid "Document name"
+msgstr "Нименование документа"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_docs_tree
+msgid "Document state"
+msgstr "Статус документа"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_filter
+msgid "Document temlate"
+msgstr "Шаблон документа"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_cond_templ_filter
+msgid "Document temlate conditions"
+msgstr "Пункты шаблона докумета"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard_document_template_ids
+msgid "Document template"
+msgstr "Шаблон документа"
+
+#. module: sale_contract
+#: model:ir.model,name:sale_contract.model_sale_cont_doc_templ_cond
+msgid "Document template conditions"
+msgstr "Пункты шаблона документа"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,help:sale_contract.action_sale_cont_doc_templ_cond
+msgid "Document template conditions is content of document templtes."
+msgstr "Пункты шаблона документа являются содержимым шаблона документа."
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_name
+msgid "Document template name"
+msgstr "Нименование шаблона документа"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_terms
+msgid "Document template terms"
+msgstr "Пункты шаблона документа"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,name:sale_contract.action_sale_cont_doc_templ
+#: model:ir.ui.menu,name:sale_contract.menu_sale_cont_doc_templ
+msgid "Document templates"
+msgstr "Шаблоны документа"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,help:sale_contract.action_sale_cont_doc_templ
+msgid "Document templates help to organize sale process."
+msgstr "Шаблоны документов помогают организовать процесс продаж."
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_terms
+msgid "Document terms"
+msgstr "Пункты документа"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.sale_cont_doc_templ_wizard
+#: model:ir.ui.view,arch_db:sale_contract.view_order_form_inherit_documents
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_docs_tree
+msgid "Documents"
+msgstr "Документы"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_order_sale_contract_doc_ids
+msgid "Documents and contract"
+msgstr "Договор и документы"
+
+#. module: sale_contract
+#: model:ir.model,name:sale_contract.model_sale_contract_doc
+msgid "Documents including in contract"
+msgstr "Документы включаемые в договор"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,help:sale_contract.action_sale_cont_docs
+msgid "Documents of sale order"
+msgstr "Документы данной продажи"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_cond_form
+msgid "Documents template conditions"
+msgstr "Пункты шаблонов документов"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_form
+#: selection:sale.contract.doc,state:0
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_cond
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_cond_form
+msgid "Fields and code for condition"
+msgstr "Поля и код пункта документа"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_report_sale_contract_doc_id
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_id
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_report_sale_contract_doc___last_update
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond___last_update
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond___last_update
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc___last_update
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ___last_update
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard___last_update
+msgid "Last Modified on"
+msgstr "Последний раз изменено"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard_write_uid
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_write_uid
+msgid "Last Updated by"
+msgstr "Последний раз обновлено"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_wizard_write_date
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_templ_write_date
+msgid "Last Updated on"
+msgstr "Последний раз обновлено"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_contract_doc_name
+msgid "Name of document or sale contarct"
+msgstr "Наименование документа или договора"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_contract_doc_templ_name
+msgid "Name of document template"
+msgstr "Наименование шаблона документа"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_form
+#: selection:sale.contract.doc,state:0
+msgid "Offer"
+msgstr "Оферта"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_form
+msgid "Print"
+msgstr "Печать"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_condition_python
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond_condition_python
+msgid "Python code"
+msgstr "Код на Python"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_cond_condition_python
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_templ_cond_condition_python
+msgid "Python code for example: result = [company.name, model.name, 2+2, {field name, no cyrillic}, datetime.strptime(model.date_order, \"%Y-%m-%d %H:%M:%S\").strftime(\"%d.%m.%Y\")] for insert result in qweb use: {result[0]} {result[1]} ... in term field"
+msgstr "Python код например: result = [company.name, model.name, 2+2, {field name, no cyrillic}, datetime.strptime(model.date_order, \"%Y-%m-%d %H:%M:%S\").strftime(\"%d.%m.%Y\")], чтобы вставить результат в qweb используйте: {result[0]} {result[1]} ... в поле qweb текста"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_cond_term_text
+msgid "Qweb (html) formated text for report. Insetr a {field name from condition external value with trought point separated item name} or {result} to add model values to qweb"
+msgstr "Текст в виде Qweb (html) для формирования пункта документа в отчете. Используйте: {имя поля внешнего значения с добавлением или без добавления имени атрибута через точку} или  {result} для добавления результата вычисления кода Python"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_term_text
+msgid "Qweb text"
+msgstr "Qweb текст"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_cond
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_cond_form
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_cond_tree
+msgid "Related document"
+msgstr "Связанный документ"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_false_replace 
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond_false_replace#. module: sale_contract 
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_report_text
+msgid "Remove False in Qweb text"msgid "Report view" msgstr "Вид в отчете"
+msgstr "Удалить False в Qweb тексте"
+
+#. module: sale_contract
+#: model:ir.actions.report.xml,name:sale_contract.act_sale_contract_doc_report
+msgid "Sale contract doc"
+msgstr "Договор или документ"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,name:sale_contract.action_sale_cont_doc_templ_wizard
+msgid "Sale contract document templates"
+msgstr "Шаблон договора или документа"
+
+#. module: sale_contract
+#: model:ir.actions.act_window,name:sale_contract.action_sale_cont_docs
+msgid "Sale contract documents"
+msgstr "Догооворы или документы"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_cond_tree
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_tree
+msgid "Sale document templates"
+msgstr "Шаблоны документов"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_sale_order_id
+#: selection:sale.cont.doc.cond,cond_model:0
+#: selection:sale.cont.doc.templ.cond,cond_model:0
+msgid "Sale order"
+msgstr "Заказ"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_form
+msgid "Sale order contract and documents"
+msgstr "Договоры и документы"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_cond
+msgid "Sale order contract and documents conditions"
+msgstr "Пункты договоров и документов"
+
+#. module: sale_contract
+#: selection:sale.cont.doc.cond,cond_model:0
+#: selection:sale.cont.doc.templ.cond,cond_model:0
+msgid "Sale order line"
+msgstr "Позиция заказа"
+
+#. module: sale_contract
+#: model:ir.model,name:sale_contract.model_sale_order
+msgid "Sales Order"
+msgstr "Счет"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_cond_templ_filter
+msgid "Search document template conditions"
+msgstr "Поиск пунктов шаблона документа"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_filter
+msgid "Search document templates"
+msgstr "Поиск шаблонов документов"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_contract_doc_templ_wizard_document_template_ids
+msgid "Select document templates"
+msgstr "Выбор шаблона документов"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_cond_sequence
+#: model:ir.model.fields,field_description:sale_contract.field_sale_cont_doc_templ_cond_sequence
+msgid "Sequence"
+msgstr "Нумерация"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_cond
+#: model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_templ_cond_form
+msgid "Sequence in document"
+msgstr "Порядок в документе"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_cond_name
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_templ_cond_name
+msgid "Short for explain of condition"
+msgstr "Краткое наименование пункта документа"
+
+#. module: sale_contract
+#: model:ir.model.fields,field_description:sale_contract.field_sale_contract_doc_state
+msgid "Status"
+msgstr "Статус"
+
+#. module: sale_contract
+#: model:ir.ui.view,arch_db:sale_contract.view_order_form_inherit_documents
+msgid "Tamplates"
+msgstr "Шаблоны"
+
+#. module: sale_contract
+#: model:ir.model,name:sale_contract.model_sale_contract_doc_templ
+msgid "Templates of documents"
+msgstr "Шаблоны документов"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_cond_false_replace model:ir.model.fields,help:sale_contract.field_sale_cont_doc_templ_cond_false_replace#. module: 
+#: sale_contract model:ir.ui.view,arch_db:sale_contract.view_sale_cont_doc_form
+msgid "This option remove False that included in Qweb text from without values fields"msgid "To template" msgstr "В шаблоны"
+msgstr "Эта опция удаляет False которое включатся в Qweb текст из полей не содержащих значений"
+
+#. module: sale_contract
+#: model:ir.model.fields,help:sale_contract.field_sale_cont_doc_cond_report_text
+msgid "View of condition on report"
+msgstr "Отображенеи пункта в документе"
+
+#. module: sale_contract
+#: model:ir.model,name:sale_contract.model_sale_contract_doc_templ_wizard
+msgid "Wizard to select documents by contract from templates"
+msgstr "Диалог выбора документов из шаблонов"
+
+#. module: sale_contract
+#: model:ir.model,name:sale_contract.model_report_sale_contract_doc
+msgid "report.sale.contract.doc"
+msgstr "report.sale.contract.doc"
+

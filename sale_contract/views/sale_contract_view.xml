@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Document templates -->
+        <record id="view_sale_cont_doc_templ_tree" model="ir.ui.view">
+            <field name="name">sale.cont.doc.templ.tree</field>
+            <field name="model">sale.contract.doc.templ</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Sale document templates">
+                    <field name="name" string="Document name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_cont_doc_templ_form" model="ir.ui.view">
+            <field name="name">sale.cont.doc.templ.form</field>
+            <field name="model">sale.contract.doc.templ</field>
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+                <form string="Document and contract template for sales">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                            <field name="terms"/>
+                    </div>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+       <record id="view_sale_cont_doc_templ_filter" model="ir.ui.view">
+            <field name="name">sale.cont.doc.templ.filter</field>
+            <field name="model">sale.contract.doc.templ</field>
+            <field name="arch" type="xml">
+                <search string="Search document templates">
+                    <field name="name" string="Document temlate"/>
+               </search>
+            </field>
+       </record>
+
+       <record id="action_sale_cont_doc_templ" model="ir.actions.act_window">
+            <field name="name">Document templates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.contract.doc.templ</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_sale_cont_doc_templ_filter"/>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Document templates help to organize sale process.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_sale_cont_doc_templ"
+            id="menu_sale_cont_doc_templ" parent="base.menu_sales"
+            sequence="100" groups="base.group_sale_manager"/>
+
+<!--Document template conditions -->
+        <record id="view_sale_cont_doc_templ_cond_tree" model="ir.ui.view">
+            <field name="name">sale.cont.doc.templ.cond.tree</field>
+            <field name="model">sale.cont.doc.templ.cond</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Sale document templates">
+                    <field name="name"/>
+                    <field name="sequence"/>
+                    <field name="sale_contract_doc_templ_id" string = "Related document"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id="view_sale_cont_doc_templ_cond_form" model="ir.ui.view">
+            <field name="name">sale.cont.doc.templ.cond.form</field>
+            <field name="model">sale.cont.doc.templ.cond</field>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+                <form string="Documents template conditions">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group string="Sequence in document">
+                                <field name="sequence"/>
+                                <field name="sale_contract_doc_templ_id" string = "Related document"/>
+                                <field name="false_replace"/>                                
+                            </group>
+                            <group string="Fields and code for condition">
+                                <field name="cond_model"/>
+                                <field name="ext_vals"/>
+                                <field name="condition_python"/>
+                            </group>
+                        </group>
+                        <group string="Condition text">
+                            <field name="term_text"/>
+                        </group>
+                    </sheet>
+               </form>
+            </field>
+        </record>
+
+       <record id="view_sale_cont_doc_cond_templ_filter" model="ir.ui.view">
+            <field name="name">sale.cont.doc.cond.templ.filter</field>
+            <field name="model">sale.cont.doc.templ.cond</field>
+            <field name="arch" type="xml">
+                <search string="Search document template conditions">
+                    <field name="name" string="Document temlate conditions"/>
+               </search>
+            </field>
+       </record>
+
+
+        <record id="action_sale_cont_doc_templ_cond" model="ir.actions.act_window">
+            <field name="name">Doc. templ. conditions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.cont.doc.templ.cond</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_sale_cont_doc_cond_templ_filter"/>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Document template conditions is content of document templtes.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_sale_cont_doc_templ_cond"
+            id="menu_sale_cont_doc_cond_templ" parent="base.menu_sales"
+            sequence="101" groups="base.group_sale_manager"/>
+
+
+<!-- Sale order documents -->
+       <record id="view_sale_cont_docs_tree" model="ir.ui.view">
+            <field name="name">sale.cont.doc.tree</field>
+            <field name="model">sale.contract.doc</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Documents">
+                    <field name="name" string="Document name"/>
+                    <field name="state" string="Document state"/>
+                </tree>
+            </field>
+       </record>
+
+        <record id="view_sale_cont_doc_form" model="ir.ui.view">
+            <field name="name">sale.cont.doc.form</field>
+            <field name="model">sale.contract.doc</field>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+                <form string="Sale order contract and documents">
+                <header>
+                   <button name="print_doc" type="object" string="Print" states="draft,sent,done,cancel" class="oe_highlight"/>
+                   <button name="sent_doc" type="object" string="Offer" states="draft" class="oe_highlight"/>
+                   <button name="done_doc" type="object" string="Acceptance" states="sent" class="oe_highlight"/>
+                   <button name="cancel_doc" type="object" string="Dissolved" states="draft,sent,done" class="oe_highlight"/>
+                   <button name="draft_doc" type="object" string="Draft" states="sent,cancel" />
+                   <button name="doc_to_template" type="object" string="To template" states="draft,sent,done,cancel" class="oe_highlight" groups="base.group_sale_manager"/>
+                   <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                            <field name="terms"/>
+                    </div>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+       <record id="action_sale_cont_docs" model="ir.actions.act_window">
+           <field name="name">Sale contract documents</field>
+           <field name="res_model">sale.contract.doc</field>
+           <field name="view_type">tree</field>
+           <field name="view_mode">tree</field>
+           <field name="view_id" ref="view_sale_cont_docs_tree"/>
+           <field name="target">new</field>
+           <field name="context">{'sale_order_id': active_id}</field>
+           <field name="domain">[('state', 'in', ('draft', 'sent', 'sale', 'done', 'cancel'))]</field>
+           <field name="help" type="html">
+               <p class="oe_view_nocontent_create">
+                   Documents of sale order
+               </p>
+           </field>
+       </record>
+
+
+<!-- Document conditions -->
+        <record id="view_sale_cont_doc_cond" model="ir.ui.view">
+            <field name="name">sale.cont.doc.cond.form</field>
+            <field name="model">sale.cont.doc.cond</field>
+            <field name="arch" type="xml">
+                <form string="Sale order contract and documents conditions">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group string="Sequence in document">
+                                <field name="sequence"/>
+                                <field name="sale_contract_doc_id" readonly="True" string="Related document"/>
+                                <field name="sale_order_id" readonly="True"/>
+                                <field name="false_replace"/>                                
+                            </group>
+                            <group string="Fields and code for condition">
+                                <field name="cond_model"/>
+                                <field name="ext_vals"/>
+                                <field name="condition_python"/>
+                            </group>
+                        </group>
+                        <group string="Condition text and view">
+                            <field name="term_text"/>
+                            <field name="report_text"/>
+                        </group>
+                    </sheet>            
+               </form>
+            </field>
+        </record>
+
+<!-- Sale order -->
+       <record id="view_order_form_inherit_documents" model="ir.ui.view">
+            <field name="name">sale.order.form.doc</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                 <data>
+                   <field name="project_id" position="after">
+                       <field name="contract_number"/>
+                       <field name="contract_date"/>
+                   </field>
+                   <xpath expr="//page[1]" position="after">
+                       <page string="Documents">
+                            <button name="%(action_sale_cont_doc_templ_wizard)d" type="action" string="Tamplates" states="draft,sent,sale,done" class="oe_highlight"/>                       
+                            <field name="sale_contract_doc_ids" optionts="{'create': false, 'create_edit': false}"/>
+                       </page>
+                   </xpath>
+                 </data>
+            </field>
+        </record>
+</odoo>
+
