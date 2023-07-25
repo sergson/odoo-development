@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_order">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"/>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+            <t t-set="context" t-value="o._context"/>
+
+            <div class="page">
+
+<STYLE TYPE="text/css">
+body { background: #ffffff; margin: 0; font-family: Arial; font-size: 8pt; font-style: normal; }
+tr.R0{ height: 15px; }
+tr.R0 td.R0C1{ text-align: center; vertical-align: medium; }
+tr.R0 td.R16C19{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.R0 td.R16C22{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #ffffff 0px none; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.R0 td.R17C1{ border-left: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.R0 td.R19C1{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+tr.R0 td.R21C1{ font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #ffffff 0px none; border-bottom: #000000 1px solid; }
+tr.R0 td.R24C1{ font-family: Arial; font-size: 14pt; font-style: normal; font-weight: bold; vertical-align: medium; }
+tr.R0 td.R37C1{ text-align: center; vertical-align: top; overflow: hidden;border-left: #000000 2px solid; border-top: #000000 1px solid; }
+tr.R0 td.R37C2{ vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+tr.R0 td.R37C4{ text-align: right; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+tr.R0 td.R37C5{ vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+tr.R0 td.R37C7{ text-align: right; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-right: #000000 2px solid; }
+tr.R15{ height: 17px; }
+tr.R15 td.R15C1{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-right: #000000 1px solid; }
+tr.R15 td.R15C19{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.R15 td.R15C22{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #ffffff 0px none; border-right: #000000 1px solid; }
+tr.R15 td.R18C1{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; }
+tr.R15 td.R18C19{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.R15 td.R18C3{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: medium; border-top: #000000 1px solid; border-right: #000000 1px solid; }
+tr.R15 td.R29C1{ font-family: Arial; font-size: 9pt; font-style: normal; vertical-align: top; }
+tr.R15 td.R29C5{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; vertical-align: top; }
+tr.R15 td.R35C1{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: center; vertical-align: medium; border-left: #000000 2px solid; border-top: #000000 2px solid; }
+tr.R15 td.R35C2{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: center; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 2px solid; }
+tr.R15 td.R35C7{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: center; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 2px solid; border-right: #000000 2px solid; }
+tr.R15 td.R40C6{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; text-align: right; vertical-align: top; }
+tr.R15 td.R46C1{ font-family: Arial; font-size: 9pt; font-style: normal; }
+tr.R15 td.R51C1{ font-family: Arial; font-size: 9pt; font-style: normal; font-weight: bold; }
+tr.R15 td.R51C10{ text-align: right; border-bottom: #000000 1px solid; }
+tr.R15 td.R51C6,tr.R15 td.R51C6I,tr.R15 td.R51C6S{ border-bottom: #000000 1px solid; }
+tr.R15 td.R51C6I,tr.R15 td.R51C6S { overflow: visible; }
+tr.R15 td.R51C6I span,tr.R15 td.R51C6S span { position: relative; }
+tr.R15 td.R51C6I span img { position: absolute; width: 100px; top: -30px; }
+tr.R15 td.R51C6S span img { position: absolute; width: 140px; top: 10px; left: -60px; }
+tr.R26{ height: 9px; }
+tr.R26 td.R26C1{ border-bottom: #000000 2px solid; }
+tr.R26 td.R39C1{ border-top: #000000 2px solid; }
+table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bottom; border-collapse:collapse;width: 100%; font-family: Arial; font-size: 8pt; font-style: normal; }
+td { padding: 0px; padding-left: 2px; overflow:hidden; }
+.cu_space15 { width:100%;height:15px;overflow:hidden; }
+.cu_space44 { width:100%;height:44px;overflow:hidden; }
+.cu_space104 { width:100%;height:104px;overflow:hidden; }
+.cu_space31 { width:100%;height:31px;overflow:hidden; }
+.cu_wspace { white-space:nowrap; }
+.cu_space29 { width:100%;height:29px;overflow:hidden; }
+.cu_space61 { width:100%;height:61px;overflow:hidden; }
+.cu_space9 { width:100%;height:9px;overflow:hidden; }
+</STYLE>
+<TABLE CELLSPACING="0">
+<COL WIDTH="7"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="17"/>
+<COL WIDTH="15"/>
+<COL WIDTH="17"/>
+<COL WIDTH="17"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="11"/>
+<TR CLASS="R0">
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD CLASS="R0C1"><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space15">&amp;nbsp;</DIV></TD>
+</TR>
+<t t-if="True">
+    <!-- TO DO: flag of print logo -->
+    <TR CLASS="R0">
+    <TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R0C1" COLSPAN="32" ROWSPAN="5"><DIV class="cu_space63"><t t-esc="'Внимание! Настоящее коммерческое предложение не является офертой, окончательные условия сотрудничества подлежат закреплению в договоре (контракте).' if o.state in ['draft','sent'] else 'Внимание! Если стороны не закрепили условия выполнения работ в договоре на выполнение работ, оплата данного счета означает согласие на выполнение Подрядчиком работ в объеме указанном в настоящем счете, в соответствии с действующим на дату выставления настоящего счета законодательством. Начало течения срока выполнения работ устанавливается по факту поступления денежных средств на расчетный счет Подрядчика. Сдача и приемка работ осуществляется в течениие десяти рабочих дней с мента представления Подрядчиком акта сдачи-приемки выполненных работ.'"/></DIV></TD>
+    <TD><DIV class="cu_space9"/></TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><DIV class="cu_space15"><SPAN/></DIV></TD>
+    <TD><DIV class="cu_space15">&amp;nbsp;</DIV></TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+</t><t t-if="False">
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD CLASS="R0C1" COLSPAN="24" ROWSPAN="7"><DIV class="cu_space104"><t t-esc="'Внимание! не является офертой, окончательные условия сотрудничества подлежат закреплению в договоре (контракте).' if o.state in ['draft','sent'] else 'Внимание! Если стороны не закрепили условия выполнения работ в договоре (контракте) на выполнение работ, оплата данного счета означает согласие на выполнение Подрядчиком работ в объеме указанном в настоящем счете, в соответствии с действующим на дату выставления настоящего счета законодательством. Начало течения срока выполнения работ устанавливается по факту поступления денежных средств на расчетный счет Подрядчика. Сдача и приемка работ осуществляется в течении десяти рабочих дней с мента представления Подрядчиком акта сдачи-приемки выполненных работ.'"/></DIV></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD/>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+</t>
+<TR CLASS="R15">
+<TD><SPAN/></TD>
+<TD CLASS="R15C1" COLSPAN="18" ROWSPAN="2"><DIV class="cu_space31" t-esc="(o.company_bank_account.bank_name or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_name or '')"/></TD>
+<TD CLASS="R15C19" COLSPAN="3"><SPAN class="cu_wspace">БИК</SPAN></TD>
+<TD CLASS="R15C22" COLSPAN="11"><SPAN class="cu_wspace" t-esc="o.company_bank_account.bank_bic or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_bic or ''"/></TD>
+<TD/>
+</TR>
+<TR CLASS="R0">
+<TD><SPAN/></TD>
+<TD CLASS="R16C19" COLSPAN="3" ROWSPAN="2"><DIV class="cu_space29"><SPAN class="cu_wspace">Кор. сч. №</SPAN></DIV></TD>
+<TD CLASS="R16C22" COLSPAN="11" ROWSPAN="2"><DIV class="cu_space29"><SPAN class="cu_wspace" t-esc="o.company_bank_account.bank_id.corr_acc or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_id.corr_acc or ''"/></DIV></TD>
+<TD/>
+</TR>
+<TR CLASS="R0">
+<TD><SPAN/></TD>
+<TD CLASS="R17C1" COLSPAN="18"><SPAN class="cu_wspace">Банк получателя</SPAN></TD>
+<TD/>
+</TR>
+<TR CLASS="R15">
+<TD><SPAN/></TD>
+<TD CLASS="R18C1" COLSPAN="2"><SPAN class="cu_wspace">ИНН</SPAN></TD>
+<TD CLASS="R18C3" COLSPAN="7"><SPAN class="cu_wspace" t-esc="company.inn or ''"/></TD>
+<TD CLASS="R18C1" COLSPAN="2"><SPAN class="cu_wspace">КПП</SPAN></TD>
+<TD CLASS="R18C3" COLSPAN="7"><SPAN class="cu_wspace" t-esc="company.kpp or ''"/></TD>
+<TD CLASS="R18C19" COLSPAN="3" ROWSPAN="4"><DIV class="cu_space61"><SPAN class="cu_wspace">Сч. №</SPAN></DIV></TD>
+<TD CLASS="R18C19" COLSPAN="11" ROWSPAN="4"><DIV class="cu_space61"><SPAN class="cu_wspace" t-esc="o.company_bank_account.acc_number or company.partner_id.bank_ids and company.partner_id.bank_ids[0].acc_number or ''"/></DIV></TD>
+<TD/>
+</TR>
+<TR CLASS="R0">
+<TD><SPAN/></TD>
+<TD CLASS="R19C1" COLSPAN="18" ROWSPAN="2"><DIV class="cu_space29" t-esc="company.name or ''"/></TD>
+<TD/>
+</TR>
+<TR CLASS="R0">
+<TD><SPAN/></TD>
+<TD>&amp;nbsp;</TD>
+</TR>
+<TR CLASS="R0">
+<TD><SPAN/></TD>
+<TD CLASS="R21C1" COLSPAN="18"><SPAN class="cu_wspace">Получатель</SPAN></TD>
+<TD/>
+</TR>
+<TR>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD>&amp;nbsp;</TD>
+</TR>
+<TR>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD>&amp;nbsp;</TD>
+</TR>
+<TR CLASS="R0">
+<TD><SPAN/></TD>
+<TD CLASS="R24C1" COLSPAN="32" ROWSPAN="2"><DIV class="cu_space29"><SPAN class="cu_wspace">
+<t t-esc="'Коммерческое предложение' if o.state in ['draft','sent'] else 'Счет на оплату'"/>
+<t t-esc="' № '"/>
+<t t-if="not o.invoice_ids">
+         <t t-esc="o.name"/>
+</t>
+<t t-if="o.invoice_ids">
+   <t t-if="not (o.invoice_ids[-1].state in ['open', 'paid'])">
+         <t t-esc="o.name"/>
+    </t>
+</t>
+<t t-if="o.invoice_ids">
+   <t t-if="o.invoice_ids[-1].state in ['open', 'paid']">
+         <t t-esc="o.name"/><t t-esc="'р'"/>
+    </t>
+</t>
+<t t-if="not o.invoice_ids">
+         <t t-esc="' от '"/>
+         <t t-esc="helper.ru_date2(o.date_order)"/>
+</t>
+<t t-if="o.invoice_ids">
+   <t t-if="not (o.invoice_ids[-1].state in ['open', 'paid'])">
+         <t t-esc="' от '"/>
+         <t t-esc="helper.ru_date2(o.date_order)"/>
+    </t>
+</t>
+<t t-if="o.invoice_ids">
+   <t t-if="o.invoice_ids[-1].state in ['open', 'paid']">
+         <t t-esc="' от '"/>
+         <t t-esc="helper.ru_date2(str(o.invoice_ids[-1].date_invoice)+' 0:0:0')"/>
+    </t>
+</t>
+</SPAN></DIV></TD>
+<TD/>
+</TR>
+<TD><SPAN/></TD>
+<TR CLASS="R15">
+<TD CLASS="R29C5" COLSPAN="32" ROWSPAN="2">
+<t t-if="o.contract_number and o.state not in ['draft','sent']"> По договору (контракту) №
+<t t-esc="o.contract_number"/> от <t t-esc="helper.ru_date2(o.contract_date+' 0:0:0')"/>
+</t>
+<t t-esc="'В ответ на ваш запрос предлагаем рассмотреть следующее ценовое предложение на:' if o.state in ['draft','sent'] else 'на'"/>
+<t t-esc="o.note"/>.
+<t t-if="not o.invoice_ids">
+    <t t-esc="'Коммерческое предложение действительно до ' if o.state in ['draft','sent'] else 'Счет на оплату действителен до: '"/>
+     <t t-if="o.validity_date">
+             <t t-esc="helper.ru_date2(o.validity_date+' 0:0:0')"/>
+     </t>
+</t>
+<t t-if="o.invoice_ids">
+  <t t-if="not (o.invoice_ids[-1].state in ['open', 'paid'])">
+    <t t-esc="'Коммерческое предложение действительно до ' if o.state in ['draft','sent'] else 'Счет на оплату действителен до: '"/>
+    <t t-if="o.validity_date">
+             <t t-esc="helper.ru_date2(o.validity_date+' 0:0:0')"/>
+    </t>
+  </t>
+</t>
+<t t-if="o.state in ['draft','sent']">
+    <t t-esc="'Условия оплаты: '"/>
+    <t t-esc="o.payment_term_id.note"/>
+    <t t-esc="'Ориентировочная дата сдачи-приемки работ - '"/>
+    <t t-if="o.requested_date">
+        <t t-esc="helper.ru_date2(o.requested_date)"/>
+    </t>
+</t>
+</TD>
+<TD/>
+</TR>
+<TR CLASS="R0">
+<TD><SPAN/></TD>
+<TD>&amp;nbsp;</TD>
+</TR>
+<TR CLASS="R26">
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R26C1" COLSPAN="32"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+</TR>
+<TR CLASS="R26">
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+</TR>
+<TR>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD>&amp;nbsp;</TD>
+</TR>
+<TR CLASS="R15">
+<TD><SPAN/></TD>
+<TD CLASS="R29C1" COLSPAN="4"><SPAN class="cu_wspace">Подрядчик:</SPAN></TD>
+<TD CLASS="R29C5" COLSPAN="28"><t t-esc="helper.representation(company.partner_id)"/></TD>
+<TD/>
+</TR>
+<TR CLASS="R26">
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+</TR>
+<TR>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD>&amp;nbsp;</TD>
+</TR>
+<TR CLASS="R15">
+<TD><SPAN/></TD>
+<TD CLASS="R29C1" COLSPAN="4"><SPAN class="cu_wspace">Заказчик:</SPAN></TD>
+<TD CLASS="R29C5" COLSPAN="28"><t t-esc="helper.representation(o.partner_id)"/></TD>
+<TD/>
+</TR>
+<TR CLASS="R26">
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+</TR>
+<TR>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD><SPAN/></TD>
+<TD>&amp;nbsp;</TD>
+</TR>
+</TABLE>
+<!-- end header -->
+<!-- start order lines -->
+<TABLE CELLSPACING="0">
+<COL WIDTH="7"/>
+<COL WIDTH="32"/>
+<t t-if="False">
+    <!-- TO DO: flag of support article -->
+    <COL WIDTH="75"/>
+    <COL WIDTH="254"/>
+</t><t t-if="True">
+    <COL WIDTH="329"/>
+</t>
+<COL WIDTH="55"/>
+<COL WIDTH="42"/>
+<COL WIDTH="86"/>
+<COL WIDTH="100"/>
+<TR CLASS="R15">
+<TD><SPAN/></TD>
+<TD CLASS="R35C1"><SPAN class="cu_wspace">№</SPAN></TD>
+<t t-if="False">
+    <!-- TO DO: flag of support article -->
+    <TD CLASS="R35C2"><SPAN class="cu_wspace">ИмяКолонкиКодов</SPAN></TD>
+</t>
+<TD CLASS="R35C2"><SPAN class="cu_wspace">Состав работ</SPAN></TD>
+<TD CLASS="R35C2"><SPAN class="cu_wspace">Кол-во</SPAN></TD>
+<TD CLASS="R35C2"><SPAN class="cu_wspace">Ед.</SPAN></TD>
+<TD CLASS="R35C2"><SPAN class="cu_wspace">Цена</SPAN></TD>
+<TD CLASS="R35C7"><SPAN class="cu_wspace">Сумма</SPAN></TD>
+<TD/>
+</TR>
+
+<tr CLASS="R0" t-foreach="o.order_line" t-as="line">
+    <TD><SPAN/></TD>
+    <TD CLASS="R37C1"><SPAN class="cu_wspace"><t t-esc="line_index+1"/></SPAN></TD>
+    <t t-if="False">
+        <!-- TO DO: flag of support article -->
+        <TD CLASS="R37C2">Артикул</TD>
+    </t>
+    <TD CLASS="R37C2"><t t-esc="line.name or ''"/></TD>
+    <TD CLASS="R37C4"><SPAN class="cu_wspace"><t t-esc="line.product_uom_qty or ''"/></SPAN></TD>
+    <TD CLASS="R37C5"><SPAN class="cu_wspace"><t t-esc="line.product_uom.name or ''"/></SPAN></TD>
+    <TD CLASS="R37C4"><SPAN class="cu_wspace"><t t-esc="line.price_unit or ''"/></SPAN></TD>
+    <TD CLASS="R37C7"><SPAN class="cu_wspace"><t t-esc="(('%.2f')%(line.price_unit*line.product_uom_qty)).replace('.',',') or ''"/></SPAN></TD>
+    <TD><SPAN/></TD>
+</tr>
+
+</TABLE>
+<!-- end order lines -->
+<!-- start total info -->
+<TABLE CELLSPACING="0">
+<COL WIDTH="7"/>
+<COL WIDTH="32"/>
+<COL WIDTH="75"/>
+<COL WIDTH="254"/>
+<COL WIDTH="55"/>
+<COL WIDTH="42"/>
+<COL WIDTH="86"/>
+<COL WIDTH="100"/>
+<TR CLASS="R26">
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R39C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R39C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R39C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R39C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R39C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R39C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD CLASS="R39C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+</TR>
+<TR CLASS="R15">
+<TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Итого:</SPAN></TD>
+<TD CLASS="R40C6"><SPAN class="cu_wspace"><t t-esc="o.amount_total or '0,00'"/></SPAN></TD>
+<TD/>
+</TR>
+<TR CLASS="R15">
+<TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">В том числе НДС</SPAN></TD>
+<TD CLASS="R40C6"><SPAN class="cu_wspace"><t t-esc="o.amount_tax or '0,00'"/></SPAN></TD>
+<TD/>
+</TR>
+<TR CLASS="R15">
+<TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Общая стоимость:</SPAN></TD>
+<TD CLASS="R40C6"><SPAN class="cu_wspace"><t t-esc="o.amount_total or '0,00'"/></SPAN></TD>
+<TD/>
+</TR>
+<TR CLASS="R15">
+<TD><SPAN/></TD>
+<TD CLASS="R46C1" COLSPAN="32"><SPAN class="cu_wspace">Всего наименований <t t-esc="o.order_line and len(o.order_line) or '0' "/>, на сумму <t t-esc="o.amount_total or '0,00'"/> руб.</SPAN></TD>
+<TD/>
+</TR>
+<TR CLASS="R15">
+<TD><SPAN/></TD>
+<TD CLASS="R29C5" COLSPAN="31"><t t-esc="helper.rubles(o.amount_total).capitalize()"/></TD>
+<TD><SPAN/></TD>
+<TD/>
+</TR>
+<t t-if="o.state not in ['draft','sent'] and o.payment_term_id and not o.invoice_ids">
+  <t t-if="o.payment_term_id.line_ids[0].value=='percent'">
+    <TR CLASS="R15">
+    <TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Процентов от стоимости к оплате:</SPAN></TD>
+    <TD CLASS="R40C6"><SPAN class="cu_wspace">
+																
+            <t t-esc="str(o.payment_term_id.line_ids[0].value_amount)+'%'"/>
+			
+    </SPAN></TD>
+    <TD/>
+    </TR>
+  </t>
+    <TR CLASS="R15">
+    <TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Всего предоплата (аванс):</SPAN></TD>
+    <TD CLASS="R40C6"><SPAN class="cu_wspace">
+       <t t-if="o.payment_term_id.line_ids[0].value=='percent'">
+            <t t-esc="('%.2f')%round(o.payment_term_id.line_ids[0].value_amount*o.amount_total/100,2)"/>
+        </t>
+        <t t-if="o.payment_term_id.line_ids[0].value=='fixed'">
+            <t t-esc="('%.2f')%round(o.payment_term_id.line_ids[0].value_amount,2)"/>
+        </t>
+    </SPAN></TD>
+    <TD/>
+    </TR>
+</t>
+<t t-if="o.state not in ['draft','sent'] and o.payment_term_id and o.invoice_ids">
+  <t t-if="not (o.invoice_ids[-1].state in ['open', 'paid'])">
+   <t t-if="o.payment_term_id.line_ids[0].value=='percent'">
+    <TR CLASS="R15">
+    <TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Процентов от стоимости к оплате:</SPAN></TD>
+    <TD CLASS="R40C6"><SPAN class="cu_wspace">
+																
+            <t t-esc="str(o.payment_term_id.line_ids[0].value_amount)+'%'"/>
+			
+    </SPAN></TD>
+    <TD/>
+    </TR>
+   </t>
+    <TR CLASS="R15">
+    <TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Всего предоплата (аванс):</SPAN></TD>
+    <TD CLASS="R40C6"><SPAN class="cu_wspace">
+       <t t-if="o.payment_term_id.line_ids[0].value=='percent'">
+            <t t-esc="('%.2f')%round(o.payment_term_id.line_ids[0].value_amount*o.amount_total/100,2)"/>
+        </t>
+        <t t-if="o.payment_term_id.line_ids[0].value=='fixed'">
+            <t t-esc="('%.2f')%round(o.payment_term_id.line_ids[0].value_amount,2)"/>
+        </t>
+    </SPAN></TD>
+    <TD/>
+    </TR>
+  </t>
+</t>
+
+<t t-if="o.state not in ['draft','sent'] and o.payment_term_id and o.invoice_ids">
+  <t t-if="o.invoice_ids[-1].state in ['open', 'paid']">
+    <TR CLASS="R15">
+    <TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Сумма ранее выставленная к оплате в качестве предоплаты (аванса):</SPAN></TD>
+    <TD CLASS="R40C6"><SPAN class="cu_wspace">
+       <t t-if="o.payment_term_id.line_ids[0].value=='percent'">
+            <t t-esc="('%.2f')%round(o.payment_term_id.line_ids[0].value_amount*o.amount_total/100,2)"/>
+        </t>
+        <t t-if="o.payment_term_id.line_ids[0].value=='fixed'">
+            <t t-esc="('%.2f')%round(o.payment_term_id.line_ids[0].value_amount,2)"/>
+        </t>
+    </SPAN></TD>
+    <TD/>
+    </TR>
+    <TR CLASS="R15">
+    <TD CLASS="R40C6" COLSPAN="7"><SPAN class="cu_wspace">Сумма окончательного расчета к оплате:</SPAN></TD>
+    <TD CLASS="R40C6"><SPAN class="cu_wspace">
+       <t t-if="o.payment_term_id.line_ids[0].value=='percent'">
+            <t t-esc="('%.2f')%(o.amount_total-round(o.payment_term_id.line_ids[0].value_amount*o.amount_total/100,2))"/>
+        </t>
+        <t t-if="o.payment_term_id.line_ids[0].value=='fixed'">
+            <t t-esc="('%.2f')%(o.amount_total-round(o.payment_term_id.line_ids[0].value_amount,2))"/>
+        </t>
+    </SPAN></TD>
+    <TD/>
+    </TR>
+  </t>
+</t>
+</TABLE>
+<!-- end total info -->
+<!-- start footer -->
+<TABLE CELLSPACING="0">
+<COL WIDTH="7"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="17"/>
+<COL WIDTH="15"/>
+<COL WIDTH="17"/>
+<COL WIDTH="17"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="21"/>
+<COL WIDTH="11"/>
+<TR CLASS="R26">
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+<TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+</TR>
+<t t-if="True">
+    <!-- TO DO: flag of order type -->
+    <!-- start company sign -->
+    <TR>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R26">
+    <TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+    </TR>
+    <TR>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R15">
+    <TD><SPAN/></TD>
+    <TD CLASS="R51C1" COLSPAN="5"><SPAN class="cu_wspace"/></TD>
+    <TD CLASS="R51C6I"><SPAN><t t-raw="company.print_facsimile and (company.print_anywhere or context.get('mark_so_as_sent', False)) and helper.img(company.chief_id.facsimile) or ''"/></SPAN></TD>
+    <TD CLASS="R51C6S"><SPAN><t t-raw="company.print_stamp and (company.print_anywhere or context.get('mark_so_as_sent', False)) and helper.img(company.stamp) or ''"/></SPAN></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C10" COLSPAN="9"><t t-esc="helper.initials(company.chief_id.name)"/></TD>
+    <TD><SPAN/></TD>
+    <TD CLASS="R51C1" COLSPAN="4"><SPAN class="cu_wspace"/></TD>
+    <TD CLASS="R51C6I"><SPAN><t t-raw="company.print_facsimile and (company.print_anywhere or context.get('mark_so_as_sent', False)) and helper.img(company.accountant_id.facsimile) or ''"/></SPAN></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C10" COLSPAN="6"><t t-esc="helper.initials(company.accountant_id.name)"/></TD>
+    <TD/>
+    </TR>
+    <!-- end company sign -->
+</t><t t-if="False">
+    <!-- TO DO: flag of order type -->
+    <!-- start service sign -->
+    <TR>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R26">
+    <TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+    </TR>
+    <TR>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R15">
+    <TD><SPAN/></TD>
+    <TD CLASS="R51C1" COLSPAN="5"><SPAN class="cu_wspace">Исполнитель</SPAN></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C10" COLSPAN="9">ФИОПодрядчика</TD>
+    <TD><SPAN/></TD>
+    <TD CLASS="R51C1" COLSPAN="4"><SPAN class="cu_wspace">Заказчик</SPAN></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C10" COLSPAN="6">ФИОЗаказчика</TD>
+    <TD/>
+    </TR>
+    <!-- end service sign -->
+</t><t t-if="False">
+    <!-- TO DO: flag of order type -->
+    <!-- start entrepreneur sign -->
+    <TR CLASS="R0">
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R26">
+    <TD><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD CLASS="R26C1"><DIV class="cu_space9"><SPAN/></DIV></TD>
+    <TD><DIV class="cu_space9">&amp;nbsp;</DIV></TD>
+    </TR>
+    <TR>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <TR CLASS="R15">
+    <TD><SPAN/></TD>
+    <TD CLASS="R51C1" COLSPAN="6"><SPAN class="cu_wspace">Предприниматель</SPAN></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6"><SPAN/></TD>
+    <TD CLASS="R51C6" COLSPAN="9"><SPAN/></TD>
+    <TD CLASS="R51C10" COLSPAN="14">ФИОПредпринимателя</TD>
+    <TD/>
+    </TR>
+    <TR>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD><SPAN/></TD>
+    <TD>&amp;nbsp;</TD>
+    </TR>
+    <!-- end entrepreneur sign -->
+</t>
+</TABLE>
+<!-- end footer -->
+
+<t t-if="o.state not in ['draft','sent'] and o.payment_term_id and not o.invoice_ids">
+<img t-att-src="(company.website or'')+'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', 'ST00012|Name='+(company.name or '')+'|PersonalAcc='+(o.company_bank_account.acc_number or company.partner_id.bank_ids and company.partner_id.bank_ids[0].acc_number or '')+'|BankName='+(o.company_bank_account.bank_name or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_name or '')+'|BIC='+(o.company_bank_account.bank_bic or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_bic or '')+'|CorrespAcc='+(o.company_bank_account.bank_id.corr_acc or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_id.corr_acc or '')+'|KPP='+(company.kpp or '')+'|PayeelNN='+(company.inn or '')+'|LastName='+o.partner_id.name+'|payerAddress='+helper.address(o.partner_id)+'|Purpose='+('Предоплата (аванс) за работы, счет № ').decode('utf-8')+o.name+'|Sum='+('%.0f')%round(o.payment_term_id.line_ids[0].value_amount*o.amount_total if o.payment_term_id.line_ids[0].value=='percent' else o.payment_term_id.line_ids[0].value_amount*100 if o.payment_term_id.line_ids[0].value=='fixed' else o.amount_total*100 if o.payment_term_id.line_ids[0].value=='balance' else 0,0), 600, 600)" style="width:150px;height:150px;"/>
+</t>
+
+<t t-if="o.state not in ['draft','sent'] and o.payment_term_id and o.invoice_ids">
+<t t-if="not (o.invoice_ids[-1].state in ['open', 'paid'])">
+<img t-att-src="(company.website or'')+'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', 'ST00012|Name='+(company.name or '')+'|PersonalAcc='+(o.company_bank_account.acc_number or company.partner_id.bank_ids and company.partner_id.bank_ids[0].acc_number or '')+'|BankName='+(o.company_bank_account.bank_name or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_name or '')+'|BIC='+(o.company_bank_account.bank_bic or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_bic or '')+'|CorrespAcc='+(o.company_bank_account.bank_id.corr_acc or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_id.corr_acc or '')+'|KPP='+(company.kpp or '')+'|PayeelNN='+(company.inn or '')+'|LastName='+o.partner_id.name+'|payerAddress='+helper.address(o.partner_id)+'|Purpose='+('Предоплата (аванс) за работы, счет № ').decode('utf-8')+o.name+'|Sum='+('%.0f')%round(o.payment_term_id.line_ids[0].value_amount*o.amount_total if o.payment_term_id.line_ids[0].value=='percent' else o.payment_term_id.line_ids[0].value_amount*100 if o.payment_term_id.line_ids[0].value=='fixed' else o.amount_total*100 if o.payment_term_id.line_ids[0].value=='balance' else 0,0), 600, 600)" style="width:150px;height:150px;"/>
+</t>
+</t>
+
+<t t-if="o.state not in ['draft','sent'] and o.payment_term_id and o.invoice_ids">
+<t t-if="o.invoice_ids[-1].state in ['open', 'paid']">
+<img t-att-src="(company.website or'')+'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', 'ST00012|Name='+(company.name or '')+'|PersonalAcc='+(o.company_bank_account.acc_number or company.partner_id.bank_ids and company.partner_id.bank_ids[0].acc_number or '')+'|BankName='+(o.company_bank_account.bank_name or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_name or '')+'|BIC='+(o.company_bank_account.bank_bic or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_bic or '')+'|CorrespAcc='+(o.company_bank_account.bank_id.corr_acc or company.partner_id.bank_ids and company.partner_id.bank_ids[0].bank_id.corr_acc or '')+'|KPP='+(company.kpp or '')+'|PayeelNN='+(company.inn or '')+'|LastName='+o.partner_id.name+'|payerAddress='+helper.address(o.partner_id)+'|Purpose='+('Окончательный расчет за работы, счет № ').decode('utf-8')+o.name+('р').decode('utf-8')+'|Sum='+('%.0f')%round(o.amount_total*100 - (o.payment_term_id.line_ids[0].value_amount*o.amount_total if o.payment_term_id.line_ids[0].value=='percent' else o.payment_term_id.line_ids[0].value_amount*100 if o.payment_term_id.line_ids[0].value=='fixed' else o.amount_total*100 if o.payment_term_id.line_ids[0].value=='balance' else 0),0), 600, 600)" style="width:150px;height:150px;"/>
+</t>
+</t>
+
+            </div>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

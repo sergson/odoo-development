@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="paperformat_a4" model="report.paperformat">
+            <field name="name">A4</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">7</field>
+            <field name="margin_bottom">7</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="paperformat_a4l" model="report.paperformat">
+            <field name="name">A4 Landscape</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">7</field>
+            <field name="margin_bottom">7</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+        <report 
+            string="Order" 
+            id="sale.report_sale_order" 
+            model="sale.order" 
+            name="l10n_ru_doc.report_order" 
+            file="l10n_ru_doc.report_order" 
+            report_type="qweb-pdf"/>
+        <record id="sale.report_sale_order" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4"/>
+        </record>
+        <report 
+            string="Invoice" 
+            id="account.account_invoices"
+            model="account.invoice" 
+            name="l10n_ru_doc.report_invoice" 
+            file="l10n_ru_doc.report_invoice" 
+            report_type="qweb-pdf"/>
+        <record id="account.account_invoices" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4l"/>
+        </record>
+        <report 
+            string="Bill" 
+            id="report_account_invoice_bill"
+            model="account.invoice" 
+            name="l10n_ru_doc.report_bill" 
+            file="l10n_ru_doc.report_bill" 
+            report_type="qweb-pdf"/>
+        <record id="report_account_invoice_bill" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4l"/>
+        </record>
+        <report 
+            string="Act delivery work" 
+            id="report_account_invoice_act" 
+            model="account.invoice" 
+            name="l10n_ru_doc.report_act" 
+            file="l10n_ru_doc.report_act" 
+            report_type="qweb-pdf"/>
+        <record id="report_account_invoice_act" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4"/>
+        </record>
+        <report
+            string="Act no items"
+            id="report_account_invoice_act_no_items"
+            model="account.invoice"
+            name="l10n_ru_doc.report_act_no_items"
+            file="l10n_ru_doc.report_act_no_items"
+            report_type="qweb-pdf"/>
+        <record id="report_account_invoice_act_no_items" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4"/>
+        </record>
+		<report
+            string="Act acceptance rent"
+            id="report_account_invoice_act_acceptance_rent"
+            model="account.invoice"
+            name="l10n_ru_doc.report_act_acceptance_rent"
+            file="l10n_ru_doc.report_act_acceptance_rent"
+            report_type="qweb-pdf"/>
+        <record id="report_account_invoice_act_acceptance_rent" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4"/>
+        </record>
+		<report
+            string="Act acceptance work"
+            id="report_account_invoice_act_acceptance_work"
+            model="account.invoice"
+            name="l10n_ru_doc.report_act_acceptance_work"
+            file="l10n_ru_doc.report_act_acceptance_work"
+            report_type="qweb-pdf"/>
+        <record id="report_account_invoice_act_acceptance_work" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4"/>
+        </record>
+		<report
+            string="Act delivery rent"
+            id="report_account_invoice_act_rent"
+            model="account.invoice"
+            name="l10n_ru_doc.report_act_rent"
+            file="l10n_ru_doc.report_act_rent"
+            report_type="qweb-pdf"/>
+        <record id="report_account_invoice_act_rent" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="l10n_ru_doc.paperformat_a4"/>
+        </record>
+
+    </data>
+</openerp>
