@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_users_foundation_salemanall,res.users.foundation.salemanall,model_res_users_foundation,base.group_sale_salesman_all_leads,1,0,0,0
+access_res_users_foundation_saleman,res.users.foundation.saleman,model_res_users_foundation,base.group_sale_salesman,1,0,0,0
+access_res_users_foundation_salemanager,res.users.foundation.salemanager,model_res_users_foundation,base.group_sale_manager,1,1,1,1
+access_res_partner_foundation_salemanall,res.partner.foundation.salenamall,model_res_partner_foundation,base.group_sale_salesman_all_leads,1,1,1,0
+access_res_partner_foundation_saleman,res.partner.foundation.saleman,model_res_partner_foundation,base.group_sale_salesman,1,1,1,0
+access_res_partner_foundation_salemanager,res.partner.foundation.salemanager,model_res_partner_foundation,base.group_sale_manager,1,1,1,1

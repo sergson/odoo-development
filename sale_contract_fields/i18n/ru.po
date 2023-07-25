@@ -1,0 +1,236 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_contract_fields
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20170129\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-21 18:05+0000\n"
+"PO-Revision-Date: 2017-03-21 18:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,help:sale_contract_fields.field_product_template_description_estimate_python
+msgid "A calculated description of the estimate by python code."
+msgstr "Вычисляемое описание для сметы, код python."
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,help:sale_contract_fields.field_product_template_description_technical_task_python
+msgid "A calculated description of the technical task."
+msgstr "Вычисляемое описание для технического задания, код python."
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,help:sale_contract_fields.field_product_template_description_estimate_text
+msgid "A description of the estimate."
+msgstr "Описание для сметы."
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,help:sale_contract_fields.field_product_template_description_technical_task_text
+msgid "A description of the technical task."
+msgstr "Описание для технического задания."
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_create_uid
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_create_date
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_create_date
+msgid "Created on"
+msgstr "Создан"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_delegate
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_delegate
+msgid "Delegate"
+msgstr "Представитель (полн.)"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_delegate_initials
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_delegate_initials
+msgid "Delegate initials"
+msgstr "Представитель (сокр.)"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_delegate_parental_case
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_delegate_parental_case
+msgid "Delegate parental case"
+msgstr "Представитель (р.п., полн.)"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_delegate_role
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_delegate_role
+msgid "Delegate role"
+msgstr "Должность представителя"
+
+#. module: sale_contract_fields
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_product_template_for_contract_form
+msgid "Description estimate python code"
+msgstr "Вычисляемое описание для сметы, код python"
+
+#. module: sale_contract_fields
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_product_template_for_contract_form
+msgid "Description estimate text"
+msgstr "Описание для сметы"
+
+#. module: sale_contract_fields
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_product_template_for_contract_form
+msgid "Description technical task python"
+msgstr "Вычисляемое описание для технического задания, код python"
+
+#. module: sale_contract_fields
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_product_template_for_contract_form
+msgid "Description technical task text"
+msgstr "Описание для технического задания"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_display_name
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_product_template_description_estimate_python
+msgid "Estimate python code"
+msgstr "Код python для сметы"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_product_template_description_estimate_text
+msgid "Estimate text"
+msgstr "Текст для сметы"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_id
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_id
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_partner_for_contract_form
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_user_for_contract_form
+msgid "Foundation"
+msgstr "Документ полном."
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_id
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation___last_update
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation___last_update
+msgid "Last Modified on"
+msgstr "Последний раз изменено"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_write_uid
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_write_uid
+msgid "Last Updated by"
+msgstr "Последний раз обновлено"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_write_date
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_write_date
+msgid "Last Updated on"
+msgstr "Последний раз обновлено"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_name
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_name
+msgid "Name"
+msgstr "Наименование"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_name_parental_case 
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_name_parental_case
+msgid "Name parental case"
+msgstr "Наименование (р.п.)"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_delegate_role_parent_case
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_delegate_role_parent_case
+msgid "Parent case delegate role"
+msgstr "Должн. предст. (р.п., полн.)"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_saleman_role_parent_case
+msgid "Parent case saleman role"
+msgstr "Должность продавца (р.п.)"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_name_parental_case
+msgid "Parental case name"
+msgstr "Продавец (р.п. полн.)"
+
+#. module: sale_contract_fields
+#: model:ir.model,name:sale_contract_fields.model_res_partner
+msgid "Partner"
+msgstr "Контрагент"
+
+#. module: sale_contract_fields
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_partner_for_contract_foundation_form
+msgid "Partner delegete person foundation document"
+msgstr "Документ удостов. полномочия представителя"
+
+#. module: sale_contract_fields
+#: model:ir.model,name:sale_contract_fields.model_product_template
+msgid "Product Template"
+msgstr "Шаблон продукта"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_saleman_initials
+msgid "Saleman initials"
+msgstr "Продавец (сокр.)"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_saleman_role
+msgid "Saleman role"
+msgstr "Должность продавца"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_product_template_description_technical_task_python
+msgid "Techical task python code"
+msgstr "Код python для технического задания"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_product_template_description_technical_task_text
+msgid "Techical task text"
+msgstr "Текст для технического задания"
+
+#. module: sale_contract_fields
+#: model:ir.ui.view,arch_db:sale_contract_fields.view_user_for_contract_foundation_form
+msgid "User delegete person foundation document"
+msgstr "Документ удостоверяющий полномочия продавца"
+
+#. module: sale_contract_fields
+#: model:ir.model,name:sale_contract_fields.model_res_users
+msgid "Users"
+msgstr "Пользователи"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_full_name
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_full_name
+msgid "full_name"
+msgstr "Наименование (полн. юл., кратк. фл.)"
+
+#. module: sale_contract_fields
+#: model:ir.model,name:sale_contract_fields.model_res_partner_foundation
+msgid "res.partner.foundation"
+msgstr "res.partner.foundation"
+
+#. module: sale_contract_fields
+#: model:ir.model,name:sale_contract_fields.model_res_users_foundation
+msgid "res.users.foundation"
+msgstr "res.users.foundation"
+
+#. module: sale_contract_fields
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_partner_foundation_partner_id
+#: model:ir.model.fields,field_description:sale_contract_fields.field_res_users_foundation_partner_id
+msgid "unknown"
+msgstr "неизвестен"
+

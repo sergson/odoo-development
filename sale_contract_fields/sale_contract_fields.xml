@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <record id="view_partner_for_contract_form" model="ir.ui.view">
+        <field name="name">res.partner.for_contract.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <data>
+                 <field name="website" position="after">
+                     <field name="delegate"/>
+                     <field name="delegate_parental_case"/> 
+                     <field name="delegate_initials"/>
+                     <field name="delegate_role"/>
+                     <field name="delegate_role_parent_case"/>          
+                     <field name="foundation_id" string="Foundation"/>
+                 </field>
+                 <field name="name" position="after">
+                     <label for="full_name" class="oe_edit_only"/>
+                     <field name="full_name"/>
+                 </field>
+                 <field name="name" position="before">
+                     <label for="name" class="oe_edit_only"/>
+                 </field>
+            </data>
+        </field>
+    </record>
+
+    <record id="view_user_for_contract_form" model="ir.ui.view">
+        <field name="name">res.users.for_contract.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <label for="name_parental_case" class="oe_edit_only"/>
+                <field name="name_parental_case" nolabel="1"/>
+                <label for="saleman_initials" class="oe_edit_only"/>
+                <field name="saleman_initials" nolabel="1"/>
+                <label for="saleman_role" class="oe_edit_only"/>
+                <field name="saleman_role" nolabel="1"/>
+                <label for="saleman_role_parent_case" class="oe_edit_only"/>
+                <field name="saleman_role_parent_case" nolabel="1"/>
+                <label for="foundation_id" class="oe_edit_only" string="Foundation"/>
+                <field name="foundation_id" nolabel="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_template_for_contract_form" model="ir.ui.view">
+        <field name="name">product.template.for_contract.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="description_purchase" position="after">
+                <separator string="Description estimate text" colspan="4"/>
+                <field name="description_estimate_text" nolabel="1"/>
+                <separator string="Description estimate python code" colspan="4"/>
+                <field name="description_estimate_python" nolabel="1"/>
+                <separator string="Description technical task text" colspan="4"/>
+                <field name="description_technical_task_text" nolabel="1"/>
+                <separator string="Description technical task python" colspan="4"/>
+                <field name="description_technical_task_python" nolabel="1"/>
+            </field>
+        </field>
+    </record>
+
+      <record id="view_partner_for_contract_foundation_form" model="ir.ui.view">
+       <field name="name">res.partner.for_contract.foundation.form</field>
+       <field name="model">res.partner.foundation</field>
+       <field name="priority">5</field>
+       <field name="arch" type="xml">
+           <form string="Partner delegete person foundation document">
+           <sheet>
+               <div class="oe_title">
+                   <label for="name" class="oe_edit_only"/>
+                   <h2>
+                       <field name="name"/>
+                   </h2>
+                   <label for="name_parental_case" class="oe_edit_only"/>
+                   <h2>
+                       <field name="name_parental_case"/>
+                   </h2>
+               </div>
+            </sheet>
+           </form>
+        </field>
+    </record>
+    
+
+    <record id="view_user_for_contract_foundation_form" model="ir.ui.view">
+       <field name="name">res.user.for_contract.foundation.form</field>
+       <field name="model">res.users.foundation</field>
+       <field name="priority">5</field>
+       <field name="arch" type="xml">
+           <form string="User delegete person foundation document">
+           <sheet>
+               <div class="oe_title">
+                   <label for="name" class="oe_edit_only"/>
+                   <h2>
+                       <field name="name"/>
+                   </h2>
+                   <label for="name_parental_case" class="oe_edit_only"/>
+                   <h2>
+                       <field name="name_parental_case"/>
+                   </h2>
+               </div>
+            </sheet>
+           </form>
+        </field>
+    </record>
+
+    </data>
+</openerp>
+
