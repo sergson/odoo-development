@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_payslip_run">
+<t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+         <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"/></t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+            <t t-set="context" t-value="o._context"/>
+
+           <div class="page">
+<STYLE TYPE="text/css">
+body { background: #ffffff; margin: 0; font-family: Arial; font-size: 6pt; font-style: normal; }
+tr.r15{ height: 15px; }
+tr.r15 td.ltrb6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.r6{text-align: right; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.r8{text-align: right; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.c6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium;}
+tr.r15 td.c10{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;}
+tr.r15 td.b8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;}
+table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bottom; border-collapse:collapse;width: 100%; font-family: Arial; font-size: 6pt; font-style: normal; }
+td { padding: 0px; padding-left: 2px; overflow:hidden; }
+</STYLE>
+                <table cellspacing="0">
+                    <col width="17"/>
+                    <col width="17"/>
+                    <col width="51"/>
+                    <col width="51"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="35"/>
+                    <col width="37"/>
+                    <col width="37"/>
+                            <tr class="r15">
+                                 <td class="r8" colspan="17"/>
+                                 <td class="ltrb8">Код</td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="15"/>
+                                 <td class="r8" colspan="2">Форма по ОКУД</td>
+                                 <td class="ltrb8">0301010</td>
+                            </tr>
+                           <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="b8" colspan="10"><span t-field="company.name"/></td>
+                                 <td class="r8"/>
+                                 <td class="r8">по ОКПО</td>
+                                 <td class="ltrb8"><span t-field="company.okpo"/></td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="c6" colspan="10">(наименование организации)</td>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="b8" colspan="10">-</td>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="c6" colspan="10">(структурное подразделение)</td>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                                 <td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="13"/>
+                                 <td class="ltrb8" rowspan="2">Номер доку-мента</td>
+                                 <td class="ltrb8" rowspan="2">Дата составле-ния</td>
+                                 <td class="r8"/>
+                                 <td class="ltrb8" colspan="2">Отчетный период</td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="13"/>
+                                 <td class="r8"/>
+                                 <td class="ltrb8">с</td>
+                                 <td class="ltrb8">по</td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="5"/>
+                                 <td class="c10" colspan="7">РАСЧЕТНАЯ ВЕДОМОСТЬ</td>
+                                 <td class="r8"/>
+                                 <td class="ltrb8"><span t-esc="o.name"/></td>
+                                 <td class="ltrb8"><span t-field="o.date_end" t-field-options="{&quot;format&quot;: &quot;dd.MM.YYYY&quot;}"/></td>
+                                 <td class="r8"/>
+                                 <td class="ltrb8"><span t-field="o.date_start" t-field-options="{&quot;format&quot;: &quot;dd.MM.YYYY&quot;}"/></td>
+                                 <td class="ltrb8"><span t-field="o.date_end" t-field-options="{&quot;format&quot;: &quot;dd.MM.YYYY&quot;}"/></td>
+                            </tr>
+                            <tr class="r15">
+                                 <td class="r8" colspan="18"/>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb6" rowspan="4">Номер по порядку</td>
+                                <td class="ltrb6" rowspan="4">Табельный номер</td>
+                                <td class="ltrb8" rowspan="4">Фамилия, инициалы</td>
+                                <td class="ltrb8" rowspan="4">Должность (специальность, профессия)</td>
+                                <td class="ltrb8" rowspan="4">Тарифная ставка (часовая, дневная) (оклад), руб.</td>
+                                <td class="ltrb8" colspan="2" rowspan="2">Отработано дней (часов)</td>
+                                <td class="ltrb8" colspan="5">Начислено, руб.</td>
+                                <td class="ltrb8" colspan="3" rowspan="2">Удержано и зачтено, руб.</td>
+                                <td class="ltrb8" colspan="3" rowspan="2">Сумма, руб.</td>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" colspan="4">за текущий месяц (по видам оплат)</td>
+                                <td class="ltrb8" rowspan="3">Всего</td>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8" rowspan="2">рабочих</td>
+                                <td class="ltrb8" rowspan="2">выходных и праз-дничных</td>
+                                <td class="ltrb8" rowspan="2">заработ-ная плата</td>
+                                <td class="ltrb8" rowspan="2">отпускные</td>
+                                <td class="ltrb6" rowspan="2">по времен-ной нетрудоспособности</td>
+                                <td class="ltrb6" rowspan="2">другие доходы в виде различных социальных и материальных благ</td>
+                                <td class="ltrb8" rowspan="2">налог на доходы c заработной платы</td>
+                                <td class="ltrb8" rowspan="2">налог на доходы с отпускных</td>
+                                <td class="ltrb8" rowspan="2">всего</td>
+                                <td class="ltrb8" colspan="2">задолженности</td>
+                                <td class="ltrb8" rowspan="2">к выплате</td>
+                            </tr>
+                            <tr class="r15">
+                                <td class="ltrb8">за организа-цией</td>
+                                <td class="ltrb8">за работ-ником</td>
+                            </tr>
+                            <tr class="r15">
+                                   <td class="ltrb8">1</td>
+                                   <td class="ltrb8">2</td>
+                                   <td class="ltrb8">3</td>
+                                   <td class="ltrb8">4</td>
+                                   <td class="ltrb8">5</td>
+                                   <td class="ltrb8">6</td>
+                                   <td class="ltrb8">7</td>
+                                   <td class="ltrb8">8</td>
+                                   <td class="ltrb8">9</td>
+                                   <td class="ltrb8">10</td>
+                                   <td class="ltrb8">11</td>
+                                   <td class="ltrb8">12</td>
+                                   <td class="ltrb8">13</td>
+                                   <td class="ltrb8">14</td>
+                                   <td class="ltrb8">15</td>
+                                   <td class="ltrb8">16</td>
+                                   <td class="ltrb8">17</td>
+                                   <td class="ltrb8">18</td>
+                                </tr>
+                             <t t-set="i" t-value="1"/>
+                               <tr t-foreach="get_payslip(o.slip_ids)" t-as="p" class="r15">
+                                   <td class="ltrb8"><span t-esc="i"/><t t-set="i" t-value="i+1"/></td>
+                                   <td class="ltrb8"><span t-field="p.employee_id.identification_id"/></td>
+                                   <td class="ltrb8"><t t-esc="helper.initials(p.employee_id.name)"/></td>
+                                   <td class="ltrb8"><span t-field="p.contract_id.job_id"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'SALARY')"/></td>
+                                   <td class="ltrb8"><span t-field="p.worked_days_line_ids[0].number_of_days"/> (<span t-field="p.worked_days_line_ids[0].number_of_hours"/>)</td>
+                                   <td class="ltrb8"><span t-field="p.worked_days_line_ids[0].x_number_of_worked_holidays"/> (<span t-field="p.worked_days_line_ids[0].x_number_of_worked_holidays_hours"/>)</td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'PAYROLL_TOTAL')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'CALC_HOLIDAY_PAY')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'CALC_HOSPITAL_ALL')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'OTHER_INCOMING')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'TOTAL_CALC')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'DEC_INCOMIN_TAX_PAYROLL')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'DEC_INCOMIN_TAX_HOLIDAY')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'DEC_INCOMING_TAX')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'BY_COMPANY')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'BY_EMPLOYEE')"/></td>
+                                   <td class="ltrb8"><span t-esc="get_payslip_run_total_by_code(p, 'TO_PAYOFF')"/></td>
+                                </tr>
+                                <tr class="r15">
+                                    <td class="r8" colspan="18"/>
+                                </tr>
+                                <tr class="r15">
+                                 <td class="r8" colspan="8"/>
+                                 <td class="r8" colspan="2">Ведомость составил</td>
+                                 <td class="b8" colspan="2"/>
+                                 <td class="r8"/>
+                                 <td class="b8" colspan="2"/>
+                                 <td class="r8"/>
+                                 <td class="b8" colspan="2"/>
+                                </tr>
+                    </table>
+
+                </div>
+
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

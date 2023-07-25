@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_payroll_account
+#	* hr_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20170107\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-19 20:28+0000\n"
+"PO-Revision-Date: 2023-02-19 20:28+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_payroll_rm
+#: model:ir.actions.report.xml,name:hr_payroll_rm.action_payslip_run_report
+msgid "PaySlip Run"
+msgstr "Расчетная ведомость"
+
+#. module: hr_payroll_rm
+#: model:ir.actions.report.xml,name:hr_payroll_rm.action_payslip_rm_report
+msgid "PayslipRu"
+msgstr "Расчетный листок РФ"

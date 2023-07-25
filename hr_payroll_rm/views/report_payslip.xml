@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_payslip">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="report.external_layout">
+                <div class="page">
+<STYLE TYPE="text/css">
+td { padding: 0px; padding-left: 2px; overflow:hidden; }
+.wspace { white-space:pre-wrap; }
+</STYLE>
+                    <h2 style="text-align: center;"><span >Расчетный листок <span t-field="o.number"/></span></h2>
+
+                    <table>
+                        <tr>
+                            <td class = "wspace"><span><span t-field="o.employee_id.job_id"/>:  <span t-field="o.employee_id"/>, табельный номер: <span t-field="o.employee_id.identification_id"/>, документ удостоверяющий личность:  <span t-field="o.employee_id.passport_id"/>, зарегистрирован(на) по адресу:  <span t-field="o.employee_id.address_home_id.zip"/>,  <span t-field="o.employee_id.address_home_id.country_id"/>,  <span t-field="o.employee_id.address_home_id.city"/>,  <span t-field="o.employee_id.address_home_id.street"/>,  <span t-field="o.employee_id.address_home_id.street2"/></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class = "wspace"><span class = "wspace">Период с:  <span t-field="o.date_from"/> по  <span t-field="o.date_to"/></span></td>
+                        </tr>
+
+                    </table>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Наименование</th>
+                                <th>Всего дней</th>
+                                <th>Всего часов</th>
+                                <th>Отработано рабочих дней</th>
+                                <th>Отработано выходных</th>                                
+                                <th>Отработано рабочих часов</th>
+                                <th>Отработано выходных часов</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="get_payslip_worked_days(o.worked_days_line_ids)" t-as="p">
+                                <td><span t-field="p.name"/></td>
+                                <td><span t-field="p.x_total_days"/></td>
+                                <td><span t-field="p.x_total_hours"/></td>
+                                <td><span t-field="p.number_of_days"/></td>
+                                <td><span t-field="p.x_number_of_worked_holidays"/></td>                    
+                                <td><span t-field="p.number_of_hours"/></td>
+                                <td><span t-field="p.x_number_of_worked_holidays_hours"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Наименоваие</th>
+                                <th>Quantity/rate</th>
+                                <th>Amount</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="get_payslip_lines(o.line_ids)" t-as="p">
+                                <td><span t-field="p.name"/></td>
+                                <td><span t-field="p.quantity"/></td>
+                                <td><span t-esc="formatLang(p.amount, currency_obj=o.company_id.currency_id)"/></td>
+                                <td><span t-esc="formatLang(p.total, currency_obj=o.company_id.currency_id)"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
