@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_expenses_rm_tree" model="ir.ui.view">
+            <field name="name">hr.expense.rm.tree</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_expenses_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+				    <field name="expense_run_id"/>
+                    <field name="expense_run_date"/>
+                    <field name="x_doc_number"/>
+				</field>
+            </field>
+        </record>
+
+
+        <record id="hr_expense_rm_my_tree" model="ir.ui.view">
+            <field name="name">my.hr.expense.rm.tree</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_my_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="expense_run_id"/>
+                    <field name="employee_id"/>
+                </field>
+            </field>
+        </record>
+
+         <record id="hr_expense_rm_form_view" model="ir.ui.view">
+            <field name="name">hr.expense.rm.form</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_form_view"/>
+            <field name="arch" type="xml">
+                 <field name="product_id" position="before">
+                        <field name="x_doc_number" string="Номер платежного документа" required="1"/>
+                        <field name="x_num_of_lists" string="Количество листов платежного документа" required="1"/>
+                        <field name="x_partner_id" required="1" string="Поставщик"/>
+                        <field name="expense_run_id" required="1" domain="[('state', 'in', ['draft'])]"/>
+                 </field>
+            </field>
+         </record>
+
+        <record id="view_hr_expense_rm_filter" model="ir.ui.view">
+            <field name="name">hr.expense.rm.filter</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="expense_run_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_expense_run_filter" model="ir.ui.view">
+            <field name="name">hr.expense.run.search</field>
+            <field name="model">hr.expense.run</field>
+            <field name="arch" type="xml">
+                <search string="Авансовые отчеты">
+                    <field name="name" string="Номер"/>
+                    <field name="date"/>
+                    <filter string="Draft" domain="[('state','=','draft')]" help="Черновик"/>
+                    <filter name="done_filter" string="Close" domain="[('state','=','close')]" help="Закрыт"/>
+                    <filter name="employee_id" string="Сотрудник"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_expense_run_tree" model="ir.ui.view">
+            <field name="name">hr.expense.run.tree</field>
+            <field name="model">hr.expense.run</field>
+            <field name="arch" type="xml">
+                <tree string="Авансовые отчеты">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="employee_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_expense_run_form" model="ir.ui.view">
+            <field name="name">hr.expense.run.form</field>
+            <field name="model">hr.expense.run</field>
+            <field name="arch" type="xml">
+                <form string="Авансовые отчеты">
+                <header>
+                    <button name="close_expense_run" type="object" string="Утвердить" states="draft" class="oe_highlight"/>
+                    <button string="Превратить в черновик" name="draft_expense_run" type="object" states="close" />
+                    <button name="action_view_picking" string="Приход ТМЦ" type="object" attrs="{'invisible': [('state','not in', ('close'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                   <div class="oe_button_box" name="button_box" attrs="{'invisible': [('state', 'not in', ('close'))]}">
+                        <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck">
+                            <field name="picking_count" widget="statinfo" string="Доставка" help="Входящая продукция"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>                 
+                            <field name="date" class="oe_inline" string = "Дата"/>
+                            <field name="employee_id" string = "Подотчетное лицо"/>
+                            <field name="prepayment_type" string = "Назначение аванса"/>
+                            <field name="prev_prepayment" string = "Предыдущий аванс"/>
+                            <field name="prepayment" string = "Получен аванс"/>
+                        </group>
+                    </group>
+                    <separator string="Документы"/>
+                    <field name="expense_ids" readonly = "1"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_expense_run_tree" model="ir.actions.act_window">
+            <field name="name">Авансовые отчеты</field>
+            <field name="res_model">hr.expense.run</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="hr_expense_run_tree"/>
+            <field name="search_view_id" ref="hr_expense_run_filter"/>
+        </record>
+
+        <record id="hr_expense_doc" model="ir.ui.view">
+            <field name="name">hr.expense.doc.form</field>
+            <field name="model">hr.expense.doc</field>
+            <field name="arch" type="xml">
+                <form string="Наименование документа">
+                <sheet>
+                    <div class="oe_title">
+                    <label for="name"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    </div>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="hr_expense_type" model="ir.ui.view">
+            <field name="name">hr.expense.type.form</field>
+            <field name="model">hr.expense.type</field>
+            <field name="arch" type="xml">
+                <form string="Назначение аванса">
+                <sheet>
+                    <div class="oe_title">
+                    <label for="name"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    </div>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <menuitem action="action_hr_expense_run_tree" id="menu_hr_expense_run" parent="hr_expense.menu_hr_expense_root"/>
+
+</odoo>

@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<openerp> 
+<data> 
+<template id="report_expense_run"> <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+         <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"/></t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+            <t t-set="context" t-value="o._context"/> 
+           <div class="page">
+<STYLE TYPE="text/css"> 
+body { background: #ffffff; margin: 0; font-family: Arial; font-size: 6pt; font-style: normal; } 
+tr.r15{ height: 15px; } 
+tr.r15 td.ltrb6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; } 
+tr.r15 td.ltrb8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrbl8{text-align: left; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; } 
+tr.r15 td.ltrbr8{text-align: right; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; } 
+tr.r15 td.r6{text-align: right; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.r8{text-align: right; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.l8{text-align: left; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.c6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: top;} 
+tr.r15 td.c10{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;} 
+tr.r15 td.c8b{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; font-weight: bold;} 
+tr.r15 td.c8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.b8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;} 
+table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bottom; border-collapse:collapse;width: 100%; font-family: Arial; font-size: 6pt; font-style: normal; } td { padding: 0px; padding-left: 2px; overflow:hidden; } 
+</STYLE>
+                <table cellspacing="0">
+                    			<col width="1"/>
+                    			<col width="19"/>
+                    			<col width="25"/>
+                    			<col width="23"/>
+                    			<col width="19"/>
+                    			<col width="19"/>
+                    			<col width="22"/>
+                    			<col width="8"/>
+                    			<col width="26"/>
+                    			<col width="23"/>
+                    			<col width="19"/>
+                    			<col width="19"/>
+                    			<col width="19"/>
+                    			<col width="8"/>
+                    			<col width="8"/>
+                    			<col width="25"/>
+                    			<col width="19"/>
+                    			<col width="23"/>
+                    			<col width="19"/>
+					<col width="24"/>
+					<col width="16"/>
+					<col width="24"/>
+					<col width="21"/>
+					<col width="26"/>
+					<col width="25"/>
+					<col width="20"/>
+					<col width="23"/>
+					<col width="1"/>
+                            <tr class="r15">
+                                 				<td class="r6" colspan="21"/>
+                                 				<td class="r6" colspan="6">Унифицированная форма № АО-1</td>
+                                 				<td class="r6"/>
+                            </tr>
+			    <tr class="r15">
+                                 				<td class="r6" colspan="19"/>
+                                 				<td class="r6" colspan="8">Утверждена постановлением Госкомстата России</td>
+                                 				<td class="r6"/>
+			    </tr>
+			    <tr class="r15">
+                                 				<td class="r6" colspan="23"/>
+                                 				<td class="r6" colspan="4">от 01.08.2001 № 55</td>
+                                 				<td class="r6"/>
+			    </tr>
+                            <tr class="r15">
+                                 				<td class="r8" colspan="23"/>
+                                 				<td class="ltrb8" colspan="4">Код</td>
+								<td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+							     	<td class="r8"/>
+                                 				<td class="b8" colspan="19" rowspan="2"><span t-field="company.name"/></td>
+                                 				<td class="r8" colspan="3">Форма по ОКУД </td>
+                                 				<td class="ltrb8" colspan="4">302001</td>
+								<td class="r8"/>
+		  	   </tr>
+                           <tr class="r15">
+                                 				<td class="r8"/>
+                                 				<td class="r8" colspan="3">по ОКПО </td>
+                                 				<td class="ltrb8" colspan="4"><span t-field="company.okpo"/></td>
+                                				<td class="r8"/>
+			    </tr>
+                            <tr class="r15">
+                                 				<td class="r8"/>
+                                 				<td class="c6" colspan="19">наименование организации</td>
+                                 				<td class="r8" colspan="8"/>
+                            </tr>
+                            <tr class="r15">
+                                 				<td class="r8" colspan="28"/>
+                            </tr>
+                            <tr class="r15">
+                                 				<td class="r8" colspan="15"/>
+                                 				<td class="c8b" colspan="3">УТВЕРЖДАЮ</td>
+                                 				<td class="r8" colspan="9"/>
+								<td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 				<td class="r8" colspan="15"/>
+                                 				<td class="r8" colspan="3">Отчет в сумме</td>
+                                 				<td class="b8" colspan="9" rowspan="2"><t t-set="rsa" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-if="e.state in ['post', 'done']"><t t-set="rsa" t-value="rsa+e.total_amount"/></t></t><span t-esc="helper.rubles(rsa)"/></td>
+                                 				<td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 				<td class="r8" colspan="18"/>
+                                 				<td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 				<td class="r8" colspan="7"/>
+                                				<td class="ltrb8" colspan="3">Номер</td>
+                                 				<td class="ltrb8" colspan="3">Дата</td>
+                                 				<td class="r8" colspan="5">Руководитель</td>
+                                 				<td class="b8" colspan="9"><span t-esc="company.chief_id.function"/></td>
+                                 				<td class="r8"/>
+                            </tr>
+                            <tr class="r15">
+                                 				<td class="r8" rowspan="2"/>
+                                 				<td class="c10" colspan="6" rowspan="2">АВАНСОВЫЙ ОТЧЕТ</td>
+                                 				<td class="ltrb8" colspan="3" rowspan="2"><span t-esc="o.name"/></td>
+                                 				<td class="ltrb8" colspan="3" rowspan="2"><span t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YYYY&quot;}"/></td>
+                                 				<td class="r8" colspan="5" rowspan="2"/>
+                                 				<td class="c6" colspan="9">должность</td>
+                                 				<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+                                 				<td class="b8" colspan="3"/>
+                                 				<td class="r8"/>
+								<td class="b8" colspan="5"><span t-esc="helper.initials(company.chief_id.name)"/></td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="18"/>
+                                 				<td class="c6" colspan="3">подпись</td>
+                                 				<td class="r8"/>
+								<td class="c6" colspan="5">расшифровка подписи</td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="18"/>
+								<td class="b8" colspan="9"><span t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd MMMM YYYY&quot;}"/></td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="21"/>
+								<td class="ltrb8" colspan="6">Код</td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="6">Структурное подразделение</td>
+								<td class="b8" colspan="14"><span t-esc="helper.initials(o.employee_id.department_id.name)"/></td>
+								<td class="ltrb8" colspan="6"/>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+							     	<td class="l8" colspan="4">Подотчетное лицо</td>
+								<td class="b8" colspan="12"><span t-esc="helper.initials(o.employee_id.name)"/></td>
+								<td class="l8" colspan="4">Табельный номер</td>
+								<td class="ltrb8" colspan="6"><span t-field="o.employee_id.identification_id"/></td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="5"/>
+								<td class="c6" colspan="12">фамилия, инициалы</td>
+								<td class="r8" colspan="11"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+							     	<td class="l8" colspan="5">Профессия (должность)</td>
+								<td class="b8" colspan="8"><span t-field="o.employee_id.job_id"/></td>
+								<td class="r8" colspan="5">Назначение аванса</td>
+								<td class="b8" colspan="8"><span t-field="o.prepayment_type.name"/></td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+							    	<td class="r8"/>
+								<td class="ltrb8" colspan="8">Наименование показателя</td>
+								<td class="ltrb8" colspan="4">Сумма, руб.коп.</td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="12">Бухгалтерская запись</td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5" rowspan="2">Предыдущий аванс <t t-set="prev_prepay" t-value="o.prev_prepayment"/></td>
+								<td class="ltrb8" colspan="3">остаток</td>
+								<td class="ltrb8" colspan="4"><t t-if="o.prev_prepayment&gt;0"> <span t-esc="o.prev_prepayment"/></t></td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="6">дебет</td>
+								<td class="ltrb8" colspan="6">кредит</td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrb8" colspan="3">перерасход</td>
+								<td class="ltrb8" colspan="4"><t t-if="o.prev_prepayment&lt;0"> <span t-esc="abs(o.prev_prepayment)"/></t></td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3">счет, субсчет</td>
+								<td class="ltrb8" colspan="3">сумма, руб.коп.</td>
+								<td class="ltrb8" colspan="3">счет, субсчет</td>
+								<td class="ltrb8" colspan="3">сумма, руб.коп.</td>
+								<td class="r8"/>
+                            </tr>
+                            <t t-set="i" t-value="0"/>
+                            <t t-set="prepay" t-value="0"/>
+                            <t t-foreach="o.prepayment" t-as="p">
+			    <tr class="r15">
+							 	<td class="r8"/>
+								<td class="ltrbl8" colspan="5"><t t-set="i" t-value="i+1"/><t t-if="i==1">Получен аванс 1.</t><t t-if="i&gt;1"><span t-esc="i"/>.</t></td>
+								<td class="ltrb8" colspan="3"><span t-field="p.date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YY&quot;}"/></td>
+								<td class="ltrb8" colspan="4"><span t-esc="abs(p.line_ids[0].balance)"/> <t t-set="prepay" t-value="prepay+abs(p.line_ids[0].balance)"/></td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].debit"><span t-esc="p.line_ids[0].account_id.code"/> </t><t t-if="p.line_ids[1].debit"><span t-esc="p.line_ids[1].account_id.code"/> </t></td>
+								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].debit"><span t-esc="p.line_ids[0].debit"/> </t><t t-if="p.line_ids[1].debit"><span t-esc="p.line_ids[1].debit"/> </t></td>
+								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].credit"><span t-esc="p.line_ids[0].account_id.code"/> </t><t t-if="p.line_ids[1].credit"><span t-esc="p.line_ids[1].account_id.code"/> </t></td>
+								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].credit"><span t-esc="abs(p.line_ids[0].credit)"/> </t><t t-if="p.line_ids[1].credit"><span t-esc="abs(p.line_ids[1].credit)"/> </t></td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5"><t t-if="i==1">1а. в валюте (справочно)</t><t t-if="i&gt;1"><span t-esc="i"/>а.</t></td>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="4"/>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="r8"/>
+                            </tr>
+                           </t>
+			   <t t-if="(3-i)&gt;0"> 
+			    <t t-set="j" t-value="abs(3-i)"/>
+                            <t t-foreach="j" t-as="k">
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5"><t t-set="i" t-value="i+1"/><t t-if="i==1">Получен аванс 1.</t><t t-if="i&gt;1"><span t-esc="i"/>.</t></td>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="4"/>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5"><t t-if="i==1">1а. в валюте (справочно)</t><t t-if="i&gt;1"><span t-esc="i"/>а.</t></td>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="4"/>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="r8"/>
+                            </tr>
+                           </t>
+                           </t>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5">Итого получено</td>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="4"><span t-esc="prepay"/></td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5">Израсходовано</td>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="4"><t t-set="rsa" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-if="e.state in ['post', 'done']"><t t-set="rsa" t-value="rsa+e.total_amount"/></t></t><span t-esc="rsa"/></td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5">Остаток</td>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="4"><t t-set="balance" t-value="prev_prepay+prepay-rsa"/><t t-if="balance&gt;0"><span t-esc="balance"/></t></td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="ltrbl8" colspan="5">Перерасход</td>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="4"><t t-if="balance&lt;0"><span t-esc="abs(balance)"/></t></td>
+								<td class="r8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="ltrb8" colspan="3"/>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="3">Приложение</td>
+								<td class="b8"><t t-set="d" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-set="d" t-value="d+1"/></t><span t-esc="d"/></td>
+								<td class="c8" colspan="4">документов на</td>
+								<td class="b8"><t t-set="d" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-set="d" t-value="d+e.x_num_of_lists"/></t><span t-esc="d"/></td>
+								<td class="l8" colspan="2">листах</td>
+								<td class="r8" colspan="15"/>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="9">Отчет проверен. К утверждению в сумме</td>
+								<td class="b8" colspan="11"><span t-esc="helper.rubles(rsa)"/></td>
+								<td class="l8">(</td>
+								<td class="b8" colspan="2"><span t-esc="int(rsa)"/></td>
+								<td class="l8">руб.</td>
+								<td class="b8"><span t-esc="int(rsa-int(rsa))*100"/></td>
+								<td class="l8">коп.)</td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="10"/>
+                                 				<td class="c6" colspan="10">сумма прописью</td>
+                                 				<td class="r8" colspan="8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="4">Главный бухгалтер</td>
+								<td class="b8" colspan="8"/>
+								<td class="r8" colspan="2"/>
+								<td class="b8" colspan="10"><t t-esc="helper.initials(company.accountant_id.name)"/></td>
+								<td class="r8" colspan="3"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="4"/>
+								<td class="c6" colspan="8">подпись</td>
+								<td class="r8" colspan="2"/>
+								<td class="c6" colspan="10">расшифровка подписи</td>
+								<td class="r8" colspan="3"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="r8"/>
+								<td class="l8" colspan="4">Бухгалтер</td>
+								<td class="b8" colspan="8"/>
+								<td class="r8" colspan="2"/>
+								<td class="b8" colspan="10"/>
+								<td class="r8" colspan="3"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="4"/>
+								<td class="c6" colspan="8">подпись</td>
+								<td class="r8" colspan="2"/>
+								<td class="c6" colspan="10">расшифровка подписи</td>
+								<td class="r8" colspan="3"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="r8"/>
+								<td class="b8" colspan="4"><t t-if="balance&gt;0">остаток</t></td>
+								<td class="c8" colspan="3" rowspan="2">в сумме</td>
+								<td class="ltrb8" colspan="4" rowspan="2"><span t-esc="int(abs(balance))"/></td>
+								<td class="c8" rowspan="2">руб.</td>
+								<td class="ltrb8" colspan="3" rowspan="2"><span t-esc="int(((abs(balance))-int(abs(balance)))*100)"/></td>
+								<td class="c8" rowspan="2">коп.</td>
+								<td class="c8" colspan="5" rowspan="2">по кассовому ордеру №</td>
+								<td class="b8" colspan="2" rowspan="2"/>
+								<td class="c8" rowspan="2">от</td>
+								<td class="b8" colspan="2" rowspan="2"/>
+								<td class="r8" rowspan="2"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+                                 				<td class="c8" colspan="4"> <t t-if="balance&lt;0">перерасход</t></td>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="r8"/>
+								<td class="l8" colspan="4">Бухгалтер (кассир)</td>
+								<td class="b8" colspan="5"/>
+								<td class="r8"/>
+								<td class="b8" colspan="9"/>
+								<td class="r8"/>
+								<td class="b8" colspan="5"/>
+								<td class="r8" colspan="2"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="4"/>
+								<td class="c6" colspan="5">подпись</td>
+								<td class="r8"/>
+								<td class="c6" colspan="9">расшифровка подписи</td>
+								<td class="r8"/>
+								<td class="c6" colspan="5">дата</td>
+								<td class="r8" colspan="2"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="r8" colspan="28"/>
+                            </tr>
+		            <tr class="r15">
+								<td class="r8" colspan="28"/>
+                            </tr>
+		            <tr class="r15">
+								<td class="r8" colspan="28"/>
+                            </tr>
+		            <tr class="r15">
+								<td class="r8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="b8" colspan="28"/>
+                            </tr>
+			    <tr class="r15">
+								<td class="c6" colspan="28">линия отреза</td>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="2">Расписка</td>
+								<td class="l8" colspan="5">Принят к проверке от</td>
+								<td class="b8" colspan="10"><span t-esc="(o.employee_id.name)"/></td>
+								<td class="l8" colspan="4">авансовый отчет № </td>
+								<td class="b8"><span t-esc="o.name"/></td>
+								<td class="c8">от</td>
+								<td class="b8" colspan="3"><span t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YYYY&quot;}"/></td>
+								<td class="r8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8"/>
+								<td class="l8" colspan="2">на сумму</td>
+								<td class="b8" colspan="14"><t t-set="rsa" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-if="e.state in ['post', 'done']"><t t-set="rsa" t-value="rsa+e.total_amount"/></t></t><span t-esc="helper.rubles(rsa)"/></td>
+                                                                <td class="r8"/>
+								<td class="c8" colspan="6">, количество документов</td>
+								<td class="b8"><t t-set="d" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-set="d" t-value="d+1"/></t><span t-esc="d"/></td>
+								<td class="c8">на</td>
+								<td class="b8"><t t-set="d" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-set="d" t-value="d+e.x_num_of_lists"/></t><span t-esc="d"/> л.</td>
+								<td class="l8"/>
+                            </tr>
+			    <tr class="r15">
+							     	<td class="r8" colspan="3"/>
+								<td class="c6" colspan="13">сумма прописью</td>
+								<td class="r8" colspan="12"/>
+                            </tr>
+			    <tr class="r15">
+				 				<td class="r8"/>
+								<td class="l8" colspan="4">Бухгалтер</td>
+								<td class="b8" colspan="5"/>
+								<td class="r8"/>
+								<td class="b8" colspan="9"/>
+								<td class="r8"/>
+								<td class="b8" colspan="5"/>
+								<td class="r8" colspan="2"/>
+                            </tr>
+			    <tr class="r15">
+							  	<td class="r8"/>
+								<td class="l8" colspan="4"/>
+								<td class="c6" colspan="5">подпись</td>
+								<td class="r8"/>
+								<td class="c6" colspan="9">расшифровка подписи</td>
+								<td class="r8"/>
+								<td class="c6" colspan="5">дата</td>
+								<td class="r8" colspan="2"/>
+                            </tr>
+                    </table>
+					
+					
+                </div>
+				<div class="page">
+<STYLE TYPE="text/css"> 
+body { background: #ffffff; margin: 0; font-family: Arial; font-size: 6pt; font-style: normal; } 
+tr.r15{ height: 15px; } 
+tr.r15 td.ltrb6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; } 
+tr.r15 td.ltrb8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrb7{text-align: center; font-family: Arial; font-size: 7pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; }
+tr.r15 td.ltrbl8{text-align: left; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; } 
+tr.r15 td.ltrbr8{text-align: right; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-left: #000000 1px solid; border-top: #000000 1px solid; border-bottom: #000000 1px solid; border-right: #000000 1px solid; } 
+tr.r15 td.r6{text-align: right; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.r8{text-align: right; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.l8{text-align: left; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.c6{text-align: center; font-family: Arial; font-size: 6pt; font-style: normal; vertical-align: top;} 
+tr.r15 td.c10{text-align: center; font-family: Arial; font-size: 10pt; font-style: normal; vertical-align: medium; font-weight: bold;} 
+tr.r15 td.c8b{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; font-weight: bold;} 
+tr.r15 td.c8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium;} 
+tr.r15 td.b8{text-align: center; font-family: Arial; font-size: 8pt; font-style: normal; vertical-align: medium; border-bottom: #000000 1px solid;} 
+table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bottom; border-collapse:collapse;width: 100%; font-family: Arial; font-size: 6pt; font-style: normal; } td { padding: 0px; padding-left: 2px; overflow:hidden; } 
+</STYLE>
+       				<table cellspacing="0">
+                   	 		<col width="1"/>
+                    			<col width="19"/>
+                    			<col width="25"/>
+                    			<col width="23"/>
+                    			<col width="19"/>
+                    			<col width="19"/>
+                    			<col width="22"/>
+                    			<col width="8"/>
+                    			<col width="26"/>
+                    			<col width="23"/>
+                    			<col width="19"/>
+                    			<col width="19"/>
+                    			<col width="19"/>
+                    			<col width="8"/>
+                    			<col width="8"/>
+                    			<col width="25"/>
+                    			<col width="19"/>
+                    			<col width="23"/>
+                   			<col width="19"/>
+					<col width="24"/>
+					<col width="16"/>
+					<col width="24"/>
+					<col width="21"/>
+					<col width="26"/>
+					<col width="25"/>
+					<col width="20"/>
+					<col width="23"/>
+					<col width="1"/>
+                            				<tr class="r15">
+                                 				<td class="r6" colspan="21"/>
+                                 				<td class="r6" colspan="7">Оборотная сторона формы АО № - 1</td>
+                            				</tr>
+							<tr class="r15">
+                                 				<td class="r8"/>
+                                 				<td class="ltrb8" colspan="2" rowspan="3">Номер по порядку</td>
+								<td class="ltrb6" colspan="4">Документ, подтверждающий произведенные 
+расходы</td>
+								<td class="ltrb8" colspan="10" rowspan="3">Наименование документа 
+(расхода)</td>
+								<td class="ltrb8" colspan="8">Наименование документа (расхода)</td>
+								<td class="ltrb8" colspan="3" rowspan="3">Дебет счета, субсчета</td>
+                            				</tr>
+							<tr class="r15">
+                                 				<td class="r8"/>
+                                 				<td class="ltrb8" colspan="2" rowspan="2">дата</td>
+								<td class="ltrb8" colspan="2" rowspan="2">номер</td>
+								<td class="ltrb8" colspan="4">по отчету</td>
+								<td class="ltrb8" colspan="4">принятая к учету</td>
+                            				</tr>
+							<tr class="r15">
+                                 				<td class="r8"/>
+                                 				<td class="ltrb7" colspan="2">в руб.коп.</td>
+								<td class="ltrb7" colspan="2">в валюте</td>
+								<td class="ltrb7" colspan="2">в руб.коп.</td>
+								<td class="ltrb7" colspan="2">в валюте</td>
+                            					</tr>
+							<tr class="r15">
+                                 				<td class="r8"/>
+                                 				<td class="ltrb8" colspan="2">1</td>
+								<td class="ltrb8" colspan="2">2</td>
+								<td class="ltrb8" colspan="2">3</td>
+								<td class="ltrb8" colspan="10">4</td>
+								<td class="ltrb8" colspan="2">5</td>
+								<td class="ltrb8" colspan="2">6</td>
+								<td class="ltrb8" colspan="2">7</td>
+								<td class="ltrb8" colspan="2">8</td>
+								<td class="ltrb8" colspan="3">9</td>
+                            				</tr>
+							<t t-set="i" t-value="1"/>
+							<t t-set="rs" t-value="0"/>
+							<t t-set="rsa" t-value="0"/>
+                                                         <tr class="r15" t-foreach="get_expense(o.expense_ids)" t-as="e">
+                                 				<td class="r8"><t t-set="s" t-value="0"/></td>
+                                 				<td class="ltrb8" colspan="2"><span t-esc="i"/><t t-set="i" t-value="i+1"/></td>
+								<td class="ltrb8" colspan="2"><span t-field="e.date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YY&quot;}"/></td>
+								<td class="ltrb8" colspan="2"><span t-esc="e.x_doc_number"/></td>
+								<td class="ltrbl8" colspan="10"><span t-esc="e.name.name"/></td>
+								<td class="ltrb8" colspan="2"><span t-esc="e.total_amount"/><t t-set="s" t-value="e.total_amount"/><t t-set="rs" t-value="rs+s"/></td>
+								<td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="2"><t t-if="e.state in ['post', 'done']"><span t-esc="e.total_amount"/><t t-set="rsa" t-value="rsa+s"/></t></td>
+								<td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="3"><t t-if="e.state in ['post', 'done']"><span t-esc="get_account(e)"/></t></td>
+                            				</tr>
+							<tr class="r15">
+                                 				<td class="r8"/>
+                                 				<td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="2"/>
+								<td class="ltrbr8" colspan="10">ИТОГО</td>
+								<td class="ltrb8" colspan="2"><span t-esc="rs"/></td>
+								<td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="2"><span t-esc="rsa"/></td>
+								<td class="ltrb8" colspan="2"/>
+								<td class="ltrb8" colspan="3"/>
+                            				</tr>
+							<tr class="r15">
+							     <td class="r8"/>
+                                 				<td class="l8" colspan="4">Подотчетное лицо</td>
+								<td class="b8" colspan="8"/>
+								<td class="r8" colspan="2"/>
+								<td class="b8" colspan="10"><span t-esc="helper.initials(o.employee_id.name)"/></td>
+							</tr>
+							<tr class="r15">
+								<td class="r8"/>
+                                                                <td class="l8" colspan="4"/>
+				        			<td class="c6" colspan="8">подпись</td>
+								<td class="r8" colspan="2"/>
+								<td class="c6" colspan="10">расшифровка подписи</td>
+							</tr>
+					</table>
+				</div>
+        </t>
+    </t>
+</template> 
+</data> 
+</openerp>
