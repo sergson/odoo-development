@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- QWeb Reports -->
+        <report
+            id="action_report_agedpartnerbalance_modified"
+            model="account_ru_mod.account_ru_mod.aged.trial.balancemodified"
+            string="Aged partner balance modified"
+            report_type="qweb-pdf"
+            name="account_ru_mod.report_agedpartnerbalance_modified"
+            file="account_ru_mod.report_agedpartnerbalance_modified"
+            menu="False"
+        />
+
+        <report
+            id="action_report_generalledger_modified"
+            model="account_ru_mod.report.general.ledger_modified"
+            string="Generall Ledger modifed"
+            report_type="qweb-pdf"
+            name="account_ru_mod.report_generalledger_modified"
+            file="account_ru_mod.report_generalledger_modified"
+            />
+<!--
+        <report
+            id="action_report_overdue_modified"
+            model="res.partner"
+            string="Overdue report modified"
+            report_type="qweb-pdf"
+            name="account_ru_mod.report_overdue_document_modified"
+            file="account_ru_mod.report_overdue_document_modified"
+            />
+-->
+        <report
+            id="action_report_trialbalance_modified"
+            model="account_ru_mod.balance.report_modified"
+            string="Trial balance modified"
+            report_type="qweb-pdf"
+            name="account_ru_mod.report_trialbalance_modified"
+            file="account_ru_mod.report_trialbalance_modified"
+            />
+    </data>
+</openerp>

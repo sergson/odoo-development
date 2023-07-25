@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_overdue_document_modified">
+    <t t-call="report.external_layout">
+        <div class="page">
+        <t t-foreach="docs" t-as="o">
+            <div class="row" style="text-align: center">
+              
+                    <span>
+                         <strong>Ведомость</strong> <br/> 
+                         взаимных расчетов за период с <span t-esc="Start_date"/> по <span t-esc="Date"/> <br/>
+                         между <t t-esc="res_company.name"/> и <span t-field="o.name"/>
+                    </span>
+                </div>  
+                <br/> 
+        
+             <div class="row">           
+                   <t t-if="Lines[o.id]">
+
+                    <table class="table table-condensed" t-foreach="Lines[o.id]" t-as="currency" style="text-align: left; font-size:10px">
+                        <thead>
+                            <tr>
+                                <th colspan="14" style="border: 1px solid">По данным: <t t-esc="res_company.name"/></th>
+                            </tr>
+                            <tr>
+                                <th colspan="10" style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid">Сальдо начальное:</th>
+                                <th colspan="4" style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"/>
+                            </tr>              
+                            <tr>
+                                <th class="text-left" style="border-left: 1px solid">№</th>
+                                <th class="text-left">Дата</th>
+                                <th class="text-left" colspan="6">Субконто</th>
+                                <th class="text-left">Дебет</th>
+                                <th class="text-left">Кредит</th>
+                                <th class="text-left" colspan="2">Претензии</th>
+                                <th class="text-left" style="border-right: 1px solid" colspan="2">Примечания</th>
+                            </tr>
+                        </thead>
+                        <tr t-foreach="Lines[o.id][currency]" t-as="line">
+                            <td style="border-left: 1px solid">
+                                <span t-esc="line['move_id']"/>
+                            </td>
+                            <td>
+                                <span t-esc="time.strftime('%d.%m.%Y',time.strptime(line['date'],'%Y-%m-%d'))"/>
+                            </td>
+                            <td colspan="6">
+                                <t t-if="line['name'] != '/'"><span t-esc="line['name']"/></t>
+                                <span t-esc="line['ref']"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="line['debit']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="line['credit']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/>
+                            </td>
+                            <td class="text-center" colspan="2">
+                                <span t-if="line['blocked']">x</span>
+                            </td>
+                               <td style="border-right: 1px solid" colspan="2"/>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid"/>
+                            <td colspan="6" style="border-top: 1px solid; border-bottom: 1px solid"><strong>Обороты за период:</strong></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid"><span t-esc="Totals[o.id][currency]['due']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid"><span t-esc="Totals[o.id][currency]['paid']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/></td>
+                            <td colspan="4" class="text-right" style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid"/>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border-left: 1px solid; border-top: 1px solid; border-bottom: 1px solid"/>
+                            <td colspan="6" style="border-top: 1px solid; border-bottom: 1px solid"><strong>Сальдо конечное:</strong></td>
+                            <td class="text-right" style="border-top: 1px solid; border-bottom: 1px solid">
+                                  <t t-if="Totals[o.id][currency]['due'] - Totals[o.id][currency]['paid']&gt;0">
+                                        <span t-esc="Totals[o.id][currency]['due'] - Totals[o.id][currency]['paid']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/>
+                                  </t>
+                            </td>
+                           <td colspan="5" class="text-right" style="border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid">
+                               <t t-if="Totals[o.id][currency]['due'] - Totals[o.id][currency]['paid']&lt;0">
+                                   <span t-esc="Totals[o.id][currency]['paid'] - Totals[o.id][currency]['due']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/>
+                               </t>
+                           </td>
+                        </tr>
+                        <tr style="text-align: left; font-size:12px">
+                             <td colspan="14">
+                             <t t-if="Totals[o.id][currency]['due'] - Totals[o.id][currency]['paid']&gt;0">
+                                 <span>По данным <t t-esc="res_company.name"/> задолженность в пользу <t t-esc="res_company.name"/> на <span t-esc="Date"/> составляет <span t-esc="Totals[o.id][currency]['due'] - Totals[o.id][currency]['paid']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/> 
+                                  </span>
+                              </t>
+                              <t t-if="Totals[o.id][currency]['due'] - Totals[o.id][currency]['paid']&lt;0">
+                                   <span>По данным <t t-esc="res_company.name"/> задолженность в пользу <span t-field="o.name"/> на <span t-esc="Date"/> составляет <span t-esc="Totals[o.id][currency]['paid'] - Totals[o.id][currency]['due']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;currency&quot;}"/> 
+                                   </span>
+                              </t>
+                              </td>  
+                        </tr>
+                        <tr style="text-align: left; font-size:12px">
+                            <td colspan="14">От <t t-esc="res_company.name"/> _______________________________________________</td>
+                        </tr>
+                    </table>
+                </t>
+                <p t-if="not Lines[o.id]">
+                    <strong>There is nothing due with this customer.</strong>
+                </p>
+            </div>
+           </t>
+        </div>
+   </t>
+</template>
+
+<template id="report_overdue">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="account.report_overdue_document" t-lang="o.lang"/>
+        </t>
+    </t>
+</template>
+</odoo>

@@ -1,0 +1,466 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_ru_mod
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20190401\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-04 14:16+0000\n"
+"PO-Revision-Date: 2023-01-04 14:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_ru_mod
+#: model:ir.ui.view,arch_db:account_ru_mod.report_overdue_document_mofifed
+msgid "<strong>There is nothing due with this customer.</strong>"
+msgstr "<strong>Нет данных, связанных с этим контрагентом.</strong>"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_ru_mod_aged_trial_balancemodified
+msgid "Account Aged Trial balance Report Modified"
+msgstr "Главная книга модиф."
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_ru_mod_common_account_report
+#: model:ir.model,name:account_ru_mod.model_account_ru_mod_report_general_ledger_modified
+msgid "Account Common Account Report Modified"
+msgstr "Общий отчет модиф. доп."
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_common_report
+msgid "Account Common Report"
+msgstr "Общий отчет"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_ru_mod_common_report
+msgid "Account Common Report Modified"
+msgstr "Общий отчет модиф."
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_financial_report
+msgid "Account Report"
+msgstr "Финансовый отчет"
+
+#. module: account_ru_mod
+#: model:ir.actions.act_window,name:account_ru_mod.action_account_aged_balance_modified_view
+#: model:ir.actions.report.xml,name:account_ru_mod.action_report_agedpartnerbalance_modified
+#: model:ir.ui.menu,name:account_ru_mod.menu_aged_trial_balance_modified
+msgid "Aged partner balance modified"
+msgstr "Главная книга модиф."
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,x_display_account:0
+#: selection:account_ru_mod.balance.report_modified,display_account:0
+#: selection:account_ru_mod.common.account_report,display_account:0
+#: selection:account_ru_mod.report.general.ledger_modified,display_account:0
+msgid "All"
+msgstr "Все"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,target_move:0
+#: selection:account_ru_mod.balance.report_modified,target_move:0
+#: selection:account_ru_mod.common.account_report,target_move:0
+#: selection:account_ru_mod.common.report,target_move:0
+#: selection:account_ru_mod.report.general.ledger_modified,target_move:0
+msgid "All Entries"
+msgstr "Все проводки"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,target_move:0
+#: selection:account_ru_mod.balance.report_modified,target_move:0
+#: selection:account_ru_mod.common.account_report,target_move:0
+#: selection:account_ru_mod.common.report,target_move:0
+#: selection:account_ru_mod.report.general.ledger_modified,target_move:0
+msgid "All Posted Entries"
+msgstr "Все проведенные проводки"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_invoice_line_tax_amount
+msgid "Amount"
+msgstr "Количество"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_bank_statement
+msgid "Bank Statement"
+msgstr "Банковская выписка"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Запись банковской выписки"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_company_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_company_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_company_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_company_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_create_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_create_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_create_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_create_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_create_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_create_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_create_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_create_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_create_date
+msgid "Created on"
+msgstr "Создан"
+
+#. module: account_ru_mod
+#: model:ir.ui.view,arch_db:account_ru_mod.report_agedpartnerbalance_modified
+#: model:ir.ui.view,arch_db:account_ru_mod.report_generalledger_modified
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,x_sortby:0
+#: selection:account_ru_mod.report.general.ledger_modified,sortby:0
+msgid "Date"
+msgstr "Дата"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_x_display_account
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_display_account
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_display_account
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_display_account
+msgid "Display Accounts"
+msgstr "Вывод счетов"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_display_name
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_display_name
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_display_name
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_display_name
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_display_name
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_agedpartnerbalance_modified_display_name
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_generalledger_modified_display_name
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_trialbalance_modified_display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_date_to
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_date_to
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_date_to
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_date_to
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_date_to
+msgid "End Date"
+msgstr "Дата окончания"
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/wizard/account_report_common_modified.py:31
+#, python-format
+msgid "Error!"
+msgstr "Ошибка!"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_ru_mod_report_general_ledgermodified
+msgid "General Ledger Report"
+msgstr "Карточка счета"
+
+#. module: account_ru_mod
+#: model:ir.ui.view,arch_db:account_ru_mod.report_generalledger_modified
+msgid "General ledger"
+msgstr "Карточка счета"
+
+#. module: account_ru_mod
+#: model:ir.actions.act_window,name:account_ru_mod.action_account_report_general_ledger_view_ru_modified
+#: model:ir.ui.menu,name:account_ru_mod.menu_report_general_ledger_view_ru_modified
+msgid "General ledger modified"
+msgstr "Карточка счета"
+
+#. module: account_ru_mod
+#: model:ir.actions.report.xml,name:account_ru_mod.action_report_generalledger_modified
+msgid "Generall Ledger modifed"
+msgstr "Карточка счета"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_agedpartnerbalance_modified_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_generalledger_modified_id
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_trialbalance_modified_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,help:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_x_initial_balance
+#: model:ir.model.fields,help:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_initial_balance
+msgid "If you selected date, this field allow you to add a row to display the amount of debit/credit/balance that precedes the filter you've set."
+msgstr "Если вы выбрали дату, это поле позволит вам добавить строку для отображения суммы дебета/кредита/остатка, которая предшествует установленному вами фильтру."
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_bank_statement.py:52
+#, python-format
+msgid "In order to delete a bank statement line, you must first cancel it to delete related journal items."
+msgstr "Чтобы удалить строку банковской выписки, вы должны сначала отменить ее, чтобы удалить связанные элементы журнала."
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_bank_statement.py:24
+#, python-format
+msgid "In order to delete a bank statement, you must first cancel it to delete related journal items."
+msgstr "Чтобы удалить банковскую выписку, вы должны сначала отменить ее, чтобы удалить связанные элементы журнала."
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_x_initial_balance
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_initial_balance
+msgid "Include Initial Balances"
+msgstr "Включить начальный баланс"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_invoice
+msgid "Invoice"
+msgstr "Акт"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Запись акта"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,x_sortby:0
+#: selection:account_ru_mod.report.general.ledger_modified,sortby:0
+msgid "Journal & Partner"
+msgstr "Журнал и контрагент"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_journal_ids
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_journal_ids
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_journal_ids
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_journal_ids
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_journal_ids
+msgid "Journals"
+msgstr "Журналы"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified___last_update
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified___last_update
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report___last_update
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report___last_update
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified___last_update
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_agedpartnerbalance_modified___last_update
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_generalledger_modified___last_update
+#: model:ir.model.fields,field_description:account_ru_mod.field_report_account_ru_mod_report_trialbalance_modified___last_update
+msgid "Last Modified on"
+msgstr "Последний раз изменено"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_write_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_write_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_write_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_write_uid
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_write_uid
+msgid "Last Updated by"
+msgstr "Последний раз обновлено"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_write_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_write_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_write_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_write_date
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_write_date
+msgid "Last Updated on"
+msgstr "Последний раз обновлено"
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/wizard/account_report_common_modified.py:31
+#, python-format
+msgid "Not implemented."
+msgstr "Не реализовано."
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_payment.py:20
+#, python-format
+msgid "Only a draft payment can be posted. Trying to post a payment in state %s."
+msgstr "Разместить можно только черновик платежа. Попытка опубликовать платеж в состоянии %s."
+
+#. module: account_ru_mod
+#: model:ir.actions.report.xml,name:account_ru_mod.action_report_overdue_modified
+msgid "Overdue report modified"
+msgstr "Ведомость взаиморасчетов"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_res_partner
+msgid "Partner"
+msgstr "Контрагент"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_payment
+msgid "Payments"
+msgstr "Платежи"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_period_length
+msgid "Period Length (days)"
+msgstr "Длина периода (в днях)"
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_invoice.py:144
+#, python-format
+msgid "Please create some invoice lines."
+msgstr "Создайте несколько строк акта."
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_invoice.py:142
+#, python-format
+msgid "Please define sequence on the journal related to this invoice."
+msgstr "Пожалуйста, установите последовательность в журнале, связанном с этим актом."
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_x_sortby
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_sortby
+msgid "Sort by"
+msgstr "Сортировать по"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_date_from
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_date_from
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_date_from
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_date_from
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_date_from
+msgid "Start Date"
+msgstr "Дата начала"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_target_move
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_balance_report_modified_target_move
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_account_report_target_move
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_common_report_target_move
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_report_general_ledger_modified_target_move
+msgid "Target Moves"
+msgstr "Проводки"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_tax
+msgid "Tax"
+msgstr "Налог"
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_payment.py:23
+#, python-format
+msgid "The payment cannot be processed because the invoice is not open!"
+msgstr "Платеж не может быть обработан, так как акт не открыт!"
+
+#. module: account_ru_mod
+#: model:ir.actions.act_window,name:account_ru_mod.action_account_balance_menu_modified
+#: model:ir.actions.report.xml,name:account_ru_mod.action_report_trialbalance_modified
+#: model:ir.ui.menu,name:account_ru_mod.menu_general_Balance_report_modified
+msgid "Trial balance modified"
+msgstr "Оборотно-сальдовая ведомость"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_account_balance_report_modified
+#: model:ir.model,name:account_ru_mod.model_account_ru_mod_balance_report_modified
+msgid "Trial balance report modified"
+msgstr "Оборотно-сальдовая ведомость"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,x_display_account:0
+#: selection:account_ru_mod.balance.report_modified,display_account:0
+#: selection:account_ru_mod.common.account_report,display_account:0
+#: selection:account_ru_mod.report.general.ledger_modified,display_account:0
+msgid "With balance is not equal to 0"
+msgstr "С балансом не равным 0"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,x_display_account:0
+#: selection:account_ru_mod.balance.report_modified,display_account:0
+#: selection:account_ru_mod.common.account_report,display_account:0
+#: selection:account_ru_mod.report.general.ledger_modified,display_account:0
+msgid "With movements"
+msgstr "С движениями"
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_invoice.py:27
+#, python-format
+msgid "You cannot delete an invoice after it has been validated (and received a number). You can set it back to \"Draft\" state and modify its content, then re-confirm it."
+msgstr "Вы не можете удалить акт после того, как он был проверен (и получил номер). Вы можете вернуть его в состояние «Черновик» и изменить его содержимое, а затем повторно подтвердить его."
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/models/account_invoice.py:25
+#, python-format
+msgid "You cannot delete an invoice which is not draft or cancelled. You should refund it instead."
+msgstr "Вы не можете удалить акт, который не является черновиком или не отменен. Вместо этого вы должны оформить возврат."
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/wizard/account_report_aged_partner_balance_modifed.py:59
+#: code:addons/account_ru_mod/wizard/account_report_general_ledger_modified.py:25
+#, python-format
+msgid "You must define a Start Date"
+msgstr "Вы должны установить дату начала"
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/wizard/account_report_aged_partner_balance_modifed.py:41
+#, python-format
+msgid "You must set a period length greater than 0."
+msgstr "Вы должны установить продолжительность периода больше 0."
+
+#. module: account_ru_mod
+#: code:addons/account_ru_mod/wizard/account_report_aged_partner_balance_modifed.py:43
+#, python-format
+msgid "You must set a start date."
+msgstr "Вы должны установить дату начала."
+
+#. module: account_ru_mod
+#: model:ir.ui.view,arch_db:account_ru_mod.report_overdue_document_mofifed
+msgid "_______________________________________________"
+msgstr "_______________________________________________"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,result_selection:0
+msgid "customer"
+msgstr "customer"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_report_account_report_financial
+msgid "report.account.report_financial"
+msgstr "report.account.report_financial"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_report_account_report_overdue
+msgid "report.account.report_overdue"
+msgstr "report.account.report_overdue"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_report_account_ru_mod_report_agedpartnerbalance_modified
+msgid "report.account_ru_mod.report_agedpartnerbalance_modified"
+msgstr "report.account_ru_mod.report_agedpartnerbalance_modified"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_report_account_ru_mod_report_generalledger_modified
+msgid "report.account_ru_mod.report_generalledger_modified"
+msgstr "report.account_ru_mod.report_generalledger_modified"
+
+#. module: account_ru_mod
+#: model:ir.model,name:account_ru_mod.model_report_account_ru_mod_report_trialbalance_modified
+msgid "report.account_ru_mod.report_trialbalance_modified"
+msgstr "report.account_ru_mod.report_trialbalance_modified"
+
+#. module: account_ru_mod
+#: model:ir.model.fields,field_description:account_ru_mod.field_account_ru_mod_aged_trial_balancemodified_result_selection
+msgid "result_selection"
+msgstr "result_selection"
+
+#. module: account_ru_mod
+#: selection:account_ru_mod.aged.trial.balancemodified,result_selection:0
+msgid "supplier"
+msgstr "supplier"
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_agedpartnerbalance_modified">
+    <t t-call="report.html_container">
+        <t t-set="data_report_dpi" t-value="150"/>
+        <t t-call="report.external_layout"/>
+
+            <div class="page">
+                <h3 align="center">Главная книга</h3>
+
+                <div class="row mt32" style="font-size:10px">
+                    <div class="col-xs-12">
+                        <strong>Журналы:</strong>
+                        <p t-esc="', '.join([ lt or '' for lt in print_journal ])"/>
+                    </div>
+                </div>
+               <div class="row mt32" style="font-size:11px">
+                    <div class="col-xs-3">
+                        <strong>Счета:</strong>
+                        <p>
+                            <span t-if="data['x_display_account'] == 'all'">все счета'</span>
+                            <span t-if="data['x_display_account'] == 'movement'">счета с движением</span>
+                            <span t-if="data['x_display_account'] == 'not_zero'">счета с ненулевым сальдо</span>
+                        </p>
+                    </div>
+                    <div class="col-xs-3">
+                        <strong>Операции:</strong>
+                        <p t-if="data['target_move'] == 'all'">все операции, в том числе не проведенные</p>
+                        <p t-if="data['target_move'] == 'posted'">все проведенные операции</p>
+                    </div>
+                    <div class="col-xs-3">
+                        <strong>Отсортировано:</strong>
+                        <p t-if="data['x_sortby'] == 'sort_date'">по дате</p>
+                        <p t-if="data['x_sortby'] == 'sort_journal_partner'">по журналу и контрагенту</p>
+                    </div>
+                    <div class="col-xs-3">
+                        <t t-if="data['date_from']"><strong>Дата с :</strong> <span t-esc="time.strftime('%d.%m.%Y',time.strptime(data['date_from'],'%Y-%m-%d'))"/><br/></t>
+                        <t t-if="data['date_to']"><strong>Дата по :</strong> <span t-esc="time.strftime('%d.%m.%Y',time.strptime(data['date_to'],'%Y-%m-%d'))"/></t>
+                    </div>
+                </div>
+
+                <table class="table table-condensed" style="font-size:12px">
+                    <thead>
+                        <tr class="text-center">
+                            <th></th>
+                            <th></th>
+                            <th>Начальное сальдо по дебеду</th>
+                            <th>Начальное сальдо по кредиту</th>
+                            <th>Корр. счет</th>
+                            <th>С кредита корр. счета</th>
+                            <th>Оборот по дебету</th>
+                            <th>Оборот по кредиту</th>
+                            <th>Конечное сальдо по дебету</th>
+                            <th>Конечное сальдо по дебету</th>
+                            <th groups="base.group_multi_currency">Currency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="accounts_rev" t-as="account">
+                            <tr style="font-weight: bold;">
+                                <td colspan="7">
+                                    <span style="color: white;" t-esc="'..'"/>
+                                    <span t-esc="account['code']"/>
+                                    <span t-esc="account['name']"/>
+                                </td>
+                                <td groups="base.group_multi_currency"/>
+                            </tr>
+
+                            <span t-foreach="account['move_lines']" t-as="line">
+                                <span t-if="line['lname']=='Initial Balance'">
+                                    <tr style="font-weight: bold">
+                                         <td></td>
+                                         <td></td>
+                                         <span t-if="line['balance'] &gt; 0">
+                                             <td class="text-left" style="white-space: nowrap">
+                                                 <span t-esc="line['balance']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                             </td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         </span>
+                                         <span t-if="line['balance'] &lt; 0">
+                                             <td></td>
+                                             <td class="text-left" style="white-space: nowrap">
+                                                 <span t-esc="-line['balance']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                             </td>
+                                         </span>
+                                     </tr>
+                                </span>                                      
+                            </span>
+
+                            <t t-foreach="account['corracc']" t-as="line">
+                            <t t-if="line['corracccode']">
+                                <tr t-if="line['debit'] &gt; 0">   
+                                   <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span t-esc="line['corracccode']"/></td>
+                                     <td class="text-left" style="white-space: nowrap">   
+                                            <span t-esc="line['debit']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                     </td>
+                                     <td class="text-right" style="white-space: nowrap"></td>
+                                     <td class="text-right" groups="base.group_multi_currency" style="white-space: nowrap"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </t>
+                            </t>
+                             
+                            <tr style="font-weight: bold">
+                                <td colspan="6" style="border-bottom: 1px solid">
+                                    <span style="color: white;" t-esc="'..'"/>
+                                    <span t-esc="account['code']"/>
+                                    <span t-esc="account['name']"/>
+                                </td>
+                                <td class="text-left" style="white-space: nowrap; border-bottom: 1px solid">
+                                    <span t-esc="account['debit']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                </td>
+                                <td class="text-left" style="white-space: nowrap; border-bottom: 1px solid">
+                                    <span t-esc="account['credit']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                </td>
+                                <span t-if="account['balance'] &gt; 0">
+                                    <td class="text-left" style="white-space: nowrap; border-bottom: 1px solid">
+                                        <span t-esc="account['balance']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                     <td class="text-left" style="white-space: nowrap; border-bottom: 1px solid"></td>
+                                    </td>
+                                </span>
+                                <span t-if="account['balance'] &lt; 0">
+                                    <td class="text-left" style="white-space: nowrap; border-bottom: 1px solid"></td>
+                                    <td class="text-left" style="white-space: nowrap; border-bottom: 1px solid">
+                                        <span t-esc="-account['balance']" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;res_company.currency_id&quot;}"/>
+                                    </td>
+                                </span>
+                                <td groups="base.group_multi_currency"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        
+    </t>
+</template>
+</odoo>
