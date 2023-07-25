@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<openerp>
+    <data>
+          <report
+            id="action_report_account_statement" 
+            model="account.bank.statement"
+            string="Statement"
+            name="cash_report_ru.report_statement"
+            file="cash_report_ru.report_statement"
+            report_type="qweb-pdf"
+        />
+		 <report
+            id="action_report_x_cash_orders_report"
+            string="Cash order"
+            model="account.bank.statement"
+            name="cash_report_ru.x_cash_orders_report"
+            file="cash_report_ru.x_cash_orders_report"
+            report_type="qweb-pdf"
+        />
+    </data>
+</openerp>
