@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_rm_order_form" model="ir.ui.view">
+            <field name="name">sale_rm.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_done']" position="after">
+                    <button name="action_back" type="object" string="Set to Sale" states="done" groups="base.group_sale_manager"/>
+                </xpath>
+                <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                    <attribute name="on_change">check_pricelist(pricelist_id, order_line, context.get('active_id', False))</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                 <xpath expr="//notebook//field[@name='order_line']" position="attributes">
+                    <attribute name="on_change">check_pricelist(pricelist_id, order_line, context.get('active_id', False))</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
