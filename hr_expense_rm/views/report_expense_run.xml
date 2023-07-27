@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <openerp> 
 <data> 
-<template id="report_expense_run"> <t t-call="report.html_container">
+<template id="report_expense_run">
+ <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
          <!-- Multicompany -->
             <t t-if="o and 'company_id' in o">
@@ -200,7 +201,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 							     	<td class="r8"/>
 								<td class="ltrbl8" colspan="5" rowspan="2">Предыдущий аванс <t t-set="prev_prepay" t-value="o.prev_prepayment"/></td>
 								<td class="ltrb8" colspan="3">остаток</td>
-								<td class="ltrb8" colspan="4"><t t-if="o.prev_prepayment&gt;0"> <span t-esc="o.prev_prepayment"/></t></td>
+								<td class="ltrb8" colspan="4"><t t-if="o.prev_prepayment&gt;0"> <span t-esc="('%.2f')%o.prev_prepayment"/></t></td>
 								<td class="r8" colspan="2"/>
 								<td class="ltrb8" colspan="6">дебет</td>
 								<td class="ltrb8" colspan="6">кредит</td>
@@ -209,7 +210,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 			    <tr class="r15">
 							     	<td class="r8"/>
 								<td class="ltrb8" colspan="3">перерасход</td>
-								<td class="ltrb8" colspan="4"><t t-if="o.prev_prepayment&lt;0"> <span t-esc="abs(o.prev_prepayment)"/></t></td>
+								<td class="ltrb8" colspan="4"><t t-if="o.prev_prepayment&lt;0"> <span t-esc="('%.2f')%abs(o.prev_prepayment)"/></t></td>
 								<td class="r8" colspan="2"/>
 								<td class="ltrb8" colspan="3">счет, субсчет</td>
 								<td class="ltrb8" colspan="3">сумма, руб.коп.</td>
@@ -227,9 +228,9 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 								<td class="ltrb8" colspan="4"><span t-esc="abs(p.line_ids[0].balance)"/> <t t-set="prepay" t-value="prepay+abs(p.line_ids[0].balance)"/></td>
 								<td class="r8" colspan="2"/>
 								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].debit"><span t-esc="p.line_ids[0].account_id.code"/> </t><t t-if="p.line_ids[1].debit"><span t-esc="p.line_ids[1].account_id.code"/> </t></td>
-								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].debit"><span t-esc="p.line_ids[0].debit"/> </t><t t-if="p.line_ids[1].debit"><span t-esc="p.line_ids[1].debit"/> </t></td>
+								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].debit"><span t-esc="('%.2f')%p.line_ids[0].debit"/> </t><t t-if="p.line_ids[1].debit"><span t-esc="('%.2f')%p.line_ids[1].debit"/> </t></td>
 								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].credit"><span t-esc="p.line_ids[0].account_id.code"/> </t><t t-if="p.line_ids[1].credit"><span t-esc="p.line_ids[1].account_id.code"/> </t></td>
-								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].credit"><span t-esc="abs(p.line_ids[0].credit)"/> </t><t t-if="p.line_ids[1].credit"><span t-esc="abs(p.line_ids[1].credit)"/> </t></td>
+								<td class="ltrb8" colspan="3"><t t-if="p.line_ids[0].credit"><span t-esc="('%.2f')%abs(p.line_ids[0].credit)"/> </t><t t-if="p.line_ids[1].credit"><span t-esc="('%.2f')%abs(p.line_ids[1].credit)"/> </t></td>
 								<td class="r8"/>
                             </tr>
 			    <tr class="r15">
@@ -290,7 +291,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 							     	<td class="r8"/>
 								<td class="ltrbl8" colspan="5">Израсходовано</td>
 								<td class="ltrb8" colspan="3"/>
-								<td class="ltrb8" colspan="4"><t t-set="rsa" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-if="e.state in ['post', 'done']"><t t-set="rsa" t-value="rsa+e.total_amount"/></t></t><span t-esc="rsa"/></td>
+								<td class="ltrb8" colspan="4"><t t-set="rsa" t-value="0"/><t t-foreach="get_expense(o.expense_ids)" t-as="e"><t t-if="e.state in ['post', 'done']"><t t-set="rsa" t-value="rsa+e.total_amount"/></t></t><span t-esc="('%.2f')%round(rsa,2)"/></td>
 								<td class="r8" colspan="2"/>
 								<td class="ltrb8" colspan="3"/>
 								<td class="ltrb8" colspan="3"/>
@@ -302,7 +303,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 							     	<td class="r8"/>
 								<td class="ltrbl8" colspan="5">Остаток</td>
 								<td class="ltrb8" colspan="3"/>
-								<td class="ltrb8" colspan="4"><t t-set="balance" t-value="prev_prepay+prepay-rsa"/><t t-if="balance&gt;0"><span t-esc="balance"/></t></td>
+								<td class="ltrb8" colspan="4"><t t-set="balance" t-value="prev_prepay+prepay-rsa"/><t t-if="balance&gt;0"><span t-esc="('%.2f')%round(balance,2)"/></t></td>
 								<td class="r8" colspan="2"/>
 								<td class="ltrb8" colspan="3"/>
 								<td class="ltrb8" colspan="3"/>
@@ -314,7 +315,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 							     	<td class="r8"/>
 								<td class="ltrbl8" colspan="5">Перерасход</td>
 								<td class="ltrb8" colspan="3"/>
-								<td class="ltrb8" colspan="4"><t t-if="balance&lt;0"><span t-esc="abs(balance)"/></t></td>
+								<td class="ltrb8" colspan="4"><t t-if="balance&lt;0"><span t-esc="('%.2f')%abs(round(balance,2))"/></t></td>
 								<td class="r8" colspan="2"/>
 								<td class="ltrb8" colspan="3"/>
 								<td class="ltrb8" colspan="3"/>
@@ -342,7 +343,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 								<td class="l8">(</td>
 								<td class="b8" colspan="2"><span t-esc="int(rsa)"/></td>
 								<td class="l8">руб.</td>
-								<td class="b8"><span t-esc="int(rsa-int(rsa))*100"/></td>
+								<td class="b8"><span t-esc="int(round((round(rsa,2)-int(rsa))*100))"/></td>
 								<td class="l8">коп.)</td>
 								<td class="r8"/>
                             </tr>
@@ -395,7 +396,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 								<td class="c8" colspan="3" rowspan="2">в сумме</td>
 								<td class="ltrb8" colspan="4" rowspan="2"><span t-esc="int(abs(balance))"/></td>
 								<td class="c8" rowspan="2">руб.</td>
-								<td class="ltrb8" colspan="3" rowspan="2"><span t-esc="int(((abs(balance))-int(abs(balance)))*100)"/></td>
+								<td class="ltrb8" colspan="3" rowspan="2"><span t-esc="int(round(((abs(round(balance,2)))-int(abs(balance)))*100))"/></td>
 								<td class="c8" rowspan="2">коп.</td>
 								<td class="c8" colspan="5" rowspan="2">по кассовому ордеру №</td>
 								<td class="b8" colspan="2" rowspan="2"/>
@@ -605,7 +606,7 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 								<td class="ltrb8" colspan="2"><span t-field="e.date" t-field-options="{&quot;format&quot;: &quot;dd.MM.YY&quot;}"/></td>
 								<td class="ltrb8" colspan="2"><span t-esc="e.x_doc_number"/></td>
 								<td class="ltrbl8" colspan="10"><span t-esc="e.name.name"/></td>
-								<td class="ltrb8" colspan="2"><span t-esc="e.total_amount"/><t t-set="s" t-value="e.total_amount"/><t t-set="rs" t-value="rs+s"/></td>
+								<td class="ltrb8" colspan="2"><span t-esc="('%.2f')%e.total_amount"/><t t-set="s" t-value="e.total_amount"/><t t-set="rs" t-value="rs+s"/></td>
 								<td class="ltrb8" colspan="2"/>
 								<td class="ltrb8" colspan="2"><t t-if="e.state in ['post', 'done']"><span t-esc="e.total_amount"/><t t-set="rsa" t-value="rsa+s"/></t></td>
 								<td class="ltrb8" colspan="2"/>
@@ -617,9 +618,9 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 								<td class="ltrb8" colspan="2"/>
 								<td class="ltrb8" colspan="2"/>
 								<td class="ltrbr8" colspan="10">ИТОГО</td>
-								<td class="ltrb8" colspan="2"><span t-esc="rs"/></td>
+								<td class="ltrb8" colspan="2"><span t-esc="('%.2f')%rs"/></td>
 								<td class="ltrb8" colspan="2"/>
-								<td class="ltrb8" colspan="2"><span t-esc="rsa"/></td>
+								<td class="ltrb8" colspan="2"><span t-esc="('%.2f')%rsa"/></td>
 								<td class="ltrb8" colspan="2"/>
 								<td class="ltrb8" colspan="3"/>
                             				</tr>
