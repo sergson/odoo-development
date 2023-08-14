@@ -12,7 +12,7 @@ Payroll Modifications for Russian accounting data.
 Salary structure data adding
     """,
     'website': 'https://www.odoo.com/page/employees',
-    'author': 'Serg Terihov'
+    'author': 'Serg Terihov',
     'depends': [
         'hr_payroll',
         'hr_payroll_account',
