@@ -16,7 +16,7 @@ Administrators gets unlink possibilities
 Administrator can to unlink records.
 Russian translation.
 """,
-    'author': 'Serg Terihov'
+    'author': 'Serg Terihov',
     'depends': ['hr_holidays'],
     'data': [],
     'demo': [],
