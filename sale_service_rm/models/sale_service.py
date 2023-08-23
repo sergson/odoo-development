@@ -41,7 +41,7 @@ class procurement_order_rm(osv.osv):
             else:
                 planned_hours = procurement.product_qty * working_time
 # -----------------------------------
-        return planned_hours
+        return round(planned_hours, 1)
 
     def _task_description_get(self, cr, uid, sale_order, partner):
         description = []
