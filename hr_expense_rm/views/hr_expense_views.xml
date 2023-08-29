@@ -38,6 +38,9 @@
                         <field name="x_partner_id" required="1" string="Поставщик"/>
                         <field name="expense_run_id" required="1" domain="[('state', 'in', ['draft'])]"/>
                  </field>
+		<field name="total_amount" position="attributes">
+                    	<attribute name="attrs">{'readonly':[('state', 'not in', ['draft'])]}</attribute>
+                </field>
             </field>
          </record>
 
