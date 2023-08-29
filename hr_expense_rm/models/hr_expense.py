@@ -16,7 +16,7 @@ class HrExpenseRuMod(models.Model):
     name = fields.Many2one('hr.expense.doc', string='Документ', readonly=True, required=True, states={'draft': [('readonly', False)]})
     x_partner_id = fields.Many2one('res.partner', string='Поставщик',  domain=[('supplier', '=', True)],  required=True, readonly=True, states={'draft': [('readonly', False)]})
     x_doc_number = fields.Char(srting='Номер документа',  required=True, readonly=True, states={'draft': [('readonly', False)]})
-    expense_run_id = fields.Many2one('hr.expense.run', 'Авансовые отчеты', required=True, readonly=True, states={'draft': [('readonly', False)]}, copy=False)
+    expense_run_id = fields.Many2one('hr.expense.run', 'Авансовые отчеты', required=False, readonly=True, states={'draft': [('readonly', False)]}, copy=False)
     x_num_of_lists = fields.Integer(string='Количество листов', required=True, readonly=True, states={'draft': [('readonly', False)]}, default = 1)
     procurement_ids = fields.One2many('procurement.order', 'expense_id', string='Associated Procurements', copy=False)
     move_ids = fields.One2many('stock.move', 'expense_id', string='Reservation', readonly=True, ondelete='set null', copy=False)
