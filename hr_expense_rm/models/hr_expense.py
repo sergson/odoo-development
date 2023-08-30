@@ -109,9 +109,7 @@ class HrExpenseRuMod(models.Model):
                         raise UserError(_("No credit account found for the %s journal, please configure one.") % (expense.bank_journal_id.name))
                     emp_account = expense.bank_journal_id.default_credit_account_id.id
                 else:
-                    if not expense.employee_id.address_home_id:
-                        raise UserError(_("No Home Address found for the employee %s, please configure one.") % (expense.employee_id.name))
-                    emp_account = expense.employee_id.address_home_id.property_account_payable_id.id
+                    emp_account = expense.journal_id.default_credit_account_id.id
 
 
                 move_lines_total = []
