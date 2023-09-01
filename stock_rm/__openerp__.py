@@ -24,7 +24,8 @@ Added some report of pack operations.
     'demo': [],
     'data': [
         'views/report_stock_order.xml',
-        'stock_report.xml'
+        'stock_report.xml',
+        'stock_view.xml'
     ],
     'test': [],
     'installable': True,
