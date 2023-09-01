@@ -4,6 +4,17 @@
 from openerp.osv import osv
 from openerp.tools.translate import _
 from openerp.exceptions import UserError
+from openerp import models
+
+class stock_picking_inh(models.Model):
+    _inherit = "stock.picking"
+
+    def action_cancel_draft(self, cr, uid, ids, context=None):
+        for pick in self.browse(cr, uid, ids, context=context):
+            if pick.state == 'cancel':
+                ids2 = [move.id for move in pick.move_lines]
+                self.pool.get('stock.move').action_cancel_draft(cr, uid, ids2, context)
+        return True
 
 class stock_move_inh(osv.osv):
     _inherit = "stock.move"
@@ -49,6 +60,28 @@ class stock_move_inh(osv.osv):
             procurement_obj.check(cr, uid, list(procs_to_check), context=context)
         return res
 
+    def action_cancel_draft(self, cr, uid, ids, context=None):
+        """ Change canceled moves to draft.
+        @return: True
+        """
+        all_users = self.pool.get('res.users')
+        context = None
+        user_name = all_users.browse(cr, uid, uid, context=context).name
+        managers_group = 'sale.group_stock_manager'
+        admins = ['Administrator']
+
+        procurement_obj = self.pool.get('procurement.order')
+        context = context or {}
+        procs_to_check = set()
+        for move in self.browse(cr, uid, ids, context=context):
+            if move.state == 'done':
+                if not (user_name in admins or all_users.has_group(cr, uid, managers_group)):
+                    raise UserError(_('You cannot cancel a stock move that has been set to \'Done\'.'))
+            if move.move_dest_id:
+                    self.write(cr, uid, [move.move_dest_id.id], {'state': 'draft'}, context=context)
+
+        res = self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+        return res
 
 class stock_pack_operation_inh(osv.osv):
     _inherit = "stock.pack.operation"
