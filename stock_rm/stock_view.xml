@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <record id="view_rm_picking_form" model="ir.ui.view">
+            <field name="name">stock_rm.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[@name='action_cancel']" position="after">
+                     <button name="action_cancel_draft" states="cancel" string="To draft" type="object" class="oe_highlight" groups="stock.group_stock_manager"/>
+                     <button name="action_cancel" states="done" string="Cancel" groups="stock.group_stock_manager" type="object"  confirm="WARNING! Are you sure you want to cancel this operation? This action does not cancel the movement of product quanta. It will be necessary to perform an inventory after."/>
+                 </xpath>
+                <xpath expr="//button[@name='do_new_transfer']" position="attributes">
+                        <attribute name="states">partially_available,assigned</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
