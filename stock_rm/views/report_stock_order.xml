@@ -9,7 +9,7 @@
         <template id="external_layout_header_barcode_right" inherit_id="report.external_layout_header" primary="True">
             <xpath expr="//div[@name='company_address']" position="after">
                 <div class="col-xs-4 pull-right" name="right_box">
-                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px;"/>
+                    <img t-att-src="(o.company_id.website or'')+'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.name, 100, 100)" style="width:50px;height:50px;"/>
                 </div>
             </xpath>
         </template>
