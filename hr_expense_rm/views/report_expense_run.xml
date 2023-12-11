@@ -394,9 +394,9 @@ table {table-layout: fixed; padding: 0px; padding-left: 2px; vertical-align:bott
 								<td class="r8"/>
 								<td class="b8" colspan="4"><t t-if="balance&gt;0">остаток</t></td>
 								<td class="c8" colspan="3" rowspan="2">в сумме</td>
-								<td class="ltrb8" colspan="4" rowspan="2"><span t-esc="int(abs(balance))"/></td>
+								<td class="ltrb8" colspan="4" rowspan="2"><span t-esc="int(abs(round(balance,2)))"/></td>
 								<td class="c8" rowspan="2">руб.</td>
-								<td class="ltrb8" colspan="3" rowspan="2"><span t-esc="int(round(((abs(round(balance,2)))-int(abs(balance)))*100))"/></td>
+								<td class="ltrb8" colspan="3" rowspan="2"><span t-esc="int(round(((abs(round(balance,2)))-int(abs(round(balance,2))))*100))"/></td>
 								<td class="c8" rowspan="2">коп.</td>
 								<td class="c8" colspan="5" rowspan="2">по кассовому ордеру №</td>
 								<td class="b8" colspan="2" rowspan="2"/>
