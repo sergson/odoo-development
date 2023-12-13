@@ -6,3 +6,4 @@ import account_report_common_journal_ru_mod
 import account_report_common_partner_mod
 import account_report_print_journal_ru_mod
 import account_report_partner_ledger_ru_mod
+import account_report_general_ledger_partner
