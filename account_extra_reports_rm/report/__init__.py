@@ -3,3 +3,4 @@
 
 import account_journal_ru_mod
 import account_partner_ledger_ru_mod
+import account_general_ledger_partner
