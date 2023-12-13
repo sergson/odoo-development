@@ -21,6 +21,8 @@ This module adds two new reports:
         'views/report_journal.xml',
         'wizard/account_report_partner_ledger_view.xml',
         'views/report_partnerledger.xml',
+        'views/report_generalledger_partner.xml',
+        'wizard/account_report_general_ledger_partner_view.xml',
         'data/account_report.xml'
     ],
     'demo': [],
