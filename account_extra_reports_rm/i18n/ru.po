@@ -107,3 +107,19 @@ msgstr "report.account_extra_reports_rm.report_journal_mod"
 msgid "report.account_extra_reports_rm.report_partnerledger_mod"
 msgstr "report.account_extra_reports_rm.report_partnerledger_mod"
 
+#. module: account_extra_reports_rm
+#: model:ir.model,name:account_extra_reports_rm.model_account_report_general_ledger_partner
+msgid "General Ledger Partner Report"
+msgstr "Карточка счета по контрагенту"
+
+#. module: account_extra_reports_rm
+#: model:ir.actions.act_window,name:account_extra_reports_rm.action_account_general_ledger_partner_menu
+#: model:ir.actions.report.xml,name:account_extra_reports_rm.action_report_generalledger_partner
+#: model:ir.ui.menu,name:account_extra_reports_rm.menu_general_ledger_partner
+msgid "General Ledger partner"
+msgstr "Карточка счета по контрагенту"
+
+#. module: account_extra_reports_rm
+#: model:ir.ui.view,arch_db:account_extra_reports_rm.report_generalledger_partner
+msgid "General ledger partner"
+msgstr "Карточка счета по контрагенту"
