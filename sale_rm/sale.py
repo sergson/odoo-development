@@ -5,6 +5,8 @@ from openerp import api, fields, models, _
 from openerp.exceptions import UserError
 from datetime import datetime
 
+PRICE_TOLERANCE = 0.05  # Tolerance for manual price variation
+
 class SaleOrderInherit(models.Model):
     _inherit = "sale.order"
 
@@ -39,6 +41,37 @@ class SaleOrderInherit(models.Model):
         }
         return invoice_vals
 
+    @api.onchange('pricelist_id')
+    def pricelist_id_change(self):
+        lang_val = self.partner_id.lang
+        partner_val = self.partner_id.id
+        date_val = self.date_order
+        pricelist_val = self.pricelist_id.id
+        vals = {}
+        mod_lines = []
+        for line in self.order_line:
+            product = line.product_id.with_context(
+                lang=lang_val,
+                partner=partner_val,
+                quantity=line.product_uom_qty,
+                date=date_val,
+                pricelist=pricelist_val,
+                uom=line.product_uom.id
+            )
+            line_vals = {}
+            ctrl_price = self.env['account.tax']._fix_tax_included_price(product.price, product.taxes_id, line.tax_id)
+            line_vals['price_unit'] = ctrl_price
+            price = line_vals['price_unit'] * (1 - (line.discount or 0.0) / 100.0)
+            taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty,
+                                            product=line.product_id, partner=line.order_id.partner_id)
+            line_vals['price_tax'] = taxes['total_included'] - taxes['total_excluded']
+            line_vals['price_total'] = taxes['total_included']
+            line_vals['price_subtotal'] = taxes['total_excluded']
+            mod_lines.append([1, line.id, line_vals])
+        if len(mod_lines) > 0:
+            vals['order_line'] = mod_lines
+        self.update(vals)
+
     @api.multi
     def unlink(self):
         all_users = self.pool.get('res.users')
@@ -59,91 +92,39 @@ class SaleOrderInherit(models.Model):
     def action_back(self):
         self.write({'state': 'sale'})
 
-    def check_pricelist(self, cr, uid, ids, order_pricelist, order_line, order_id):
-        order = self.pool.get('sale.order').browse(cr, uid, order_id)
-        if order.state in ['done', 'cancel']:
-            return None
-        product_ids = []
-        domain = {'pricelist_id': []}
-        values = {}
-        legal_pricelist = []
-        legal_pricelist_ids = []
-        product_id = False
-        product_dict = {}
-        lines_num = len(order_line) - 1
-        if lines_num > 0:
-            for product_tuple in reversed(order_line):
-                #               warning = {'title': _("Warning"),'message': _('product_tuple: '+str(product_tuple))}
-                #               return {'warning':warning}
 
-                #           product_tuple=order_line[len(order_line)-1]
-                if len(product_tuple) < 3:
-                    continue
-                product_dict = max(product_tuple)
-                try:
-                    product_id = product_dict['product_id']
-                except:
-                    #                   warning = {'title': _("Warning"),'message': _('lines:'+str(order_line)+'product_dict: '+str(product_dict)+'product_tuple:'+str(product_tuple))}
-                    #                   return {'warning':warning}
-                    product_id = False
-                if product_id:
-                    legal_pricelist = self.pool.get('product.pricelist.item').browse(cr, uid, []).search(
-                        [('product_id', '=', product_id)])
-                    legal_pricelist_ids = []
-                    for item in legal_pricelist:
-                        legal_pricelist_ids.append(item.pricelist_id.id)
-                    if len(legal_pricelist_ids) > 1 and lines_num == 1:
-                        domain = {'pricelist_id': [('id', 'in', legal_pricelist_ids)]}
-                        return {'domain': domain}
-                    elif len(legal_pricelist_ids) == 1 and lines_num >= 1:
-                        domain = {'pricelist_id': [('id', '=', legal_pricelist_ids)]}
-                        return {'domain': domain}
-                    elif len(legal_pricelist_ids) > 1 and lines_num >= 1:
-                        domain = {'pricelist_id': [('id', '=', order_pricelist)]}
-                        return {'domain': domain}
-            else:
-                domain = {'pricelist_id': [('id', '=', legal_pricelist_ids)]} if len(legal_pricelist_ids) == 1 else {
-                    'pricelist_id': [('id', '=', legal_pricelist_ids)]}
-            self.update = ({'pricelist_id': False})
-        return {'domain': domain}
-#       warning = {'title': _("Warning"),'message': _('order_pricelist: '+str(order_pricelist)+' pricelist_id: '+str(domain))}
-#       return {'warning':warning}
 
 
 class SaleOrderLineInherit(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id')
-    def _compute_amount(self):
-        """
-        Compute the amounts of the SO line.
-        """
-        # MY ADD START
-        price_unit_update = False
-        lang_val = self[0].order_id.partner_id.lang
-        partner_val = self[0].order_id.partner_id.id
-        date_val = self[0].order_id.date_order
-        pricelist_val = self[0].order_id.pricelist_id.id
-        for line in self:
-            product = line.product_id.with_context(
-                lang=lang_val,
-                partner=partner_val,
-                quantity=line.product_uom_qty,
-                date=date_val,
-                pricelist=pricelist_val,
-                uom=line.product_uom.id
-            )
-            ctrl_price = self.env['account.tax']._fix_tax_included_price(product.price, product.taxes_id, line.tax_id)
-            if abs(line.price_unit - ctrl_price) > 0.025 * ctrl_price:
-                line.update({'product_id': False})
-            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty,
-                                            product=line.product_id, partner=line.order_id.partner_id)
-            line.update({
-                'price_tax': taxes['total_included'] - taxes['total_excluded'],
-                'price_total': taxes['total_included'],
-                'price_subtotal': taxes['total_excluded'],
-            })
+    @api.onchange('price_unit')
+    def price_unit_change(self):
+        lang_val = self.order_id.partner_id.lang
+        partner_val = self.order_id.partner_id.id
+        date_val = self.order_id.date_order
+        pricelist_val = self.order_id.pricelist_id.id
+        product = self.product_id.with_context(
+            lang=lang_val,
+            partner=partner_val,
+            quantity=self.product_uom_qty,
+            date=date_val,
+            pricelist=pricelist_val,
+            uom=self.product_uom.id
+        )
+        line_vals = {}
+        ctrl_price = self.env['account.tax']._fix_tax_included_price(product.price, product.taxes_id, self.tax_id)
+        if abs(self.price_unit - ctrl_price) > PRICE_TOLERANCE * ctrl_price:
+            line_vals['price_unit'] = ctrl_price
+            price = line_vals['price_unit'] * (1 - (self.discount or 0.0) / 100.0)
+        else:
+            price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        taxes = self.tax_id.compute_all(price, self.order_id.currency_id, self.product_uom_qty,
+                                        product=self.product_id, partner=self.order_id.partner_id)
+        line_vals['price_tax'] = taxes['total_included'] - taxes['total_excluded']
+        line_vals['price_total'] = taxes['total_included']
+        line_vals['price_subtotal'] = taxes['total_excluded']
+        self.update(line_vals)
 
     @api.multi
     def unlink(self):
@@ -214,10 +195,15 @@ class SaleOrderLineInherit(models.Model):
                 curent_pricelist_item = self.env['product.pricelist.item'].search(
                     [('product_id', '=', self.product_id.id), ('pricelist_id', '=', self.order_id.pricelist_id.id)],
                     limit=1)
+                old_product_uom_qty = self.env['sale.order.line'].browse([self._origin.id]).product_uom_qty
+                product_uom_qty = self.product_uom_qty
+                if all([old_product_uom_qty,
+                       self.order_id.state in ['sale', 'done', 'cancel'],
+                       self.product_uom_qty != old_product_uom_qty]):
+                    product_uom_qty = old_product_uom_qty
                 product_uom_factor = self.env['product.uom'].browse([self.product_uom.id]).factor
                 product_base_uom_factor = curent_pricelist_item.product_id.product_tmpl_id.uom_id.factor
                 min_qty = curent_pricelist_item.min_quantity
-                product_uom_qty = self.product_uom_qty
 
                 if product_base_uom_factor:
                     min_qty_line_units = min_qty / product_base_uom_factor * product_uom_factor
