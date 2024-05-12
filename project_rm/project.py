@@ -15,6 +15,23 @@ class task_inh(osv.osv):
         managers_group = 'project.group_project_manager'
         admins = ['Administrator']
         user_group = 'project.group_project_user'
+        planned_hours = self.pool.get('project.task').browse(cr, uid, ids, context).planned_hours
+        timesheet_ids = self.pool.get('project.task').browse(cr, uid, ids, context).timesheet_ids
+        if vals.get('timesheet_ids'):
+            unit_amount_list = self.pool['account.analytic.line'].read(cr, uid, timesheet_ids.ids, ['unit_amount'], context)
+            unit_amount_list_index = [x['id'] for x in unit_amount_list]
+            effective_hours = 0
+            for line in vals.get('timesheet_ids'):
+                if line[0] in [0]:
+                    effective_hours += line[2].get('unit_amount', 0)
+                elif line[0] in [1]:
+                    if line[2].get('unit_amount') not in [None, False]:
+                        effective_hours += line[2].get('unit_amount', 0)
+                elif line[0] in [4]:
+                    effective_hours += unit_amount_list[unit_amount_list_index.index(line[1])].get('unit_amount')
+        remaining_hours = planned_hours - effective_hours
+        if remaining_hours < 0:
+            raise UserError(_('Затраченное время превышает количество запланированных часов'))
         if user_name in admins:
             pass
         elif all_users.has_group(cr, uid, managers_group):
@@ -25,15 +42,15 @@ class task_inh(osv.osv):
             if vals.get('sale_line_id'):
                 raise UserError(_('Недостаточно прав, чтобы изменить строку заказа'))
             if vals.get('timesheet_ids'):
-                raise UserError(_('Недостаточно прав, чтобы изменить табель учета'))
+                task_user_id = self.pool.get('project.task').browse(cr, uid, ids, context).user_id.id
+                if task_user_id != uid:
+                    raise UserError(_('Недостаточно прав, чтобы отчитаться по задаче назначенной другому исполнителю'))
             if vals.get('project_id'):
                 raise UserError(_('Недостаточно прав, чтобы перевести задачи в другой проект'))
-            remaining_hours = self.pool.get('project.task').browse(cr, uid, ids, context).remaining_hours
             planned_hours = self.pool.get('project.task').browse(cr, uid, ids, context).planned_hours
             effective_hours = planned_hours - remaining_hours
             if vals.get('user_id') and effective_hours > 0:
-                raise UserError(
-                    _('Недостаточно прав, чтобы передать задачу по которой имеется отчетность другому исполнителю'))
+                raise UserError(_('Недостаточно прав, чтобы передать задачу по которой имеется отчетность другому исполнителю'))
 
         elif all_users.has_group(cr, uid, user_group):
             if vals.get('user_id'):
