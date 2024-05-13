@@ -17,10 +17,10 @@ class task_inh(osv.osv):
         user_group = 'project.group_project_user'
         planned_hours = self.pool.get('project.task').browse(cr, uid, ids, context).planned_hours
         timesheet_ids = self.pool.get('project.task').browse(cr, uid, ids, context).timesheet_ids
+        effective_hours = 0
         if vals.get('timesheet_ids'):
             unit_amount_list = self.pool['account.analytic.line'].read(cr, uid, timesheet_ids.ids, ['unit_amount'], context)
             unit_amount_list_index = [x['id'] for x in unit_amount_list]
-            effective_hours = 0
             for line in vals.get('timesheet_ids'):
                 if line[0] in [0]:
                     effective_hours += line[2].get('unit_amount', 0)
