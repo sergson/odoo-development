@@ -25,7 +25,7 @@
 					<field name="x_total_hours" string="Всего рабочих часов"/>
 				</xpath>
 				<xpath expr="//field[@name='worked_days_line_ids']//form/group/field[@name='number_of_days']" position="attributes">	
-					<attribute name="string">"Отработано рабочих часов"</attribute>
+					<attribute name="string">"Отработано рабочих дней"</attribute>
 				</xpath>
 				<xpath expr="//field[@name='worked_days_line_ids']//form/group/field[@name='number_of_hours']" position="attributes">	
 					<attribute name="string">"Отработано рабочих часов"</attribute>
