@@ -91,14 +91,14 @@ class QWebHelper(object):
         if partner.name: repr.append(partner.name)
         if partner.inn: repr.append(u"ИНН " + partner.inn)
         if partner.kpp: repr.append(u"КПП " + partner.kpp)
-#MY ADD START
-        if partner.snils: repr.append(u"СНИЛС " + partner.snils)
-#MY ADD END
         repr.append(self.address(partner))
         return ', '.join(repr)
 
     def full_representation(self, partner, partner_bank_acc=None):
         repr = [self.representation(partner)]
+#MY ADD START
+        if partner.snils: repr.append(u"СНИЛС " + partner.snils)
+#MY ADD END
         if partner.phone: repr.append(u"тел.: " + partner.phone)
         elif partner.parent_id.phone: repr.append(u"тел.: " + partner.parent_id.phone)
 #MY ADD START
