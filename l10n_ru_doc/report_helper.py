@@ -96,14 +96,14 @@ class QWebHelper(object):
 
     def full_representation(self, partner, partner_bank_acc=None):
         repr = [self.representation(partner)]
-#MY ADD START
+# MY ADD START
         if partner.snils: repr.append(u"СНИЛС " + partner.snils)
-#MY ADD END
+# MY ADD END
         if partner.phone: repr.append(u"тел.: " + partner.phone)
         elif partner.parent_id.phone: repr.append(u"тел.: " + partner.parent_id.phone)
 #MY ADD START
-        if partner.ident_doc: repr.append(partner.ident_doc)
-        elif partner.parent_id.ident_doc: repr.append(partner.parent_id.ident_doc)
+        if not partner.snils and partner.ident_doc: repr.append(partner.ident_doc)
+        elif not partner.parent_id.snils and partner.parent_id.ident_doc: repr.append(partner.parent_id.ident_doc)
 #MY ADD END
         bank = None
 #MOD BY ME START
