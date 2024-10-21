@@ -194,7 +194,7 @@ Translated modules:
         'marketing',
         'link_tracker',
         'hr_expense',
-        'hr_expense_ru_mod',
+        'hr_expense_rm',
         'sale_crm',
         'base',
         'hr_holidays_compute_days',
