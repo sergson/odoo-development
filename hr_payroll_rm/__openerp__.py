@@ -13,18 +13,13 @@ Payroll Modifications for Russian accounting.
 Pay slip form adding
 Payroll form adding
     """,
-    'author': 'Serg Terihov'
+    'author': 'Serg Terihov',
     'website': 'https://www.odoo.com/page/employees',
-    'depends': [
-        'hr_payroll',
-        'hr_payroll_account'
-    ],
-    'data': [
-        'hr_payroll_view.xml',
+    'depends': ['hr_payroll', 'hr_payroll_account'],
+    'data': ['hr_payroll_view.xml',
         'hr_payroll_report.xml',
         'views/report_payslip.xml',
-        'views/report_payslip_run.xml'
-    ],
+        'views/report_payslip_run.xml'],
     'test': [],
     'demo': [],
     'installable': True,
