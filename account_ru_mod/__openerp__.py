@@ -16,6 +16,7 @@ Added tax_amount in accounting records.
 Replaced property_account_payable_id 'internal_type' to receivable.
 Replaced property_account_receivable_id 'internal_type' to payable. 
 Setting for account.payment if partner_type == 'employee'. 
+Updating date of maturity in lines if date of account move changed.
 Modifications in pdf reports.
 Modifications in translations.
     """,
