@@ -12,7 +12,6 @@ Sales Management products control by price list
 ==================================
     """,
     'website': 'https://www.odoo.com/page/crm',
-    'author': 'Serg Terihov',
     'depends': ['sale'],
     'data': ['sale_view.xml'],
     'demo': [],

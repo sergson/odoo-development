@@ -74,14 +74,13 @@ class SaleOrderInherit(models.Model):
 
     @api.multi
     def unlink(self):
-        all_users = self.pool.get('res.users')
-        cr = self._cr
-        uid = self._uid
-        context = None
-        user_name = all_users.browse(cr, uid, uid, context=context).name
-        managers_group = 'sale.group_sale_manager'
-        admins = ['Administrator']
-        if not(user_name in admins or all_users.has_group(cr, uid, managers_group)):
+        allowed_groups = [
+            'sales_team.group_sale_manager',
+            'base.group_system',
+            'base.group_erp_manager',
+            ]
+        has_permission = any(self.env.user.has_group(group) for group in allowed_groups)
+        if not has_permission:
             raise UserError(_('Cannot delete a sale order without some permissions'))
         for order in self:
             if order.state != 'draft':
