@@ -111,7 +111,6 @@ class HrExpenseRuMod(models.Model):
                 else:
                     emp_account = expense.journal_id.default_credit_account_id.id
 
-
                 move_lines_total = []
                 for line in move_lines:    
                     move_lines_total.append({
