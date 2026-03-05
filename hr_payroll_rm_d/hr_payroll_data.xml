@@ -83,7 +83,7 @@
 		
 		<record id="BY_EMPLOYEE" model="hr.salary.rule.category">
             <field name="name">	Сумма задолженности за работником</field>
-            <field name="code">	BY_EMPLOYEE</field>
+            <field name="code">BY_EMPLOYEE</field>
         </record>
 		
 		<record id="TO_PAYOFF" model="hr.salary.rule.category">
