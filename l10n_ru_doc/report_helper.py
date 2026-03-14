@@ -86,6 +86,15 @@ class QWebHelper(object):
         if partner.street2: repr.append(partner.street2)
         return ', '.join(repr)
 
+# MY MOD START
+    def address_short(self, partner):
+        repr = []
+        if partner.city: repr.append(partner.city)
+        if partner.street: repr.append(partner.street)
+        if partner.street2: repr.append(partner.street2)
+        return ', '.join(repr)
+# MY MOD END
+
     def representation(self, partner):
         repr = []
         if partner.name: repr.append(partner.name)
